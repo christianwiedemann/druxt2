@@ -1,0 +1,42 @@
+{
+  "name": "druxt3",
+  "version": "0.0.2",
+  "private": true,
+  "scripts": {
+    "build": "yarn clean && lerna run prepack",
+    "dev:entity": "yarn clean && lerna run prepack && cd packages/entity; yarn dev",
+    "build:docs": "./packages/docgen/bin/druxt-docgen.js",
+    "bundlewatch": "bundlewatch --config bundlewatch.config.js",
+    "changeset": "changeset",
+    "clean": "yarn clean:dist && yarn clean:docs && yarn clean:pack",
+    "clean:docs": "rimraf docs/content/api || true",
+    "clean:dist": "rimraf packages/*/dist packages/*/nuxt || true",
+    "clean:pack": "rimraf packages/*/package.tgz || true",
+    "dev": "lerna run dev",
+    "lint": "eslint --ext .js,.vue packages/*/src",
+    "lint:commit": "commitlint",
+    "lint:renovate": "renovate-config-validator",
+    "package": "siroc run yarn pack --workspaces",
+    "postinstall": "husky install",
+    "test": "NODE_OPTIONS=--unhandled-rejections=warn jest",
+    "version": "changeset version"
+  },
+  "devDependencies": {
+    "bundlewatch": "0.3.3",
+    "husky": "8.0.1",
+    "lerna": "^5.3.0",
+    "nuxt": "3.0.0-rc.4",
+    "vite-plugin-dynamic-import": "^1.0.0",
+    "vue-loader": "^16.8.3",
+    "vue-tsc": "^0.38.5"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.1.9",
+    "axios": "^0.27.2",
+    "drupal-jsonapi-params": "^2.0.0",
+    "pinia": "^2.0.14"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
