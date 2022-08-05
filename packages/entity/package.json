@@ -36,6 +36,8 @@
     "templates"
   ],
   "scripts": {
+    "nuxi": "nuxi",
+    "module:build": "nuxt-module-build",
     "dev": "nuxt-module-build && nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",

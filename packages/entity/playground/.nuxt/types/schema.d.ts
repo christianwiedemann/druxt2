@@ -1,6 +1,7 @@
 import { NuxtModule } from '@nuxt/schema'
 declare module '@nuxt/schema' {
   interface NuxtConfig {
+    ["pinia"]?: typeof import("@pinia/nuxt").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["druxt"]?: typeof import("druxt3").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["druxt"]?: typeof import("druxt3-schema").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["druxt"]?: typeof import("druxt3-router").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
@@ -19,9 +20,23 @@ declare module '@nuxt/schema' {
   interface PublicRuntimeConfig {
      baseUrl: string,
 
-    query: {
-        "node--landing_page": {
-             includes: Array<string>,
+    endpoint: string,
+
+    options: {
+        proxy: {
+             api: boolean,
+
+             files: string,
+        },
+
+        baseUrl: string,
+
+        endpoint: string,
+
+        query: {
+             "node--landing_page": {
+                   includes: Array<string>,
+             },
         },
     },
   }

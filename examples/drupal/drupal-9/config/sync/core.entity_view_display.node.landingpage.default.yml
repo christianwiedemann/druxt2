@@ -1,0 +1,43 @@
+uuid: 18ce4ace-166d-4d63-85d4-2db4cdfaf36b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.landingpage.body
+    - field.field.node.landingpage.layout_builder__layout
+    - node.type.landingpage
+  module:
+    - layout_builder
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: true
+    sections:
+      -
+        layout_id: layout_builder_blank
+        layout_settings:
+          label: ''
+        components: {  }
+        third_party_settings: {  }
+id: node.landingpage.default
+targetEntityType: node
+bundle: landingpage
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  layout_builder__layout: true

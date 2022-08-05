@@ -14,9 +14,11 @@ export default defineNuxtPlugin(() => {
        * const schema = await this.$druxtSchema.import('node--page--default--view')
        */
       druxtRouter: async  => {
-        const runtimeConfig = useRuntimeConfig()
-        const baseUrl = 'http://eep-develop.docksal'
-        return new DruxtRouter(baseUrl);
+        const runtimeConfig = useRuntimeConfig();
+        const baseUrl = runtimeConfig.public.baseUrl;
+        const router = new DruxtRouter(baseUrl);
+
+        return router;
       }
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <div v-for="field of schema.fields" :key="field.id">
-    <strong>{{ field.id }}:</strong>
+    <strong>{{ field.id }}: {{ field.type }}</strong>
     <br/>
   </div>
 </template>
@@ -17,11 +17,7 @@ export default {
     },
   },
   async setup(props) {
-
-    const schema = await useSchema(props.type);
-    console.log('TEST')
-    console.log(schema)
-
+    const schema = await useSchema('node--recipe');
     return {schema};
   }
 }

@@ -11,9 +11,7 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../../../../node_modules/nuxt/dist/head/runtime/plugin").default> &
   InjectionType<typeof import("../../../../../node_modules/nuxt/dist/app/plugins/router").default> &
   InjectionType<typeof import("../../../../router/dist/runtime/plugins/plugin").default> &
-  InjectionType<typeof import("../../../../schema/dist/runtime/plugins/store").default> &
-  InjectionType<typeof import("../../../../schema/dist/runtime/plugins/plugin").default> &
-  InjectionType<typeof import("../dist.plugin.3e91f4ad").default>
+  InjectionType<typeof import("../../../../../node_modules/@pinia/nuxt/dist/runtime/plugin.vue3").default>
 
 declare module '#app' {
   interface NuxtApp extends NuxtAppInjections { }

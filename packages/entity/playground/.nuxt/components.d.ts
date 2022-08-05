@@ -4,11 +4,9 @@ declare module 'vue' {
     'DruxtDebug': typeof import("../../../druxt/dist/runtime/components/DruxtDebug.vue")['default'],
     'DruxtDemo': typeof import("../../../druxt/dist/runtime/components/DruxtDemo.vue")['default'],
     'DruxtDemoComponent': typeof import("../../../druxt/dist/runtime/components/DruxtDemoComponent.vue")['default'],
-    'DruxtModule': typeof import("../../../druxt/dist/runtime/components/DruxtModule.vue")['default'],
-    'DruxtWrapper': typeof import("../../../druxt/dist/runtime/components/DruxtWrapper.vue")['default'],
     'DruxtRouter': typeof import("../../../router/dist/runtime/components/DruxtRouter.vue")['default'],
     'DruxtRouterDebug': typeof import("../../../router/dist/runtime/components/DruxtRouterDebug.vue")['default'],
-    'DruxtEntity': typeof import("../../dist/runtime/components/DruxtEntity.vue")['default'],
+    'DruxtEntityLayoutBuilder': typeof import("../../dist/runtime/components/DruxtEntityLayoutBuilder.vue")['default'],
     'DruxtRouterEntity': typeof import("../../dist/runtime/components/DruxtRouterEntity.vue")['default'],
     'NuxtWelcome': typeof import("../../../../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default'],
     'NuxtLayout': typeof import("../../../../node_modules/nuxt/dist/app/components/layout")['default'],
@@ -19,11 +17,9 @@ declare module 'vue' {
     'LazyDruxtDebug': typeof import("../../../druxt/dist/runtime/components/DruxtDebug.vue")['default'],
     'LazyDruxtDemo': typeof import("../../../druxt/dist/runtime/components/DruxtDemo.vue")['default'],
     'LazyDruxtDemoComponent': typeof import("../../../druxt/dist/runtime/components/DruxtDemoComponent.vue")['default'],
-    'LazyDruxtModule': typeof import("../../../druxt/dist/runtime/components/DruxtModule.vue")['default'],
-    'LazyDruxtWrapper': typeof import("../../../druxt/dist/runtime/components/DruxtWrapper.vue")['default'],
     'LazyDruxtRouter': typeof import("../../../router/dist/runtime/components/DruxtRouter.vue")['default'],
     'LazyDruxtRouterDebug': typeof import("../../../router/dist/runtime/components/DruxtRouterDebug.vue")['default'],
-    'LazyDruxtEntity': typeof import("../../dist/runtime/components/DruxtEntity.vue")['default'],
+    'LazyDruxtEntityLayoutBuilder': typeof import("../../dist/runtime/components/DruxtEntityLayoutBuilder.vue")['default'],
     'LazyDruxtRouterEntity': typeof import("../../dist/runtime/components/DruxtRouterEntity.vue")['default'],
     'LazyNuxtWelcome': typeof import("../../../../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default'],
     'LazyNuxtLayout': typeof import("../../../../node_modules/nuxt/dist/app/components/layout")['default'],
@@ -36,11 +32,9 @@ declare module 'vue' {
 export const DruxtDebug: typeof import("../../../druxt/dist/runtime/components/DruxtDebug.vue")['default']
 export const DruxtDemo: typeof import("../../../druxt/dist/runtime/components/DruxtDemo.vue")['default']
 export const DruxtDemoComponent: typeof import("../../../druxt/dist/runtime/components/DruxtDemoComponent.vue")['default']
-export const DruxtModule: typeof import("../../../druxt/dist/runtime/components/DruxtModule.vue")['default']
-export const DruxtWrapper: typeof import("../../../druxt/dist/runtime/components/DruxtWrapper.vue")['default']
 export const DruxtRouter: typeof import("../../../router/dist/runtime/components/DruxtRouter.vue")['default']
 export const DruxtRouterDebug: typeof import("../../../router/dist/runtime/components/DruxtRouterDebug.vue")['default']
-export const DruxtEntity: typeof import("../../dist/runtime/components/DruxtEntity.vue")['default']
+export const DruxtEntityLayoutBuilder: typeof import("../../dist/runtime/components/DruxtEntityLayoutBuilder.vue")['default']
 export const DruxtRouterEntity: typeof import("../../dist/runtime/components/DruxtRouterEntity.vue")['default']
 export const NuxtWelcome: typeof import("../../../../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
 export const NuxtLayout: typeof import("../../../../node_modules/nuxt/dist/app/components/layout")['default']
@@ -51,11 +45,9 @@ export const NuxtLink: typeof import("../../../../node_modules/nuxt/dist/app/com
 export const LazyDruxtDebug: typeof import("../../../druxt/dist/runtime/components/DruxtDebug.vue")['default']
 export const LazyDruxtDemo: typeof import("../../../druxt/dist/runtime/components/DruxtDemo.vue")['default']
 export const LazyDruxtDemoComponent: typeof import("../../../druxt/dist/runtime/components/DruxtDemoComponent.vue")['default']
-export const LazyDruxtModule: typeof import("../../../druxt/dist/runtime/components/DruxtModule.vue")['default']
-export const LazyDruxtWrapper: typeof import("../../../druxt/dist/runtime/components/DruxtWrapper.vue")['default']
 export const LazyDruxtRouter: typeof import("../../../router/dist/runtime/components/DruxtRouter.vue")['default']
 export const LazyDruxtRouterDebug: typeof import("../../../router/dist/runtime/components/DruxtRouterDebug.vue")['default']
-export const LazyDruxtEntity: typeof import("../../dist/runtime/components/DruxtEntity.vue")['default']
+export const LazyDruxtEntityLayoutBuilder: typeof import("../../dist/runtime/components/DruxtEntityLayoutBuilder.vue")['default']
 export const LazyDruxtRouterEntity: typeof import("../../dist/runtime/components/DruxtRouterEntity.vue")['default']
 export const LazyNuxtWelcome: typeof import("../../../../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
 export const LazyNuxtLayout: typeof import("../../../../node_modules/nuxt/dist/app/components/layout")['default']

@@ -1,0 +1,87 @@
+{
+    "uuid": [
+        {
+            "value": "d69b7f12-68f4-41ba-8e00-52b83a8122c7"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "basic",
+            "target_type": "block_content_type",
+            "target_uuid": "67ec2b0e-9506-453f-8024-e436f776699c"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2022-08-04T15:33:13+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "revision_user": [],
+    "revision_log": [],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "info": [
+        {
+            "value": "Basic Block"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2022-08-04T15:33:13+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "reusable": [
+        {
+            "value": false
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "content_translation_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "1bc973b1-4bee-403f-8f76-52387c936207"
+        }
+    ],
+    "content_translation_created": [
+        {
+            "value": "2022-08-04T15:33:13+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "body": [
+        {
+            "value": "<p>Basic Block Content<\/p>\r\n",
+            "format": "basic_html",
+            "summary": ""
+        }
+    ]
+}

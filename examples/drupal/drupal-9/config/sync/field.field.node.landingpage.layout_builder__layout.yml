@@ -1,0 +1,21 @@
+uuid: ba55fa69-7b80-4181-b2be-59510c520926
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.layout_builder__layout
+    - node.type.landingpage
+  module:
+    - layout_builder
+id: node.landingpage.layout_builder__layout
+field_name: layout_builder__layout
+entity_type: node
+bundle: landingpage
+label: Layout
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: layout_section

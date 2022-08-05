@@ -1,4 +1,4 @@
-import { h, resolveComponent } from 'vue'
+import {h, resolveComponent, resolveDynamicComponent} from 'vue'
 import {Component} from "../index";
 
 export const render = (component:Component, wrapper:Component = null) => {

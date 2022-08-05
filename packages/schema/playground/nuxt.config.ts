@@ -1,28 +1,18 @@
 import {defineNuxtConfig} from 'nuxt'
-import dynamicImport from 'vite-plugin-dynamic-import';
 import SchemaNuxtModule from '..'
+import dynamicImport from "vite-plugin-dynamic-import";
 
 export default defineNuxtConfig({
   'druxt': {
-    baseUrl: 'http://eep-develop.docksal.site',
+    baseUrl: 'http://druxt-drupal.docksal',
   },
-  runtimeConfig: {
-    public: {
-      baseUrl: 'http://eep-develop.docksal.site',
-      query: {
-        'node--landing_page': {
-          includes: ['layout_builder__blocks']
-        }
-      }
-    }
-  },
-  modules: [
-    SchemaNuxtModule
-  ],
   vite: {
     plugins: [
       dynamicImport(),
     ],
   },
+  modules: [
+    SchemaNuxtModule
+  ],
   buildModules: ['@pinia/nuxt', 'druxt3', 'druxt3-schema']
 })

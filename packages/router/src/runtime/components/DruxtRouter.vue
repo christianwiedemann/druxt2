@@ -1,7 +1,6 @@
 <script>
 
 import {DruxtRouterStore} from "../stores/router";
-import { watch, reactive } from 'vue'
 import {useComponent, render} from "#imports";
 
 /**
@@ -143,9 +142,15 @@ export default {
     props: ({route}) => (route || {}).props || false,
   },
   render() {
-    return render(useComponent([`DruxtRouterEntity`, 'DruxtRouterDebug'], {route: this.route, path: this.nuxtRoute.path }));
+    return render(useComponent('DruxtRouter',[[
+      this.module || 'error',
+      this.route.isHomePath ? 'front' : 'not-front',
+      'default',
+    ],['debug']], {language: this.language, route: this.route, path: this.nuxtRoute.path }));
   },
+
   async setup() {
+
     const nuxtRoute = useRoute();
     /**
      * Fetch the decoupled route.
@@ -168,8 +173,9 @@ export default {
       return route;
     };
     const route = await fetchRoute();
-    const module = 'Entity';
-    return {nuxtRoute, route}
+    const module = route.type;
+
+    return {nuxtRoute, route, module, language: 'de'}
   },
 }
 

@@ -1,10 +1,7 @@
 <template>
     <DruxtRouter></DruxtRouter>
-
-  <NuxtLink to="/node/1">
-Node 1
-  </NuxtLink>
-  <NuxtLink to="/node/2">
-    Node 2
-  </NuxtLink>
 </template>
+<script>
+import '../src/runtime/components/DruxtRouterEntity.vue';
+import '../src/runtime/components/DruxtEntityLayoutBuilder.vue';
+</script>

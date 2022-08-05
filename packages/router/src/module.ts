@@ -58,7 +58,6 @@ const DruxtRouterNuxtModule =  defineNuxtModule<ModuleOptions>({
       dirs.push({ path: resolve('./runtime/components'),global: true });
     });
 
-
     // Add Druxt router custom wildcard route.
     if (options.router.wildcard) {
 
@@ -100,6 +99,7 @@ const DruxtRouterNuxtModule =  defineNuxtModule<ModuleOptions>({
         })
       })
     }
+
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
     addPlugin(resolve(runtimeDir, 'plugins/plugin'))
   },

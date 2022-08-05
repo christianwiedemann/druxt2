@@ -1,8 +1,8 @@
-import {DrupalJsonApiParams} from 'drupal-jsonapi-params'
-import {join} from 'path'
-import {defineNuxtModule, createResolver, extendViteConfig, addAutoImport, resolveModule} from '@nuxt/kit'
-import {useDruxtClient} from "./runtime/composables";
-export { DruxtClient } from './runtime/client';
+import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
+
+import { defineNuxtModule, createResolver, extendViteConfig, addAutoImport, resolveModule } from '@nuxt/kit'
+import { DruxtClient } from './runtime'
+export { DruxtClient } from './runtime'
 
 interface ProxyInterface {
   api: Boolean
@@ -41,7 +41,7 @@ export interface ModuleOptions {
 const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'druxt',
-    configKey: 'druxt',
+    configKey: 'druxt'
   },
   defaults: {
     proxy: {
@@ -52,28 +52,33 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
     endpoint: '/jsonapi'
   },
 
-  async setup(moduleOptions, nuxt) {
-    const { resolve } = createResolver(import.meta.url);
+  async setup (moduleOptions, nuxt) {
+    const { resolve } = createResolver(import.meta.url)
     const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: resolve('./runtime') })
-    const options:any = {
-      ...(moduleOptions || {}),
+    const options: any = {
+      ...(moduleOptions || {})
     }
 
     // Register composables
     addAutoImport([
       { name: 'useDruxtClient', as: 'useDruxtClient', from: resolveRuntimeModule('./composables/useDruxtClient') },
       { name: 'useComponent', as: 'useComponent', from: resolveRuntimeModule('./composables/useComponent') },
-      { name: 'render', as: 'render', from: resolveRuntimeModule('./composables/render') },
+      { name: 'render', as: 'render', from: resolveRuntimeModule('./composables/render') }
     ])
 
     // Normalize slashes.
     options.baseUrl = options.baseUrl = options.baseUrl.endsWith('/') ? options.baseUrl.slice(0, -1) : options.baseUrl
     options.endpoint = options.endpoint = options.endpoint.startsWith('/') ? options.endpoint : `/${options.endpoint}`
-    const druxt = useDruxtClient(options.baseUrl, {
+    options.query = options.query ?? null
+    // Provide runtime configuration
+    nuxt.options.runtimeConfig.public.baseUrl = options.baseUrl
+    nuxt.options.runtimeConfig.public.endpoint = options.endpoint
+    nuxt.options.runtimeConfig.public.options = {
       ...options,
       // Disable API Proxy, as Proxies aren't available at build.
-      proxy: {...options.proxy || {}, api: false},
-    })
+      proxy: { ...options.proxy || {}, api: false }
+    }
+    const druxt = new DruxtClient(options.baseUrl, {})
 
     // Nuxt proxy integration.
     if (options.proxy) {
@@ -90,10 +95,10 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
         if (((await druxt.getIndex(languageResourceType)) || {}).href) {
           const query = new DrupalJsonApiParams().addFields(languageResourceType, ['drupal_internal__id'])
           const languages = (await druxt.getCollectionAll(languageResourceType, query) || [])
-            .map((o) => o.data)
+            .map(o => o.data)
             .flat()
-            .filter((o) => !['und', 'zxx'].includes(((o || {}).attributes || {}).drupal_internal__id))
-            .map((o) => o.attributes.drupal_internal__id)
+            .filter(o => !['und', 'zxx'].includes(((o || {}).attributes || {}).drupal_internal__id))
+            .map(o => o.attributes.drupal_internal__id)
           for (const langcode of languages) {
             proxies[`/${langcode}${options.endpoint}`] = options.baseUrl
           }
@@ -112,7 +117,7 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
         if (Array.isArray(options.proxy)) {
           options.proxy = [
             ...options.proxy,
-            ...Object.keys(proxies).map((path) => `${options.baseUrl}${path}`)
+            ...Object.keys(proxies).map(path => `${options.baseUrl}${path}`)
           ]
         } else {
           options.proxy = {
@@ -127,28 +132,24 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
       }
       // Optimize cross-fetch
       extendViteConfig((config) => {
-        config.server.proxy = {};
-        Object.keys(proxies).forEach((key)=>{
+        config.server.proxy = {}
+
+        Object.keys(proxies).forEach((key) => {
           config.server.proxy[key] = {
             target: proxies[key],
             changeOrigin: true,
-            ws: true,
+            ws: true
           }
-        });
+        })
       })
     }
 
+    nuxt.hook('components:dirs', (dirs) => {
+      dirs.push({ path: resolve('./runtime/components'), global: true })
+    })
 
-
-    nuxt.hook("components:dirs", (dirs) => {
-      dirs.push({ path: resolve('./runtime/components'),global: true });
-    });
-
-
-
-   // options.cli.badgeMessages.push(`${chalk.blue.bold('Druxt')} @ v${meta.version}`)
-   // options.cli.badgeMessages.push(`${chalk.bold('API:')} ${chalk.blue.underline(options.baseUrl + options.endpoint)}`)
-
+    // options.cli.badgeMessages.push(`${chalk.blue.bold('Druxt')} @ v${meta.version}`)
+    // options.cli.badgeMessages.push(`${chalk.bold('API:')} ${chalk.blue.underline(options.baseUrl + options.endpoint)}`)
   }
 })
 

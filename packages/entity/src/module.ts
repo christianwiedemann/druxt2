@@ -1,5 +1,6 @@
 import { join } from 'path'
-import {createResolver, defineNuxtModule} from '@nuxt/kit'
+import {addAutoImport, createResolver, defineNuxtModule, resolveModule} from '@nuxt/kit'
+import {fileURLToPath} from "url";
 
 
 export interface ModuleOptions {
@@ -39,6 +40,8 @@ const DruxtEntityNuxtModule =  defineNuxtModule<ModuleOptions>({
   },
   async setup(moduleOptions, nuxt) {
     const { resolve } = createResolver(import.meta.url);
+    const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: resolve('./runtime') })
+
     // Set default options.
     const options = {
       baseUrl: moduleOptions.baseUrl,
@@ -48,7 +51,13 @@ const DruxtEntityNuxtModule =  defineNuxtModule<ModuleOptions>({
       dirs.push({ path: resolve('./runtime/components'),global: true });
     });
 
-
+    // Register composables
+    addAutoImport([
+      { name: 'useSchemaByEntity', as: 'useSchemaByEntity', from: resolveRuntimeModule('./composables/useSchema') },
+      { name: 'isLayoutBuilderEnabled', as: 'isLayoutBuilderEnabled', from: resolveRuntimeModule('./composables/useLayoutBuilder') },
+      { name: 'layoutBuilderSections', as: 'layoutBuilderSections', from: resolveRuntimeModule('./composables/useLayoutBuilder') },
+      { name: 'useComponentOptions', as: 'useComponentOptions', from: resolveRuntimeModule('./composables/useComponentOptions') }
+    ])
   },
 });
 

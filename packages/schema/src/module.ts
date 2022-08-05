@@ -1,19 +1,28 @@
-import {defineNuxtModule, addTemplate, addPlugin, createResolver, resolveModule, addAutoImport} from '@nuxt/kit'
-import consola from "consola";
-import {DruxtSchema} from "./runtime/schema";
-import {fileURLToPath} from "url";
+import { fileURLToPath } from 'url'
+import {
+  defineNuxtModule,
+  addTemplate,
+  addPlugin,
+  createResolver,
+  resolveModule,
+  addAutoImport,
+  extendViteConfig
+} from '@nuxt/kit'
+import consola from 'consola'
+import { DruxtSchema } from './runtime/schema'
 
 const SchemaNuxtModule = defineNuxtModule({
   meta: {
     name: 'druxt-schema',
-    configKey: 'druxt',
+    configKey: 'druxt'
   },
-  async setup(options, nuxt) {
-    const { resolve } = createResolver(import.meta.url);
+
+  async setup (options, nuxt) {
+    // Add dynamic imports for vite.
+
+    const { resolve } = createResolver(import.meta.url)
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
     nuxt.options.build.transpile.push(runtimeDir)
-    addPlugin(resolve(runtimeDir, 'plugins/plugin'))
-    addPlugin(resolve(runtimeDir, 'plugins/store'))
 
     const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: resolve('./runtime') })
 
@@ -23,14 +32,14 @@ const SchemaNuxtModule = defineNuxtModule({
     ])
 
     // @ts-ignore
-    const {baseUrl} = options;
+    const { baseUrl } = options
     const drupalSchema = new DruxtSchema(baseUrl, {
       ...options,
       // Disable API Proxy, as Proxies aren't available at build.
       // @ts-ignore
-      proxy: {},
+      proxy: {}
     })
-    const {schemas} = await drupalSchema.get()
+    const { schemas } = await drupalSchema.get()
 
     // Throw error if no schema files generated.
     if (!Object.entries(schemas).length) {
@@ -41,16 +50,16 @@ const SchemaNuxtModule = defineNuxtModule({
     nuxt.options.build.transpile.push(templatesDir)
     for (const name in schemas) {
       const schema = schemas[name]
-      if (typeof schema === 'undefined') continue
+      if (typeof schema === 'undefined') { continue }
       addTemplate({
         src: resolve(templatesDir, 'schema.json'),
         fileName: resolve(`schemas/${name}.json`),
-        options: {schema},
+        options: { schema },
         write: true
       })
     }
-    consola.success('Drupal schema files generated!')
 
+    consola.success('Drupal schema files generated!')
   }
 })
-export default SchemaNuxtModule;
+export default SchemaNuxtModule
