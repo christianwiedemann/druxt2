@@ -6,8 +6,12 @@ declare module 'vue' {
     'DruxtDemoComponent': typeof import("../../../druxt/dist/runtime/components/DruxtDemoComponent.vue")['default'],
     'DruxtRouter': typeof import("../../../router/dist/runtime/components/DruxtRouter.vue")['default'],
     'DruxtRouterDebug': typeof import("../../../router/dist/runtime/components/DruxtRouterDebug.vue")['default'],
-    'DruxtEntityLayoutBuilder': typeof import("../../dist/runtime/components/DruxtEntityLayoutBuilder.vue")['default'],
+    'DruxtEntityDefault': typeof import("../../dist/runtime/components/DruxtEntityDefault.vue")['default'],
+    'DruxtEntityWrapper': typeof import("../../dist/runtime/components/DruxtEntityWrapper.vue")['default'],
+    'DruxtField': typeof import("../../dist/runtime/components/DruxtField.vue")['default'],
+    'DruxtFieldWrapper': typeof import("../../dist/runtime/components/DruxtFieldWrapper.vue")['default'],
     'DruxtRouterEntity': typeof import("../../dist/runtime/components/DruxtRouterEntity.vue")['default'],
+    'DruxtSection': typeof import("../../dist/runtime/components/DruxtSection.vue")['default'],
     'NuxtWelcome': typeof import("../../../../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default'],
     'NuxtLayout': typeof import("../../../../node_modules/nuxt/dist/app/components/layout")['default'],
     'NuxtErrorBoundary': typeof import("../../../../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default'],
@@ -19,8 +23,12 @@ declare module 'vue' {
     'LazyDruxtDemoComponent': typeof import("../../../druxt/dist/runtime/components/DruxtDemoComponent.vue")['default'],
     'LazyDruxtRouter': typeof import("../../../router/dist/runtime/components/DruxtRouter.vue")['default'],
     'LazyDruxtRouterDebug': typeof import("../../../router/dist/runtime/components/DruxtRouterDebug.vue")['default'],
-    'LazyDruxtEntityLayoutBuilder': typeof import("../../dist/runtime/components/DruxtEntityLayoutBuilder.vue")['default'],
+    'LazyDruxtEntityDefault': typeof import("../../dist/runtime/components/DruxtEntityDefault.vue")['default'],
+    'LazyDruxtEntityWrapper': typeof import("../../dist/runtime/components/DruxtEntityWrapper.vue")['default'],
+    'LazyDruxtField': typeof import("../../dist/runtime/components/DruxtField.vue")['default'],
+    'LazyDruxtFieldWrapper': typeof import("../../dist/runtime/components/DruxtFieldWrapper.vue")['default'],
     'LazyDruxtRouterEntity': typeof import("../../dist/runtime/components/DruxtRouterEntity.vue")['default'],
+    'LazyDruxtSection': typeof import("../../dist/runtime/components/DruxtSection.vue")['default'],
     'LazyNuxtWelcome': typeof import("../../../../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default'],
     'LazyNuxtLayout': typeof import("../../../../node_modules/nuxt/dist/app/components/layout")['default'],
     'LazyNuxtErrorBoundary': typeof import("../../../../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default'],
@@ -34,8 +42,12 @@ export const DruxtDemo: typeof import("../../../druxt/dist/runtime/components/Dr
 export const DruxtDemoComponent: typeof import("../../../druxt/dist/runtime/components/DruxtDemoComponent.vue")['default']
 export const DruxtRouter: typeof import("../../../router/dist/runtime/components/DruxtRouter.vue")['default']
 export const DruxtRouterDebug: typeof import("../../../router/dist/runtime/components/DruxtRouterDebug.vue")['default']
-export const DruxtEntityLayoutBuilder: typeof import("../../dist/runtime/components/DruxtEntityLayoutBuilder.vue")['default']
+export const DruxtEntityDefault: typeof import("../../dist/runtime/components/DruxtEntityDefault.vue")['default']
+export const DruxtEntityWrapper: typeof import("../../dist/runtime/components/DruxtEntityWrapper.vue")['default']
+export const DruxtField: typeof import("../../dist/runtime/components/DruxtField.vue")['default']
+export const DruxtFieldWrapper: typeof import("../../dist/runtime/components/DruxtFieldWrapper.vue")['default']
 export const DruxtRouterEntity: typeof import("../../dist/runtime/components/DruxtRouterEntity.vue")['default']
+export const DruxtSection: typeof import("../../dist/runtime/components/DruxtSection.vue")['default']
 export const NuxtWelcome: typeof import("../../../../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
 export const NuxtLayout: typeof import("../../../../node_modules/nuxt/dist/app/components/layout")['default']
 export const NuxtErrorBoundary: typeof import("../../../../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']
@@ -47,8 +59,12 @@ export const LazyDruxtDemo: typeof import("../../../druxt/dist/runtime/component
 export const LazyDruxtDemoComponent: typeof import("../../../druxt/dist/runtime/components/DruxtDemoComponent.vue")['default']
 export const LazyDruxtRouter: typeof import("../../../router/dist/runtime/components/DruxtRouter.vue")['default']
 export const LazyDruxtRouterDebug: typeof import("../../../router/dist/runtime/components/DruxtRouterDebug.vue")['default']
-export const LazyDruxtEntityLayoutBuilder: typeof import("../../dist/runtime/components/DruxtEntityLayoutBuilder.vue")['default']
+export const LazyDruxtEntityDefault: typeof import("../../dist/runtime/components/DruxtEntityDefault.vue")['default']
+export const LazyDruxtEntityWrapper: typeof import("../../dist/runtime/components/DruxtEntityWrapper.vue")['default']
+export const LazyDruxtField: typeof import("../../dist/runtime/components/DruxtField.vue")['default']
+export const LazyDruxtFieldWrapper: typeof import("../../dist/runtime/components/DruxtFieldWrapper.vue")['default']
 export const LazyDruxtRouterEntity: typeof import("../../dist/runtime/components/DruxtRouterEntity.vue")['default']
+export const LazyDruxtSection: typeof import("../../dist/runtime/components/DruxtSection.vue")['default']
 export const LazyNuxtWelcome: typeof import("../../../../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
 export const LazyNuxtLayout: typeof import("../../../../node_modules/nuxt/dist/app/components/layout")['default']
 export const LazyNuxtErrorBoundary: typeof import("../../../../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']

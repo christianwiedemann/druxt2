@@ -1,6 +1,11 @@
 import { join } from 'path'
 import {addAutoImport, createResolver, defineNuxtModule, resolveModule} from '@nuxt/kit'
 import {fileURLToPath} from "url";
+import {
+  useEntityIsLayoutBuilderEnabled, useEntityLayoutBuilderRender,
+  useEntityLayoutBuilderSections,
+  useEntitySchema
+} from "~/entity/src/runtime/composables/useEntity";
 
 
 export interface ModuleOptions {
@@ -48,15 +53,17 @@ const DruxtEntityNuxtModule =  defineNuxtModule<ModuleOptions>({
     }
 
     nuxt.hook("components:dirs", (dirs) => {
-      dirs.push({ path: resolve('./runtime/components'),global: true });
+      dirs.push({ path: resolve('./runtime/components'), global: true });
     });
 
     // Register composables
     addAutoImport([
-      { name: 'useSchemaByEntity', as: 'useSchemaByEntity', from: resolveRuntimeModule('./composables/useSchema') },
-      { name: 'isLayoutBuilderEnabled', as: 'isLayoutBuilderEnabled', from: resolveRuntimeModule('./composables/useLayoutBuilder') },
-      { name: 'layoutBuilderSections', as: 'layoutBuilderSections', from: resolveRuntimeModule('./composables/useLayoutBuilder') },
-      { name: 'useComponentOptions', as: 'useComponentOptions', from: resolveRuntimeModule('./composables/useComponentOptions') }
+      { name: 'useEntityLayoutBuilderRender', as: 'useEntityLayoutBuilderRender', from: resolveRuntimeModule('./composables/useEntity') },
+      { name: 'useEntityComponentOptions', as: 'useEntityComponentOptions', from: resolveRuntimeModule('./composables/useEntity') },
+      { name: 'useEntitySchema', as: 'useEntitySchema', from: resolveRuntimeModule('./composables/useEntity') },
+      { name: 'useEntityIsLayoutBuilderEnabled', as: 'useEntityIsLayoutBuilderEnabled', from: resolveRuntimeModule('./composables/useEntity') },
+      { name: 'useEntityLayoutBuilderSections', as: 'useEntityLayoutBuilderSections', from: resolveRuntimeModule('./composables/useEntity') },
+
     ])
   },
 });

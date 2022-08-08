@@ -1,8 +1,7 @@
-import { resolveDynamicComponent } from 'vue'
 import { pascalCase, splitByCase } from 'scule'
 import { Component } from '../index'
+import {resolveDynamicComponent} from "vue";
 
-const isComponent = name => typeof resolveDynamicComponent(name) !== 'string'
 
 const componentOptions = (theme, options: [[]], lang = null) => {
   // Build list of available components.
@@ -45,25 +44,26 @@ const componentOptions = (theme, options: [[]], lang = null) => {
   const sorted = unique.sort((a, b) => b.parts.length - a.parts.length)
   return sorted;
 }
-export const useComponent = (theme, options: [[]] = [[]], props = {}, lang = null):Component => {
+const isComponent = name => typeof resolveDynamicComponent(name) !== 'string'
+
+export const useComponent = (theme, options: [[]] = [[]], props = {}, slots: {}, lang = null):Component => {
+  if (!Array.isArray(options)) {
+    options = [[]];
+  }
   const compOpt = componentOptions(theme, options, lang);
   const suggestions = compOpt.map(o => o.name) || [];
   suggestions.push(theme);
-  for (let i = 0; i < suggestions.length; i++) {
-    const name = suggestions[i]
-    if (isComponent(name)) {
-      return {
-        is: name,
-        props
-      }
-    }
-  }
-
   return {
-    is: 'DruxtDebug',
-    props: {
-      title: `Unable to resolve Component: ${theme}`,
-      json: suggestions
+    suggestions,
+    props,
+    slots,
+    is: () => {
+      for (const suggestion of suggestions) {
+        if (isComponent(suggestion)) {
+          return suggestion
+        }
+      }
+      return 'DruxtDebug'
     }
   }
 }

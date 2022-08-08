@@ -1,5 +1,6 @@
 import axios from 'axios'
 import consola from 'consola'
+import {stringify} from "querystring";
 
 interface Options {
   axios?: any
@@ -145,7 +146,7 @@ class DruxtClient {
 
     // If query is object...
     if (typeof query === 'object' && Object.keys(query).length) {
-      return [url, ''].join('?')
+      return [url, stringify(query)].join('?')
     }
 
     // Else...

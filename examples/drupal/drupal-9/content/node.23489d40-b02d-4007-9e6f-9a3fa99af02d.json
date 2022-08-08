@@ -1,0 +1,106 @@
+{
+    "uuid": [
+        {
+            "value": "23489d40-b02d-4007-9e6f-9a3fa99af02d"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "default",
+            "target_type": "node_type",
+            "target_uuid": "c4b4b11b-023c-4a58-a766-44b4759ec0cc"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2022-08-08T16:24:40+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "1bc973b1-4bee-403f-8f76-52387c936207"
+        }
+    ],
+    "revision_log": [],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "1bc973b1-4bee-403f-8f76-52387c936207"
+        }
+    ],
+    "title": [
+        {
+            "value": "Default"
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-08-08T16:24:34+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2022-08-08T16:24:40+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": true
+        }
+    ],
+    "sticky": [
+        {
+            "value": false
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "moderation_state": [],
+    "path": [
+        {
+            "alias": "",
+            "pid": null,
+            "langcode": "en"
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "layout_builder__blocks": [],
+    "body": [
+        {
+            "value": "<p>Default<\/p>\r\n",
+            "format": "basic_html",
+            "summary": ""
+        }
+    ]
+}

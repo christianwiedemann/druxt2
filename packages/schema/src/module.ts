@@ -40,7 +40,6 @@ const SchemaNuxtModule = defineNuxtModule({
       proxy: {}
     })
     const { schemas } = await drupalSchema.get()
-
     // Throw error if no schema files generated.
     if (!Object.entries(schemas).length) {
       throw new Error('No Drupal Schema files generated.\n Have you created any content types yet?')

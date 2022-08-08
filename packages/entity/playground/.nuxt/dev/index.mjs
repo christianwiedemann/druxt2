@@ -21,7 +21,7 @@ import { renderToString } from 'file:///home/cw/projects/druxt3.js/node_modules/
 import { snakeCase } from 'file:///home/cw/projects/druxt3.js/node_modules/scule/dist/index.mjs';
 import htmlTemplate from '/home/cw/projects/druxt3.js/packages/entity/playground/.nuxt/views/document.template.mjs';
 
-const _runtimeConfig = {"app":{"baseURL":"/","buildAssetsDir":"/_nuxt/","cdnURL":""},"nitro":{"routes":{},"envPrefix":"NUXT_"},"public":{"baseUrl":"http://druxt-drupal.docksal","endpoint":"/jsonapi","options":{"proxy":{"api":false,"files":"default"},"baseUrl":"http://druxt-drupal.docksal","endpoint":"/jsonapi","query":{"node--landing_page":{"includes":["layout_builder__blocks"]}}}}};
+const _runtimeConfig = {"app":{"baseURL":"/","buildAssetsDir":"/_nuxt/","cdnURL":""},"nitro":{"routes":{},"envPrefix":"NUXT_"},"public":{"baseUrl":"http://druxt-drupal.docksal","endpoint":"/jsonapi","options":{"proxy":{"api":false,"files":"default"},"baseUrl":"http://druxt-drupal.docksal","endpoint":"/jsonapi","query":{"node--landingpage":{"includes":["layout_builder__blocks"]},"node--recipe":{"includes":["layout_builder__blocks"]}}}}};
 const ENV_PREFIX = "NITRO_";
 const ENV_PREFIX_ALT = _runtimeConfig.nitro.envPrefix ?? process.env.NITRO_ENV_PREFIX ?? "_";
 const getEnv = (key) => {

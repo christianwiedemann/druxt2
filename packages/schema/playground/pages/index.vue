@@ -10,6 +10,13 @@
         links: ['https://druxtjs.org']
       }"
     />
+    <SchemaComponent
+      type="node--landingpage"
+      :data="{
+        body: 'Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Donec sollicitudin molestie malesuada. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Nulla quis lorem ut libero malesuada feugiat.',
+        links: ['https://druxtjs.org']
+      }"
+    />
   </div>
 </template>
 <script>

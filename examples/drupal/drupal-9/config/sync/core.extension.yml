@@ -1,3 +1,5 @@
+_core:
+  default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc
 module:
   automated_cron: 0
   big_pipe: 0
@@ -26,6 +28,8 @@ module:
   history: 0
   image: 0
   jsonapi: 0
+  jsonapi_include: 0
+  jsonapi_include_lb: 0
   jsonapi_menu_items: 0
   jsonapi_resources: 0
   jsonapi_views: 0
@@ -69,5 +73,3 @@ theme:
   seven: 0
   umami: 0
 profile: demo_umami
-_core:
-  default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc

@@ -3,6 +3,7 @@
 /// <reference types="druxt3" />
 /// <reference types="druxt3-schema" />
 /// <reference types="druxt3-router" />
+/// <reference types="druxt3-entity" />
 /// <reference types="@nuxt/telemetry" />
 /// <reference types="nuxt" />
 /// <reference path="types/plugins.d.ts" />

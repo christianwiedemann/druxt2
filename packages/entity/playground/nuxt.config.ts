@@ -6,7 +6,10 @@ export default defineNuxtConfig({
   'druxt': {
     baseUrl: 'http://druxt-drupal.docksal/',
     query: {
-      'node--landing_page': {
+      'node--landingpage': {
+        includes: ['layout_builder__blocks']
+      },
+      'node--recipe': {
         includes: ['layout_builder__blocks']
       }
     }
@@ -19,5 +22,5 @@ export default defineNuxtConfig({
   modules: [
     DruxtEntityNuxtModule
   ],
-  buildModules: ['@pinia/nuxt', 'druxt3', 'druxt3-schema', 'druxt3-router']
+  buildModules: ['@pinia/nuxt', 'druxt3', 'druxt3-schema', 'druxt3-router', 'druxt3-entity']
 })

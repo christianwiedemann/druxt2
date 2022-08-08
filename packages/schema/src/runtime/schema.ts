@@ -1,7 +1,7 @@
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 
 import { Schema } from './utils/schema'
-import { DruxtClient }  from 'druxt3';
+import { DruxtClient }  from "druxt3";
 
 /**
  * @typedef {object} SchemaConfiguration

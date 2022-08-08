@@ -13,6 +13,8 @@
 export { DruxtClient } from './client'
 
 export type Component = {
-  is: string;
+  suggestions: string[];
   props?: {};
+  slots?: any;
+  is: () => string
 }

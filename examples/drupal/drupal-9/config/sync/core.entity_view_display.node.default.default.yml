@@ -1,22 +1,16 @@
-uuid: 18ce4ace-166d-4d63-85d4-2db4cdfaf36b
+uuid: 301fe8c5-ee05-45b3-b23d-752da4405fcd
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.landingpage.body
-    - field.field.node.landingpage.layout_builder__layout
-    - node.type.landingpage
+    - field.field.node.default.body
+    - node.type.default
   module:
-    - layout_builder
     - text
     - user
-third_party_settings:
-  layout_builder:
-    enabled: false
-    allow_custom: false
-id: node.landingpage.default
+id: node.default.default
 targetEntityType: node
-bundle: landingpage
+bundle: default
 mode: default
 content:
   body:
@@ -33,4 +27,3 @@ content:
     region: content
 hidden:
   langcode: true
-  layout_builder__layout: true
