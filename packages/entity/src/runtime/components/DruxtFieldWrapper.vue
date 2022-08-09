@@ -228,14 +228,24 @@ export default {
 
           // Relationship: View.
           if (this.relationship && (item || {}).id && schemaType === 'view') {
-            const resolvedDruxtEntityWrapper = resolveComponent('DruxtEntityWrapper')
-            return h(resolvedDruxtEntityWrapper, {
-              attrs,
-              lang: this.lang,
-              viewMode: this.schema.settings.display.view_mode || 'default',
-              type: item.type,
-              uuid: item.id,
-            })
+            if (this.schema.type === 'entity_reference_label') {
+              const resolvedDruxtLabelWrapper = resolveComponent('DruxtEntityLabelWrapper')
+              return h(resolvedDruxtLabelWrapper, {
+                attrs,
+                lang: this.lang,
+                type: item.type,
+                uuid: item.id,
+              })
+            } else {
+              const resolvedDruxtEntityWrapper = resolveComponent('DruxtEntityWrapper')
+              return h(resolvedDruxtEntityWrapper, {
+                attrs,
+                lang: this.lang,
+                viewMode: this.schema.settings.display.view_mode || 'default',
+                type: item.type,
+                uuid: item.id,
+              })
+            }
           }
 
 

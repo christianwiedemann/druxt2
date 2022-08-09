@@ -1,5 +1,5 @@
-import {useSchema, useComponent, render} from "#imports";
-import {h} from "vue";
+import {useSchema, useComponent, useDruxtClient, render} from "#imports";
+import {h, resolveComponent} from "vue";
 import {useEntityFields} from "./useEntityField";
 
 /**
@@ -33,6 +33,15 @@ export const useEntityLayoutBuilderSections = async (entity, viewMode = 'full') 
   return sections;
 }
 
+export const useEntity = async ( props: {type?, uuid?, entity?, lang} ) => {
+  if (props.entity) {
+    return props.entity
+  }
+  if (props.uuid && props.type) {
+    const client = useDruxtClient();
+    return await client.getResource(props.type, props.uuid, {}, props.lang);
+  }
+}
 
 /**
  * Provides the available component naming options for the Druxt Wrapper.
@@ -72,7 +81,7 @@ export const useEntityComponentOptions = async (entity, viewMode = 'full', schem
 }
 export const useEntityRender = async (entity, viewMode = 'full', lang ='en') => {
   if (!entity?.data?.type) {
-    return () => h('div', {innerHTML: 'Unable to render entity'})
+    return () => h(resolveComponent('DruxtDebug'), {title: 'Unable to render entity', json: entity})
   }
   if (await useEntityIsLayoutBuilderEnabled(entity)) {
     return useEntityLayoutBuilderRender(entity, viewMode, lang)

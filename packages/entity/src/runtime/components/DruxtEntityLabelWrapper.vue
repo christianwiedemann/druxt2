@@ -1,7 +1,6 @@
 <script>
 import {
   useEntity,
-  useEntityRender
 } from "../composables/useEntity";
 
 export default {
@@ -13,10 +12,6 @@ export default {
     entity: {
       type: Object,
       required: false
-    },
-    viewMode: {
-      type: String,
-      required: true
     },
     type: {
       type: String,
@@ -30,11 +25,13 @@ export default {
   },
 
   async setup(props) {
+
     const entity = await useEntity(props);
     if (!entity) {
       return () => h('div', {innerHTML: 'Entity not found'})
     }
-    return useEntityRender(entity, props.viewMode);
+    const component = useComponent('DruxtLabel', [[entity.data.type]], {entity, lang: props.lang});
+    return () => render(component)
   }
 }
 </script>

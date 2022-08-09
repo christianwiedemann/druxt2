@@ -74,6 +74,7 @@ class DruxtSchema {
     const displays = (await Promise.all([
       ...['view'].map(async (schemaType) => {
         const resourceType = `entity_${schemaType}_display--entity_${schemaType}_display`
+        console.log(resourceType);
         const query = new DrupalJsonApiParams().addSort('drupal_internal__id')
         return (await this.drupal.getCollectionAll(resourceType, query))
           .map((collection) =>
@@ -95,7 +96,6 @@ class DruxtSchema {
         .filter((o) => o)
         .map((schema) => ([schema.id, schema.schema]))
     )
-
     return { index, schemas }
   }
 

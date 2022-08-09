@@ -7,6 +7,7 @@ declare module 'vue' {
     'DruxtRouter': typeof import("../../../router/dist/runtime/components/DruxtRouter.vue")['default'],
     'DruxtRouterDebug': typeof import("../../../router/dist/runtime/components/DruxtRouterDebug.vue")['default'],
     'DruxtEntityDefault': typeof import("../../dist/runtime/components/DruxtEntityDefault.vue")['default'],
+    'DruxtEntityLabelWrapper': typeof import("../../dist/runtime/components/DruxtEntityLabelWrapper.vue")['default'],
     'DruxtEntityWrapper': typeof import("../../dist/runtime/components/DruxtEntityWrapper.vue")['default'],
     'DruxtField': typeof import("../../dist/runtime/components/DruxtField.vue")['default'],
     'DruxtFieldWrapper': typeof import("../../dist/runtime/components/DruxtFieldWrapper.vue")['default'],
@@ -24,6 +25,7 @@ declare module 'vue' {
     'LazyDruxtRouter': typeof import("../../../router/dist/runtime/components/DruxtRouter.vue")['default'],
     'LazyDruxtRouterDebug': typeof import("../../../router/dist/runtime/components/DruxtRouterDebug.vue")['default'],
     'LazyDruxtEntityDefault': typeof import("../../dist/runtime/components/DruxtEntityDefault.vue")['default'],
+    'LazyDruxtEntityLabelWrapper': typeof import("../../dist/runtime/components/DruxtEntityLabelWrapper.vue")['default'],
     'LazyDruxtEntityWrapper': typeof import("../../dist/runtime/components/DruxtEntityWrapper.vue")['default'],
     'LazyDruxtField': typeof import("../../dist/runtime/components/DruxtField.vue")['default'],
     'LazyDruxtFieldWrapper': typeof import("../../dist/runtime/components/DruxtFieldWrapper.vue")['default'],
@@ -43,6 +45,7 @@ export const DruxtDemoComponent: typeof import("../../../druxt/dist/runtime/comp
 export const DruxtRouter: typeof import("../../../router/dist/runtime/components/DruxtRouter.vue")['default']
 export const DruxtRouterDebug: typeof import("../../../router/dist/runtime/components/DruxtRouterDebug.vue")['default']
 export const DruxtEntityDefault: typeof import("../../dist/runtime/components/DruxtEntityDefault.vue")['default']
+export const DruxtEntityLabelWrapper: typeof import("../../dist/runtime/components/DruxtEntityLabelWrapper.vue")['default']
 export const DruxtEntityWrapper: typeof import("../../dist/runtime/components/DruxtEntityWrapper.vue")['default']
 export const DruxtField: typeof import("../../dist/runtime/components/DruxtField.vue")['default']
 export const DruxtFieldWrapper: typeof import("../../dist/runtime/components/DruxtFieldWrapper.vue")['default']
@@ -60,6 +63,7 @@ export const LazyDruxtDemoComponent: typeof import("../../../druxt/dist/runtime/
 export const LazyDruxtRouter: typeof import("../../../router/dist/runtime/components/DruxtRouter.vue")['default']
 export const LazyDruxtRouterDebug: typeof import("../../../router/dist/runtime/components/DruxtRouterDebug.vue")['default']
 export const LazyDruxtEntityDefault: typeof import("../../dist/runtime/components/DruxtEntityDefault.vue")['default']
+export const LazyDruxtEntityLabelWrapper: typeof import("../../dist/runtime/components/DruxtEntityLabelWrapper.vue")['default']
 export const LazyDruxtEntityWrapper: typeof import("../../dist/runtime/components/DruxtEntityWrapper.vue")['default']
 export const LazyDruxtField: typeof import("../../dist/runtime/components/DruxtField.vue")['default']
 export const LazyDruxtFieldWrapper: typeof import("../../dist/runtime/components/DruxtFieldWrapper.vue")['default']
