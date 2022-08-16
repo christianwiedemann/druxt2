@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { useNuxtApp } from "#app";
 
 const DruxtSchemaStore = defineStore({
   id: 'druxt-schema-store',

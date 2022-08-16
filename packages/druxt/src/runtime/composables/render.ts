@@ -2,15 +2,15 @@ import { h, resolveComponent, resolveDynamicComponent } from 'vue'
 import { Component } from '../index'
 
 export const render = (component:Component, slots) => {
-
-  const resolvedComponent = resolveComponent(component.is())
+  const componentIs = component.is()
+  const resolvedComponent = !componentIs.endsWith('!') ? resolveComponent(componentIs) : componentIs.substring(0, componentIs.length - 1)
   const collectSlots = {}
   const renderedSlots = {}
   if (component.slots) {
     for (const slotName of Object.keys(component.slots)) {
       const slots = component.slots[slotName]
       if (!collectSlots[slotName]) {
-        collectSlots[slotName] = [];
+        collectSlots[slotName] = []
       }
       if (Array.isArray(slots)) {
         for (const slotItem of slots) {

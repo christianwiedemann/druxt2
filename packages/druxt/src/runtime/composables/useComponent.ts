@@ -59,6 +59,9 @@ export const useComponent = (theme, options: [[]] = [[]], props = {}, slots: {},
     slots,
     is: () => {
       for (const suggestion of suggestions) {
+        if (suggestion.endsWith('!')) {
+          return suggestion;
+        }
         if (isComponent(suggestion)) {
           return suggestion
         }

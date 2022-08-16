@@ -1,9 +1,5 @@
 import {addAutoImport, createResolver, defineNuxtModule, resolveModule} from '@nuxt/kit'
-import {
-  useEntityIsLayoutBuilderEnabled, useEntityLayoutBuilderRender,
-  useEntityLayoutBuilderSections,
-  useEntitySchema
-} from "~/entity/src/runtime/composables/useEntity";
+
 
 
 export interface ModuleOptions {
@@ -36,30 +32,21 @@ export interface ModuleOptions {
  * @property {string} options.druxt.baseUrl - Base URL of Drupal JSON:API backend.
  * @property {string} options.druxt.router.component - File to custom Router component.
  */
-const DruxtEntityNuxtModule =  defineNuxtModule<ModuleOptions>({
+const DruxtMenuNuxtModule =  defineNuxtModule<ModuleOptions>({
   meta: {
-    name: 'druxt-entity',
+    name: 'druxt-menu',
     configKey: 'druxt',
   },
   async setup(moduleOptions, nuxt) {
     const { resolve } = createResolver(import.meta.url);
     const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: resolve('./runtime') })
 
+
     nuxt.hook("components:dirs", (dirs) => {
-      dirs.push({ path: resolve('./runtime/components'), global: true });
+      dirs.push({ path: resolve('./runtime/components'),global: true });
     });
-
-    // Register composables
-    addAutoImport([
-      { name: 'useEntityLayoutBuilderRender', as: 'useEntityLayoutBuilderRender', from: resolveRuntimeModule('./composables/useEntity') },
-      { name: 'useEntityComponentOptions', as: 'useEntityComponentOptions', from: resolveRuntimeModule('./composables/useEntity') },
-      { name: 'useEntitySchema', as: 'useEntitySchema', from: resolveRuntimeModule('./composables/useEntity') },
-      { name: 'useEntityIsLayoutBuilderEnabled', as: 'useEntityIsLayoutBuilderEnabled', from: resolveRuntimeModule('./composables/useEntity') },
-      { name: 'useEntityLayoutBuilderSections', as: 'useEntityLayoutBuilderSections', from: resolveRuntimeModule('./composables/useEntity') },
-
-    ])
   },
 });
 
 
-export default DruxtEntityNuxtModule
+export default DruxtMenuNuxtModule

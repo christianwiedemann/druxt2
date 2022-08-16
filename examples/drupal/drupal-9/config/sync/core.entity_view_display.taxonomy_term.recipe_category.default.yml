@@ -1,0 +1,22 @@
+uuid: 6f46b722-4958-494f-803b-e78590ca1e81
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.recipe_category
+  module:
+    - text
+id: taxonomy_term.recipe_category.default
+targetEntityType: taxonomy_term
+bundle: recipe_category
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true

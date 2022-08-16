@@ -1,7 +1,3 @@
-export const useEntityFieldRender = async (schema) => {
-
-}
-
 const isEmpty = (value) => {
   if (typeof value === 'undefined') return true
 
