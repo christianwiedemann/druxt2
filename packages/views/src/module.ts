@@ -32,7 +32,7 @@ export interface ModuleOptions {
  * @property {string} options.druxt.baseUrl - Base URL of Drupal JSON:API backend.
  * @property {string} options.druxt.router.component - File to custom Router component.
  */
-const DruxtViewsNuxtModule =  defineNuxtModule<ModuleOptions>({
+const DruxtViewsNuxtModule = defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'druxt-views',
     configKey: 'druxt',
