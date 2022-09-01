@@ -1,5 +1,5 @@
 import {defineNuxtConfig} from 'nuxt'
-import DruxtMenuNuxtModule from '..'
+import DruxtViewsNuxtModule from '..'
 import dynamicImport from "vite-plugin-dynamic-import";
 
 export default defineNuxtConfig({
@@ -20,10 +20,7 @@ export default defineNuxtConfig({
     ],
   },
   modules: [
-    DruxtMenuNuxtModule
+    DruxtViewsNuxtModule
   ],
-  autoImports: {
-    global: true,
-  },
-  buildModules: ['@pinia/nuxt', '@druxt2/druxt']
+  buildModules: ['@pinia/nuxt', 'druxt3', 'druxt3-entity']
 })

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { DruxtRouterMixin } from 'druxt3-router/mixins'
+import { DruxtRouterMixin } from '@druxt2/router/mixins'
 
 export default {
   mixins: [DruxtRouterMixin],

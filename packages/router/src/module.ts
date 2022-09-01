@@ -1,6 +1,6 @@
 import { existsSync } from 'fs'
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
-import { DruxtClient } from 'druxt3'
+import { DruxtClient } from '@druxt2/druxt'
 import {defineNuxtModule, addPlugin, extendPages, createResolver} from '@nuxt/kit'
 import {fileURLToPath} from "url";
 

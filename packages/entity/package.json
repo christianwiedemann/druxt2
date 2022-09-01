@@ -1,5 +1,5 @@
 {
-  "name": "druxt3-entity",
+  "name": "@druxt2/entity",
   "version": "0.0.2",
   "description": "The Fully Decoupled Drupal Framework for Nuxt.js.",
   "keywords": [
@@ -46,8 +46,8 @@
   "dependencies": {
     "consola": "^2.15.0",
     "drupal-jsonapi-params": "^2.1.0",
-    "druxt3": "0.0.2",
-    "druxt3-router": "0.0.2",
+    "@druxt2/druxt": "0.0.2",
+    "@druxt2/router": "0.0.2",
     "url-parse": "^1.5.10"
   },
   "peerDependencies": {

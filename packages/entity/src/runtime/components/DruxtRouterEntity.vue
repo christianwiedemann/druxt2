@@ -2,7 +2,7 @@
   <DruxtEntityWrapper :entity="entity" viewMode="full" :lang="lang"></DruxtEntityWrapper>
 </template>
 <script>
-import { DruxtRouterMixin } from 'druxt3-router/mixins'
+import { DruxtRouterMixin } from '@druxt2/router/mixins'
 import { DrupalJsonApiParams } from "drupal-jsonapi-params";
 
 export default {

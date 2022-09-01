@@ -1,5 +1,5 @@
 {
-  "name": "@druxt2/router",
+  "name": "@druxt2/views",
   "version": "0.0.2",
   "description": "The Fully Decoupled Drupal Framework for Nuxt.js.",
   "keywords": [
@@ -28,8 +28,7 @@
     ".": {
       "import": "./dist/module.mjs",
       "require": "./dist/module.cjs"
-    },
-    "./mixins": "./dist/runtime/mixins/index.mjs"
+    }
   },
   "main": "./dist/module.cjs",
   "files": [
@@ -37,16 +36,20 @@
     "templates"
   ],
   "scripts": {
+    "nuxi": "nuxi",
+    "module:build": "nuxt-module-build",
     "dev": "nuxt-module-build && nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "prepack": "nuxt-module-build"
   },
   "dependencies": {
-    "consola": "^2.15.0",
     "drupal-jsonapi-params": "^2.1.0",
+    "deepmerge": "^4.2.2",
     "@druxt2/druxt": "0.0.2",
-    "url-parse": "^1.5.10"
+    "@druxt2/entity": "0.0.2",
+    "@druxt2/router": "0.0.2",
+    "md5": "^2.3.0"
   },
   "peerDependencies": {
     "consola": "*"

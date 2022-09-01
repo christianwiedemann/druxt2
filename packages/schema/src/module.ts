@@ -2,11 +2,9 @@ import { fileURLToPath } from 'url'
 import {
   defineNuxtModule,
   addTemplate,
-  addPlugin,
   createResolver,
   resolveModule,
   addAutoImport,
-  extendViteConfig
 } from '@nuxt/kit'
 import consola from 'consola'
 import { DruxtSchema } from './runtime/schema'

@@ -14,5 +14,5 @@ export default defineNuxtConfig({
   modules: [
     SchemaNuxtModule
   ],
-  buildModules: ['@pinia/nuxt', 'druxt3', 'druxt3-schema']
+  buildModules: ['@pinia/nuxt', '@druxt2/druxt', '@druxt2/schema']
 })

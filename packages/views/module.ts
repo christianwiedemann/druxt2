@@ -1,5 +1,7 @@
 import {createResolver, defineNuxtModule} from '@nuxt/kit'
 
+
+
 export interface ModuleOptions {
   baseUrl: String
   router: Object
@@ -30,9 +32,9 @@ export interface ModuleOptions {
  * @property {string} options.druxt.baseUrl - Base URL of Drupal JSON:API backend.
  * @property {string} options.druxt.router.component - File to custom Router component.
  */
-const DruxtMenuNuxtModule =  defineNuxtModule<ModuleOptions>({
+const DruxtViewsNuxtModule =  defineNuxtModule<ModuleOptions>({
   meta: {
-    name: 'druxt-menu',
+    name: 'druxt-views',
     configKey: 'druxt',
   },
   async setup(moduleOptions, nuxt) {
@@ -44,4 +46,4 @@ const DruxtMenuNuxtModule =  defineNuxtModule<ModuleOptions>({
 });
 
 
-export default DruxtMenuNuxtModule
+export default DruxtViewsNuxtModule
