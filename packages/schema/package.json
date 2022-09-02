@@ -1,6 +1,6 @@
 {
   "name": "@druxt2/schema",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "The Fully Decoupled Drupal Framework for Nuxt.js.",
   "keywords": [
     "cms",
@@ -38,7 +38,7 @@
     "prepack": "nuxt-module-build"
   },
   "dependencies": {
-    "@druxt2/druxt": "^0.0.3"
+    "@druxt2/druxt": "^1.0.0"
   },
   "peerDependencies": {
     "consola": "*"
