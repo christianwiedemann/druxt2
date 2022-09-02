@@ -4,6 +4,8 @@
 <script>
 import { DruxtRouterMixin } from '@druxt2/router/mixins'
 import { DrupalJsonApiParams } from "drupal-jsonapi-params";
+import { useDruxtClient } from "#imports";
+import { useRuntimeConfig } from  '#apps';
 
 export default {
   mixins: [DruxtRouterMixin],
@@ -21,7 +23,6 @@ export default {
     if (query[id]) {
       apiParams.addInclude(query[id].includes);
     }
-    console.log(`${jsonapiUrl}?${apiParams.getQueryString()}`);
     const res = await client.get(`${jsonapiUrl}?${apiParams.getQueryString()}`);
 
     const entity = res.data;
