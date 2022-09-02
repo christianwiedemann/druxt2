@@ -1,6 +1,6 @@
 {
   "name": "@druxt2/entity",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "The Fully Decoupled Drupal Framework for Nuxt.js.",
   "keywords": [
     "cms",
@@ -18,7 +18,6 @@
   "bugs": {
     "url": "https://github.com/christianwiedemann/druxt2"
   },
-
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -41,10 +40,10 @@
     "prepack": "nuxt-module-build"
   },
   "dependencies": {
+    "@druxt2/druxt": "^0.0.3",
+    "@druxt2/router": "^0.0.3",
     "consola": "^2.15.0",
     "drupal-jsonapi-params": "^2.1.0",
-    "@druxt2/druxt": "0.0.2",
-    "@druxt2/router": "0.0.2",
     "url-parse": "^1.5.10"
   },
   "peerDependencies": {
