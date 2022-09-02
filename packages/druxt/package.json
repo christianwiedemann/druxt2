@@ -9,7 +9,7 @@
       "require": "./dist/module.cjs"
     },
     "./runtime": "./dist/runtime/index.mjs",
-    "./client": "./dist/runtime/client",
+    "./client": "./dist/runtime/client.mjs",
     "./components/*": "./dist/runtime/components/*"
   },
   "main": "./dist/module.cjs",
@@ -26,8 +26,8 @@
   },
   "dependencies": {
     "chalk": "^5.0.1",
-    "scule": "^0.3.2",
-    "querystring": "^0.2.1"
+    "querystring": "^0.2.1",
+    "scule": "^0.3.2"
   },
   "devDependencies": {
     "@nuxt/module-builder": "latest",
@@ -38,5 +38,9 @@
     "jsdom": "latest",
     "vite": "^3.0.4",
     "vitest": "latest"
-  }
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": "https://github.com/christianwiedemann/druxt2.git"
 }
