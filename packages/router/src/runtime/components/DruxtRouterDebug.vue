@@ -11,8 +11,6 @@ import { DruxtRouterMixin } from '@druxt2/router/mixins'
 export default {
   mixins: [DruxtRouterMixin],
   setup (props) {
-    console.log(props)
-    const path = ref(props.path);
     console.log('DEBUG DEMO')
   }
 }

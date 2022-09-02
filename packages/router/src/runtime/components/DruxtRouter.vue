@@ -1,7 +1,7 @@
 <script>
 
-import {DruxtRouterStore} from "../stores/router";
-import {useComponent, render, useRoute} from "#imports";
+import { DruxtRouterStore } from "../stores/router";
+import { useComponent, render, useRoute } from "#imports";
 
 /**
  * The DruxtRouter component renders a Drupal decoupled route, or path, using
