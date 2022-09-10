@@ -61,6 +61,7 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
 
     // Register composables
     addAutoImport([
+      { name: 'DruxtStore', as: 'DruxtStore', from: resolveRuntimeModule('./stores/druxt') },
       { name: 'useDruxtClient', as: 'useDruxtClient', from: resolveRuntimeModule('./composables/useDruxtClient') },
       { name: 'useComponent', as: 'useComponent', from: resolveRuntimeModule('./composables/useComponent') },
       { name: 'render', as: 'render', from: resolveRuntimeModule('./composables/render') }

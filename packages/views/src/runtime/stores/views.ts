@@ -3,6 +3,7 @@ import md5 from 'md5'
 import { defineStore } from 'pinia'
 import {useDruxtClient} from "#imports";
 
+
 const DruxtViewsStore = defineStore({
   id: 'druxt-views-store',
 
@@ -22,7 +23,7 @@ const DruxtViewsStore = defineStore({
      * @example @lang js
      * this.$store.commit('druxt/views/addResults', { results, viewId, displayId, prefix, hash })
      */
-    addResults (results, viewId, displayId, prefix, hash ) {
+    addResults ({results, viewId, displayId, prefix, hash} ) {
       if (!results || !viewId || !displayId || !hash) return
 
       if (!this.results[viewId]) this.results[viewId] = {}
@@ -49,17 +50,18 @@ const DruxtViewsStore = defineStore({
      *   query
      * })
      */
-    async getResults ( viewId, displayId, query, prefix ) {
-      const druxtClient = useDruxtClient()
+    async getResults ({ viewId, displayId, query, prefix, druxtClient }) {
       const hash = query ? md5(druxtClient.buildQueryUrl('', query)) : '_default'
       if (typeof (((this.results[viewId] || {})[displayId] || {})[prefix] || {})[hash] !== 'undefined') {
         return this.results[viewId][displayId][prefix][hash]
       }
 
       const results = await druxtClient.getResource(`views--${viewId}`, displayId, query, prefix)
-      this.addResults(results, viewId, displayId, prefix, hash);
+      this.addResults({results, viewId, displayId, prefix, hash});
       return results
     }
 
   }
 })
+
+export { DruxtViewsStore }

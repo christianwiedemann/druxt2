@@ -1,5 +1,7 @@
 <template>
-  <slot name="body"></slot>
+  <div>Entity</div>
+  <slot name="field_difficulty"></slot>
+  <slot name="field_media_image"></slot>
 </template>
 <script>
 

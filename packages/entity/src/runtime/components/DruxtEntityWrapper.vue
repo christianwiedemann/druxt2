@@ -10,6 +10,10 @@ export default {
       type: String,
       required: true
     },
+    druxtComponent: {
+      type: Object,
+      required: false
+    },
     entity: {
       type: Object,
       required: false

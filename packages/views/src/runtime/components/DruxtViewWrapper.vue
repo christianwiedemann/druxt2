@@ -1,8 +1,9 @@
 <script>
 import merge from 'deepmerge'
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
-import DruxtModule from 'druxt/dist/components/DruxtModule.vue'
 import { parse, stringify } from 'qs'
+import { DruxtViewsStore } from '../stores/views';
+import { DruxtStore, useComponent, render } from '#imports';
 
 /**
  * The DruxtView component renders Drupal Views using configuration and
@@ -41,14 +42,17 @@ import { parse, stringify } from 'qs'
  * </DruxtView>
  */
 export default {
-  name: 'DruxtView',
-
-  extends: DruxtModule,
+  name: 'DruxtViewWrapper',
 
   /**
    * Vue.js Properties.
    */
   props: {
+    lang: {
+      type: String,
+      required: true
+    },
+
     /**
      * Views contextual filters.
      *
@@ -191,7 +195,7 @@ export default {
     display() {
       if (!(((this.view || {}).data || {}).attributes || {}).display) return {}
 
-      if (this.display_id === 'default') return this.view.data.attributes.display[this.display_id]
+      if (this.displayId === 'default') return this.view.data.attributes.display[this.displayId]
 
       return merge(
         this.view.data.attributes.display['default'],
@@ -329,6 +333,23 @@ export default {
   },
 
   methods: {
+
+
+    /**
+     * Filters update event handler.
+     */
+    onFiltersUpdate() {
+      this.model.page = null
+      this.model.sort = null
+    },
+
+  },
+
+  async setup(props) {
+    const viewsStore = DruxtViewsStore();
+    const druxtStore = DruxtStore();
+    const druxtClient = useDruxtClient();
+
     /**
      * Builds the query for the JSON:API request.
      *
@@ -336,14 +357,14 @@ export default {
      *
      * @return {Query}
      */
-    getQuery(settings = {}) {
+    const getQuery = (settings = {}) => {
       const query = {}
       const resourceTypes = (settings.query || {}).resourceTypes || []
 
       // Check all filters for 'bundle' plugin with bundle data, and use if
       // found build resourceTypes array.
       if ((settings.query || {}).bundleFilter === true) {
-        const filters = ((this.display || {}).display_options || {}).filters || []
+        const filters = ((props.display || {}).display_options || {}).filters || []
         Object.values(filters).map((filter) => {
           if (filter.plugin_id === 'bundle' && filter.value) {
             Object.keys(filter.value).map((bundle) => {
@@ -360,44 +381,70 @@ export default {
         }
       }
 
-      // Pagination.
-      if (this.model.page) {
-        query.page = this.model.page
-      }
-
       // Contextual filters.
-      if (this.arguments.length) {
-        for (const index in this.arguments) {
-          query[`views-argument[${index}]`] = this.arguments[index]
+      if (props.arguments.length) {
+        for (const index in props.arguments) {
+          query[`views-argument[${index}]`] = props.arguments[index]
         }
       }
-
-      // Exposed filters.
-      if (Object.entries(this.model.filter || {}).length) {
-        query['views-filter'] = this.model.filter
-      }
-
-      // Exposed sorts.
-      if (this.model.sort) {
-        query['views-sort[sort_by]'] = this.model.sort
-      }
-
       return query
-    },
+    };
 
-    /**
-     * Filters update event handler.
-     */
-    onFiltersUpdate() {
-      this.model.page = null
-      this.model.sort = null
-    },
+
+    let view;
+    if (!props.view && (props.uuid || props.viewId)) {
+      if (props.uuid) {
+        view = await druxtStore.getResource({
+          prefix: props.lang,
+          type: props.type,
+          id: props.uuid,
+        })
+      } else {
+        const collection = await druxtStore.getCollection({
+          prefix: props.lang,
+          type: props.type,
+          query: new DrupalJsonApiParams().addFilter('drupal_internal__id', props.viewId)
+        })
+        view = {data: collection.data[0]}
+      }
+    }
+    const viewId = props.viewId || (((view || {}).data || {}).attributes || {}).drupal_internal__id
+
+    if (viewId) {
+      const query = await getQuery()
+      const resource = await viewsStore.getResults({
+        displayId: props.displayId,
+        prefix: props.lang,
+        query: stringify(query),
+        viewId,
+        druxtClient
+      })
+      return  {
+        resource,
+        view
+      }
+    }
+
 
   },
+  render () {
+    const mappedResults = this.results.map((result) => useComponent('DruxtEntityWrapper', [[]], {
+      viewMode: this.mode,
+      entity: result,
+      key: result.id,
+      lang: this.lang,
+      type: result.type,
+      uuid: result.id
+    }))
+    const druxtView = useComponent('DruxtView', [
+      [this.viewId || ((this.view.data || {}).attributes || {}).drupal_internal__id, this.displayId],
+      [this.uuid || (this.view.data || {}).id, this.displayId],
+      [this.displayId]
+    ], {}, {results: mappedResults});
 
-  async setup() {
-
+    return render(druxtView)
   },
+
   /** DruxtModule settings */
   druxt: {
     /**
@@ -406,49 +453,7 @@ export default {
      * @param {object} context - The module component ViewModel.
      * @returns {ComponentOptions}
      */
-    componentOptions: ({ displayId, uuid, view, viewId }) => ([
-      [viewId || ((view.data || {}).attributes || {}).drupal_internal__id, displayId],
-      [uuid || (view.data || {}).id, displayId],
-      [displayId]
-    ]),
 
-    /**
-     * Fetch View configuration resource.
-     */
-    async fetchConfig() {
-      if (!this.view && (this.uuid || this.viewId)) {
-        if (this.uuid) {
-          this.view = await this.getResource({
-            prefix: this.lang,
-            type: this.type,
-            id: this.uuid,
-          })
-        } else {
-          const collection = await this.getCollection({
-            prefix: this.lang,
-            type: this.type,
-            query: new DrupalJsonApiParams().addFilter('drupal_internal__id', this.viewId)
-          })
-          this.view = { data: collection.data[0] }
-        }
-      }
-    },
-
-    /**
-     * Fetch JSON:API Views results.
-     */
-    async fetchData(settings) {
-      const viewId = this.viewId || (((this.view || {}).data || {}).attributes || {}).drupal_internal__id
-      if (viewId) {
-        const query = this.getQuery(settings)
-        this.resource = await this.getResults({
-          displayId: this.displayId,
-          prefix: this.lang,
-          query: stringify(query),
-          viewId
-        })
-      }
-    },
 
     /**
      * Provides propsData for the DruxtWrapper.
@@ -498,7 +503,7 @@ export default {
      *
      * @return {ScopedSlots} The Scoped slots object.
      */
-    slots(h) {
+    slots() {
       // Build scoped slots.
       const scopedSlots = {}
 
@@ -580,7 +585,7 @@ export default {
             })
         }
 
-        return this.results.map((result) => h('DruxtEntity', {
+        return this.results.map((result) => h('DruxtEntityWrapper', {
           attrs: { ...attrs },
           key: result.id,
           props: {

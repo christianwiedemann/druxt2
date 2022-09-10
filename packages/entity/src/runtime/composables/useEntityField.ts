@@ -12,7 +12,7 @@ const isEmpty = (value) => {
 
 export const useEntityFields = (schema, entity={}, lang) => {
   const fields = {};
-  const model = entity.data;
+  const model = entity;
   const errors = [];
   for (const field of schema.fields || []) {
     const relationship = !!((field.settings || {}).storage || {}).target_type || !!(model.relationships || {})[field.id]

@@ -11,7 +11,7 @@ import {useEntityFields} from "./useEntityField";
  *
  */
 export const useEntitySchema = async (entity, viewMode = 'full', schemaType = 'view') => {
-  return useSchema(entity.data.type, viewMode, schemaType);
+  return useSchema(entity.type, viewMode, schemaType);
 }
 
 /**
@@ -29,7 +29,7 @@ export const useEntityIsLayoutBuilderEnabled = async (entity, viewMode = 'full')
 
 export const useEntityLayoutBuilderSections = async (entity, viewMode = 'full') => {
   const schema = await useEntitySchema(entity, viewMode, 'view')
-  const sections = entity.data.attributes.layout_builder__layout?.length > 0 && schema.layout_builder.allow_custom ? entity.data.attributes.layout_builder__layout : schema.layout_builder.sections;
+  const sections = entity.attributes.layout_builder__layout?.length > 0 && schema.layout_builder.allow_custom ? entity.attributes.layout_builder__layout : schema.layout_builder.sections;
   return sections;
 }
 
@@ -39,7 +39,7 @@ export const useEntity = async ( props: {type?, uuid?, entity?, lang} ) => {
   }
   if (props.uuid && props.type) {
     const client = useDruxtClient();
-    return await client.getResource(props.type, props.uuid, {}, props.lang);
+    return await client.getResource(props.type, props.uuid, {}, props.lang)?.data;
   }
 }
 
@@ -52,7 +52,7 @@ export const useEntity = async ( props: {type?, uuid?, entity?, lang} ) => {
 export const useEntityComponentOptions = async (entity, viewMode = 'full', schemaType = 'view') => {
   const schema = await useEntitySchema(entity, viewMode, schemaType);
   const layoutBuilderOption = await useEntityIsLayoutBuilderEnabled(entity, viewMode) ? 'LayoutBuilder' : 'Default';
-  const type = entity.data.type;
+  const type = entity.type;
   return [
     // DruxtEntity[ResourceType][ViewMode][SchemaType]
     [
@@ -80,10 +80,10 @@ export const useEntityComponentOptions = async (entity, viewMode = 'full', schem
 
 }
 export const useEntityRender = async (entity, viewMode = 'full', lang ='en') => {
-  if (!entity?.data?.type) {
+  if (!entity?.type) {
     return () => h(resolveComponent('DruxtDebug'), {title: 'Unable to render entity', json: entity})
   }
-  if (await useEntityIsLayoutBuilderEnabled(entity)) {
+  if (await useEntityIsLayoutBuilderEnabled(entity, viewMode)) {
     return useEntityLayoutBuilderRender(entity, viewMode, lang)
   }
   return useEntityDefaultRender(entity, viewMode, lang)

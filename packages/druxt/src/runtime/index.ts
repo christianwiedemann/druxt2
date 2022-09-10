@@ -18,3 +18,4 @@ export type Component = {
   slots?: any;
   is: () => string
 }
+

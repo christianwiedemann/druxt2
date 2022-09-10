@@ -1,5 +1,5 @@
 <template>
-    <DruxtViewWrapper name="main"></DruxtViewWrapper>
+    <DruxtViewWrapper view-id="recipes" lang="en"></DruxtViewWrapper>
 
 </template>
 <script>

@@ -1,6 +1,5 @@
 import {defineNuxtConfig} from 'nuxt'
 import DruxtEntityNuxtModule from '..'
-import dynamicImport from "vite-plugin-dynamic-import";
 
 export default defineNuxtConfig({
   'druxt': {
@@ -13,11 +12,6 @@ export default defineNuxtConfig({
         includes: ['layout_builder__blocks']
       }
     }
-  },
-  vite: {
-    plugins: [
-      dynamicImport(),
-    ],
   },
   modules: [
     DruxtEntityNuxtModule
