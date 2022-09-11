@@ -3,14 +3,8 @@
 </template>
 <script lang="ts">
 
-
-import {useDruxtClient} from "../../../../druxt/dist/runtime/composables/useDruxtClient.mjs";
-
 export default {
   name: 'OauthLogin',
-  setup(){
-    const druxt = useDruxtClient('http://oidconnect.docksal');
-  },
   methods: {
     login() {
       const app = useNuxtApp();
