@@ -24,7 +24,7 @@ export const render = (component:Component, slots = {}) => {
       renderedSlots[slotName] = () => collectSlots[slotName];
     }
   }
-  const props = component.is() === 'DruxtDebug' ? { title: 'Unable to resolve component', json: {suggestions: component.suggestions, props: component.props, slots} } : {};
+  const props = component.is() === 'DruxtDebug' ? { title: 'Unable to resolve component', json: {suggestions: component.suggestions, props: component.props, slots: {...slots, ...component.slots}} } : {};
   const componentH = h(resolvedComponent, {...component.props, ...props, druxtComponent: component}, {...renderedSlots, ...slots})
   return componentH
 }

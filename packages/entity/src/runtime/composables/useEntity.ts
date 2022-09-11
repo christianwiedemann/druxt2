@@ -152,7 +152,7 @@ export const useEntityLayoutBuilderRender = async (entity, viewMode = 'full', la
         }
       }
     }
-      layoutComponents.push(useComponent(layoutId, [['wrapper']], props, slots));
+    layoutComponents.push(useComponent(layoutId, [['wrapper']], props, slots));
   }
   return () => {
     const renderedComponent = [];
