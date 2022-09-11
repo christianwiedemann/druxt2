@@ -118,7 +118,7 @@ export const useEntityLayoutBuilderRender = async (entity, viewMode = 'full', la
 
   const layoutComponents = [];
   for (const section of sections) {
-    const layoutId = section.layout_settings.pattern ?? section.layout_id;
+    const layoutId = section.layout_settings?.pattern?.component ?? section.layout_id;
     const pattern = section.layout_settings.pattern;
     const settings = pattern?.settings ?? {};
     const variant = pattern?.variant ?? '';
@@ -152,7 +152,7 @@ export const useEntityLayoutBuilderRender = async (entity, viewMode = 'full', la
         }
       }
     }
-    layoutComponents.push(useComponent('DruxtSection', [['layout']], props, slots));
+      layoutComponents.push(useComponent(layoutId, [['wrapper']], props, slots));
   }
   return () => {
     const renderedComponent = [];

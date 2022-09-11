@@ -43,6 +43,7 @@
     "@druxt2/druxt": "^0.0.4-alpha.4",
     "@druxt2/entity": "^0.0.4-alpha.4",
     "@druxt2/router": "^0.0.4-alpha.4",
+    "@nuxt/schema": "^3.0.0-rc.9",
     "deepmerge": "^4.2.2",
     "drupal-jsonapi-params": "^2.1.0",
     "md5": "^2.3.0"
