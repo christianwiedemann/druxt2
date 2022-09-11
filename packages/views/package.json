@@ -1,6 +1,6 @@
 {
   "name": "@druxt2/views",
-  "version": "0.0.4-alpha.5",
+  "version": "0.0.4-alpha.6",
   "description": "The Fully Decoupled Drupal Framework for Nuxt.js.",
   "keywords": [
     "cms",
@@ -40,9 +40,9 @@
     "prepack": "nuxt-module-build"
   },
   "dependencies": {
-    "@druxt2/druxt": "^0.0.4-alpha.5",
-    "@druxt2/entity": "^0.0.4-alpha.5",
-    "@druxt2/router": "^0.0.4-alpha.5",
+    "@druxt2/druxt": "^0.0.4-alpha.6",
+    "@druxt2/entity": "^0.0.4-alpha.6",
+    "@druxt2/router": "^0.0.4-alpha.6",
     "@nuxt/schema": "^3.0.0-rc.9",
     "deepmerge": "^4.2.2",
     "drupal-jsonapi-params": "^2.1.0",
