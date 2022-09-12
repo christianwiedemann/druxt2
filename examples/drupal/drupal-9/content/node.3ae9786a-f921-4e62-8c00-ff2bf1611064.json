@@ -1,0 +1,122 @@
+{
+    "uuid": [
+        {
+            "value": "3ae9786a-f921-4e62-8c00-ff2bf1611064"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "nonlayoutbuilder",
+            "target_type": "node_type",
+            "target_uuid": "e7829aff-3a20-4efa-9664-4808faa724c2"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2022-09-12T06:44:21+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "revision_uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "1bc973b1-4bee-403f-8f76-52387c936207"
+        }
+    ],
+    "revision_log": [],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "1bc973b1-4bee-403f-8f76-52387c936207"
+        }
+    ],
+    "title": [
+        {
+            "value": "TEST"
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-09-11T19:45:44+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2022-09-12T06:44:21+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": true
+        }
+    ],
+    "sticky": [
+        {
+            "value": false
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true
+        }
+    ],
+    "moderation_state": [],
+    "path": [
+        {
+            "alias": "",
+            "pid": null,
+            "langcode": "en"
+        }
+    ],
+    "content_translation_source": [
+        {
+            "value": "und"
+        }
+    ],
+    "content_translation_outdated": [
+        {
+            "value": false
+        }
+    ],
+    "layout_builder__blocks": [],
+    "field_image": [
+        {
+            "alt": "test",
+            "title": "",
+            "width": 806,
+            "height": 712,
+            "target_type": "file",
+            "target_uuid": "ec87f886-bd8a-4c3a-b412-744b982e5195"
+        }
+    ],
+    "body": [
+        {
+            "value": "<p>TEST asdf asdf asdf<\/p>\r\n",
+            "format": "basic_html",
+            "summary": ""
+        }
+    ],
+    "field_media_image": [
+        {
+            "target_type": "media",
+            "target_uuid": "088730f3-3a8e-48ce-a98e-e32c7eeb60ca"
+        }
+    ]
+}

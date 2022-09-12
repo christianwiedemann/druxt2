@@ -1,5 +1,5 @@
 <script lang="ts">
-import {h, resolveComponent} from "vue";
+import {h} from "vue";
 import {useComponent, render} from "#imports";
 
 export default {
@@ -75,6 +75,16 @@ export default {
   },
   props: {
 
+    druxtComponent: {
+      type: Object,
+      required: false
+    },
+
+    entity: {
+      type: Object,
+      required: true
+    },
+
     lang: {
       type: String,
       required: false
@@ -118,12 +128,30 @@ export default {
     },
   },
 
-  render() {
+  render(props) {
+    //console.log(props.schema)
+    const slots = {};
+    if ((this.label || {}).text) {
+      slots['label'] = [];
+      slots['label'].push(useComponent('DruxtLabel', {label: this.label.text, position: this.label.position}));
+    }
 
-    const slots = this.slots();
+    const items = (this.model || {}).data
+        ? Array.isArray(this.model.data) ? this.model.data : [this.model.data]
+        : Array.isArray(this.model) ? this.model : [this.model]
+    slots[`items`] = [];
+    for (const delta in items) {
+      const item = items[delta]
+      slots[`items`][delta] = useComponent('DruxtFieldItemFormatterWrapper', [[props.schema.type, props.schema.id]], {
+        item,
+        schema: props.schema,
+        lang: this.lang,
+        parent: props.entity
+      }, this.lang)
+    }
+    const component = useComponent('DruxtField', [[props.schema.type, props.schema.id]], {entity: props.entity, value: props.model}, slots, this.lang)
 
-    const component = useComponent('DruxtField', [[]], {})
-    return render(component, slots);
+    return render(component);
   },
   /**
    * Provides the scoped slots object for the Module render function.
@@ -183,38 +211,23 @@ export default {
         const item = items[delta]
         scopedSlots[`field-${delta}`] = (attrs) => {
           if (this.isFile && schemaType === 'view') {
-            return h('DruxtEntityWrapper', {
-                  attrs,
-                  lang: this.lang,
-                  type: item.type,
-                  uuid: item.id,
-                },
-                {
-                  default: ({entity}) => h('a', {
-                    domProps: {
-                      href: (entity.attributes.uri || {}).url,
-                      target: '_blank',
-                    },
-                  }, [entity.attributes.filename])
-                }
-            )
+            return useComponent('DruxtEntityWrapper', {
+              attrs,
+              entity: {},
+              lang: this.lang,
+              type: item.type,
+              uuid: item.id,
+            })
           }
 
           // Image: View
           if (this.isImage && schemaType === 'view') {
-            return h('DruxtEntityWrapper',
+            return useComponent('DruxtEntityWrapper',
                 {
                   attrs,
                   lang: this.lang,
                   type: item.type,
                   uuid: item.id
-                },
-                {
-                  default: ({entity}) => h('img', {
-                    domProps: {
-                      src: (entity.attributes.uri || {}).url
-                    }
-                  })
                 })
           }
 
@@ -222,23 +235,21 @@ export default {
           if (this.isLink && schemaType === 'view') {
             if (!(item || {}).uri) return
             return /^(?:[a-z]+:)?\/\//i.test(item.uri)
-                ? h('a', {attrs, domProps: {href: item.uri, target: '_blank'}}, [item.title])
-                : h('NuxtLink', {attrs, props: {to: item.uri.replace('internal:', '')}}, [item.title])
+                ? useComponent('a!', {attrs, href: item.uri, target: '_blank'}, [item.title])
+                : useComponent('NuxtLink', {attrs, props: {to: item.uri.replace('internal:', '')}}, [item.title])
           }
 
           // Relationship: View.
           if (this.relationship && (item || {}).id && schemaType === 'view') {
             if (this.schema.type === 'entity_reference_label') {
-              const resolvedDruxtLabelWrapper = resolveComponent('DruxtEntityLabelWrapper')
-              return h(resolvedDruxtLabelWrapper, {
+              return useComponent('DruxtEntityLabelWrapper', {
                 attrs,
                 lang: this.lang,
                 type: item.type,
                 uuid: item.id,
               })
             } else {
-              const resolvedDruxtEntityWrapper = resolveComponent('DruxtEntityWrapper')
-              return h(resolvedDruxtEntityWrapper, {
+              return useComponent('DruxtEntityWrapper', {
                 attrs,
                 lang: this.lang,
                 viewMode: this.schema.settings.display.view_mode || 'default',
@@ -253,12 +264,12 @@ export default {
           if (schemaType === 'view') {
             // Return data if data is a basic native.
             if (['number', 'string'].includes(typeof item)) {
-              return h('div', {attrs, innerHTML: item})
+              return useComponent('DruxtField', [[]], {attrs, innerHTML: item})
             }
 
             // Return `.processed` or `.value` if present.
             if (((item || {}).processed || (item || {}).value)) {
-              return h('div', {attrs, innerHTML: item.processed || item.value})
+              return useComponent('div', {attrs, innerHTML: item.processed || item.value})
             }
           }
 

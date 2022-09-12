@@ -39,7 +39,8 @@ export const useEntity = async ( props: {type?, uuid?, entity?, lang} ) => {
   }
   if (props.uuid && props.type) {
     const client = useDruxtClient();
-    return await client.getResource(props.type, props.uuid, {}, props.lang)?.data;
+    const resource = await client.getResource(props.type, props.uuid, {}, props.lang);
+    return resource?.data;
   }
 }
 
@@ -96,7 +97,7 @@ export const useEntityDefaultRender = async (entity, viewMode = 'full', lang = '
   // Build scoped slots for each field.
   const scopedSlots = {};
   Object.entries(fields).map(([id, field]) => {
-    scopedSlots[id] = [useComponent('DruxtFieldWrapper', [[]],  {key: id, ref: id, relationship: field.relationship, schema: field.schema, 'model': field.value})]
+    scopedSlots[id] = [useComponent('DruxtFieldWrapper', [[]],  {lang, entity, key: id, ref: id, relationship: field.relationship, schema: field.schema, 'model': field.value})]
   })
   const options = await useEntityComponentOptions(entity, viewMode);
   const entityComponent = useComponent('DruxtEntity', options, {entity, viewMode, lang}, scopedSlots);
@@ -147,7 +148,7 @@ export const useEntityLayoutBuilderRender = async (entity, viewMode = 'full', la
           //slots[slotName].push(useComponent('DruxtDebug', [[]], {title: 'Unable to find field with name: ' + fieldName}));
           console.error('Unable to find field with name ' + fieldName)
         } else {
-          const fieldComponent = useComponent('DruxtFieldWrapper', [[]],  {lang, key: id, ref: id, relationship: field.relationship, schema: field.schema, 'model': field.value})
+          const fieldComponent = useComponent('DruxtFieldWrapper', [[]],  {entity, lang, key: id, ref: id, relationship: field.relationship, schema: field.schema, 'model': field.value})
           slots[slotName].push(fieldComponent);
         }
       }

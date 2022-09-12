@@ -36,7 +36,8 @@ export default {
   async setup(props) {
     const entity = await useEntity(props);
     if (!entity) {
-      return () => h('div', {innerHTML: 'Entity not found'})
+      const druxtDebug = resolveComponent('DruxtDebug');
+      return () => h(druxtDebug, {title: 'Entity not found', json: props})
     }
     return useEntityRender(entity, props.viewMode);
   }

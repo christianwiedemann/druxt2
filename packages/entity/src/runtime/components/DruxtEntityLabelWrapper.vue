@@ -28,7 +28,8 @@ export default {
 
     const entity = await useEntity(props);
     if (!entity) {
-      return () => h('div', {innerHTML: 'Entity not found'})
+
+      return () => h('DruxtDebug', {title: 'Entity not found', json: props})
     }
     const component = useComponent('DruxtLabel', [[entity.data.type]], {entity, lang: props.lang});
     return () => render(component)

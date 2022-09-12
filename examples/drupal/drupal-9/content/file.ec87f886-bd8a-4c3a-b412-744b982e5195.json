@@ -1,0 +1,55 @@
+{
+    "uuid": [
+        {
+            "value": "ec87f886-bd8a-4c3a-b412-744b982e5195"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "uid": [
+        {
+            "target_type": "user",
+            "target_uuid": "1bc973b1-4bee-403f-8f76-52387c936207"
+        }
+    ],
+    "filename": [
+        {
+            "value": "CKeditor.png"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public:\/\/2022-09\/CKeditor.png"
+        }
+    ],
+    "filemime": [
+        {
+            "value": "image\/png"
+        }
+    ],
+    "filesize": [
+        {
+            "value": 70821
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2022-09-12T06:44:17+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2022-09-12T06:44:21+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+uuid: f1b10c87-6eb5-4b3a-a32d-7404a2a963f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.nonlayoutbuilder
+id: node.nonlayoutbuilder
+target_entity_type_id: node
+target_bundle: nonlayoutbuilder
+default_langcode: site_default
+language_alterable: false
