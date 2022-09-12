@@ -1,6 +1,6 @@
 {
   "name": "@druxt2/router",
-  "version": "0.0.4-alpha.7",
+  "version": "0.0.4-alpha.8",
   "description": "The Fully Decoupled Drupal Framework for Nuxt.js.",
   "keywords": [
     "cms",
@@ -39,7 +39,7 @@
     "prepack": "nuxt-module-build"
   },
   "dependencies": {
-    "@druxt2/druxt": "^0.0.4-alpha.7",
+    "@druxt2/druxt": "^0.0.4-alpha.8",
     "consola": "^2.15.0",
     "drupal-jsonapi-params": "^2.1.0",
     "url-parse": "^1.5.10"
