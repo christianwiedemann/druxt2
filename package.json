@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "private": true,
   "scripts": {
-    "build": "yarn clean && lerna run prepack",
+    "build": "yarn clean && lerna run dev:prepare --concurrency=1 && lerna run prepack --concurrency=1",
     "dev:entity": "yarn clean && lerna run prepack && cd packages/entity; yarn dev",
     "build:docs": "./packages/docgen/bin/druxt-docgen.js",
     "bundlewatch": "bundlewatch --config bundlewatch.config.js",

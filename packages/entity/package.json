@@ -42,6 +42,7 @@
   "dependencies": {
     "@druxt2/druxt": "^0.0.4-alpha.8",
     "@druxt2/router": "^0.0.4-alpha.8",
+    "@druxt2/schema": "^0.0.4-alpha.8",
     "consola": "^2.15.0",
     "drupal-jsonapi-params": "^2.1.0",
     "url-parse": "^1.5.10"
