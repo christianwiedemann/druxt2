@@ -2,3 +2,4 @@
 
 fin project rm -f
 fin project start
+fin exec composer install
