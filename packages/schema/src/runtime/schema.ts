@@ -1,7 +1,7 @@
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 
 import { Schema } from './utils/schema'
-import { DruxtClient }  from "@druxt2/druxt/runtime";
+import { DruxtClient }  from "@druxt2/core";
 
 
 /**

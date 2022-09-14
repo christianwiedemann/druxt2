@@ -33,12 +33,14 @@
     "templates"
   ],
   "scripts": {
+    "build": "yarn dev:prepare && yarn prepack",
     "dev": "nuxt-module-build && nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "prepack": "nuxt-module-build"
   },
   "dependencies": {
+    "@druxt2/core": "^0.0.4-alpha.8",
     "@druxt2/druxt": "^0.0.4-alpha.8"
   },
   "peerDependencies": {

@@ -1,4 +1,4 @@
-import { DruxtClient } from '../'
+import { DruxtClient } from '@druxt2/core'
 import { useRuntimeConfig } from "#app";
 let client = null;
 

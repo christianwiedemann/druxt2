@@ -5,7 +5,7 @@
  * ---
  */
 
-import { DruxtClient } from '@druxt2/druxt/client'
+import { DruxtClient } from '@druxt2/core'
 import Url from 'url-parse'
 
 /**

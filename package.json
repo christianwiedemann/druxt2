@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "private": true,
   "scripts": {
-    "build": "yarn clean && lerna run dev:prepare --concurrency=1 && lerna run prepack --concurrency=1",
+    "build": "yarn clean && lerna run build",
     "dev:entity": "yarn clean && lerna run prepack && cd packages/entity; yarn dev",
     "build:docs": "./packages/docgen/bin/druxt-docgen.js",
     "bundlewatch": "bundlewatch --config bundlewatch.config.js",
@@ -27,6 +27,7 @@
     "husky": "8.0.1",
     "lerna": "^5.3.0",
     "nuxt": "3.0.0-rc.8",
+    "nx": "^14.7.5",
     "vite-plugin-dynamic-import": "^1.0.0",
     "vue-loader": "^16.8.3",
     "vue-tsc": "^0.38.5"

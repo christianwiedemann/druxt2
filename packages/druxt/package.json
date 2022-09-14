@@ -9,7 +9,10 @@
       "require": "./dist/module.cjs"
     },
     "./runtime": "./dist/runtime/index.mjs",
-    "./client": "./dist/runtime/client.mjs",
+    "./client": {
+      "import": "./dist/client.mjs",
+      "require": "./dist/client.cjs"
+    },
     "./components/*": "./dist/runtime/components/*"
   },
   "main": "./dist/module.cjs",
@@ -22,9 +25,11 @@
     "dev": "nuxt-module-build && nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
-    "prepack": "nuxt-module-build"
+    "prepack": "nuxt-module-build",
+    "build": "yarn dev:prepare && yarn prepack"
   },
   "dependencies": {
+    "@druxt2/core": "^0.0.4-alpha.8",
     "chalk": "^5.0.1",
     "querystring": "^0.2.1",
     "scule": "^0.3.2"

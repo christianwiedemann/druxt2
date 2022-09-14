@@ -1,4 +1,4 @@
-import axios from 'axios'
+const axios = require('axios').default;
 import consola from 'consola'
 import {stringify} from "querystring";
 

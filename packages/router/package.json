@@ -36,10 +36,13 @@
     "dev": "nuxt-module-build && nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
-    "prepack": "nuxt-module-build"
+    "prepack": "nuxt-module-build",
+    "build": "yarn dev:prepare && yarn prepack"
   },
   "dependencies": {
+    "@druxt2/core": "^0.0.4-alpha.8",
     "@druxt2/druxt": "^0.0.4-alpha.8",
+    "@druxt2/schema": "^0.0.4-alpha.8",
     "consola": "^2.15.0",
     "drupal-jsonapi-params": "^2.1.0",
     "url-parse": "^1.5.10"

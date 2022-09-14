@@ -33,11 +33,11 @@
   ],
   "scripts": {
     "nuxi": "nuxi",
-    "module:build": "nuxt-module-build",
     "dev": "nuxt-module-build && nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
-    "prepack": "nuxt-module-build"
+    "prepack": "nuxt-module-build",
+    "build": "yarn dev:prepare && yarn prepack"
   },
   "dependencies": {
     "@druxt2/druxt": "^0.0.4-alpha.8",

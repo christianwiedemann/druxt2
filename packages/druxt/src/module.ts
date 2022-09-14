@@ -1,8 +1,7 @@
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 
 import { defineNuxtModule, createResolver, extendViteConfig, addAutoImport, resolveModule } from '@nuxt/kit'
-import { DruxtClient } from './runtime'
-export { DruxtClient } from './runtime'
+import { DruxtClient } from '@druxt2/core'
 
 interface ProxyInterface {
   api: Boolean
