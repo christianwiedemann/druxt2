@@ -3,3 +3,4 @@
 fin project rm -f
 fin project start
 fin exec composer install
+fin drush tome:install
