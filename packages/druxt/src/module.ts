@@ -1,6 +1,6 @@
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 
-import { defineNuxtModule, createResolver, extendViteConfig, addAutoImport, resolveModule } from '@nuxt/kit'
+import { defineNuxtModule, createResolver, extendViteConfig, addImports, resolveModule } from '@nuxt/kit'
 import { DruxtClient } from '@druxt2/core'
 
 interface ProxyInterface {
@@ -59,7 +59,7 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
     }
 
     // Register composables
-    addAutoImport([
+    addImports([
       { name: 'DruxtStore', as: 'DruxtStore', from: resolveRuntimeModule('./stores/druxt') },
       { name: 'useDruxtClient', as: 'useDruxtClient', from: resolveRuntimeModule('./composables/useDruxtClient') },
       { name: 'useComponent', as: 'useComponent', from: resolveRuntimeModule('./composables/useComponent') },

@@ -1,7 +1,7 @@
 import { existsSync } from 'fs'
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import { DruxtClient } from '@druxt2/core'
-import {defineNuxtModule, addPlugin, extendPages, createResolver} from '@nuxt/kit'
+import {defineNuxtModule, addPlugin, extendPages, createResolver, addImports, resolveModule} from '@nuxt/kit'
 import {fileURLToPath} from "url";
 
 
@@ -43,7 +43,8 @@ const DruxtRouterNuxtModule =  defineNuxtModule<ModuleOptions>({
   async setup(moduleOptions, nuxt) {
 
 
-    const { resolve } = createResolver(import.meta.url);
+    const { resolve } = createResolver(import.meta.url)
+    const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: resolve('./runtime') })
     // Set default options.
     const options = {
       baseUrl: moduleOptions.baseUrl,
@@ -54,10 +55,13 @@ const DruxtRouterNuxtModule =  defineNuxtModule<ModuleOptions>({
       }
     }
 
+    addImports([
+      { name: 'useDruxtRouter', as: 'useDruxtRouter', from: resolveRuntimeModule('./composables/useDruxtRouter') },
+    ])
+
     nuxt.hook("components:dirs", (dirs) => {
       dirs.push({ path: resolve('./runtime/components'),global: true });
     });
-
     // Add Druxt router custom wildcard route.
     if (options.router.wildcard) {
 
@@ -99,9 +103,6 @@ const DruxtRouterNuxtModule =  defineNuxtModule<ModuleOptions>({
         })
       })
     }
-
-    const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
-    addPlugin(resolve(runtimeDir, 'plugins/plugin'))
   },
 });
 

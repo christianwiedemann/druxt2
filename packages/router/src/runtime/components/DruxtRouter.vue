@@ -150,32 +150,25 @@ export default {
   },
 
   async setup() {
-
     const nuxtRoute = useRoute();
-    /**
-     * Fetch the decoupled route.
-     */
-    const fetchRoute = async () => {
+    const store = new DruxtRouterStore();
 
-      const store = new DruxtRouterStore();
-      // Get the route from the Drupal decoupled router module via the
-      // druxtRouter store.
-      // Use the Path prop or the Vue Router as the route to lookup.
-      const path = nuxtRoute.path || nuxtRoute.fullPath
-      const route = await store.getRoute(path);
-      // If this the path is the active Vue route, set the active route in the
-      // druxtRouter store for other modules to use.
-      // This is also done when via the middleware if in use.
-      const setActiveRoute = path === nuxtRoute.fullPath
-      if (setActiveRoute) {
-        store.setRoute(path);
-      }
-      return route;
-    };
-    const route = await fetchRoute();
+    // Get the route from the Drupal decoupled router module via the
+    // druxtRouter store.
+    // Use the Path prop or the Vue Router as the route to lookup.
+    const path = nuxtRoute.path || nuxtRoute.fullPath
+
+    const route = await store.getRoute(path);
+    // If this the path is the active Vue route, set the active route in the
+    // druxtRouter store for other modules to use.
+    // This is also done when via the middleware if in use.
+    const setActiveRoute = path === nuxtRoute.fullPath
+    if (setActiveRoute) {
+      store.setRoute(path);
+    }
     const module = route.type;
 
-    return {nuxtRoute, route, module, language: 'de'}
+    return {nuxtRoute, route, module, language: 'en'}
   },
 }
 

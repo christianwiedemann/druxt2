@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {useNuxtApp} from "#app";
+import {useDruxtRouter} from "#imports";
 
 const DruxtRouterStore = defineStore({
   id: 'druxt-router-store',
@@ -35,8 +35,7 @@ const DruxtRouterStore = defineStore({
       }
 
       try {
-        const { $druxtRouter } = useNuxtApp();
-        this.routes[path] = await $druxtRouter().getRoute(path)
+        this.routes[path] = await useDruxtRouter().getRoute(path)
       } catch (err) {
         this.routes[path] = {error: {statusCode: err.response.status, message: err.response.data.message}}
       }
