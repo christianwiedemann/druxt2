@@ -1,4 +1,5 @@
 <script lang="ts">
+import {druxtTheme, druxtRender} from "#imports";
 import {h} from "vue";
 
 export default {
