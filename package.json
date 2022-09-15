@@ -5,6 +5,7 @@
   "scripts": {
     "bootstrap": "yarn lerna bootstrap && lerna run install",
     "build": "yarn clean && lerna run build",
+    "publish": "yarn lerna publish",
     "dev:entity": "yarn clean && lerna run prepack && cd packages/entity; yarn dev",
     "build:docs": "./packages/docgen/bin/druxt-docgen.js",
     "bundlewatch": "bundlewatch --config bundlewatch.config.js",
