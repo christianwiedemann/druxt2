@@ -7,13 +7,7 @@
     ".": {
       "import": "./dist/module.mjs",
       "require": "./dist/module.cjs"
-    },
-    "./runtime": "./dist/runtime/index.mjs",
-    "./client": {
-      "import": "./dist/client.mjs",
-      "require": "./dist/client.cjs"
-    },
-    "./components/*": "./dist/runtime/components/*"
+    }
   },
   "main": "./dist/module.cjs",
   "files": [

@@ -8,6 +8,7 @@
 import { DruxtClient } from '@druxt2/core'
 import Url from 'url-parse'
 
+
 /**
  * DruxtRouter class.
  *
@@ -66,6 +67,7 @@ class DruxtRouter {
 
       ...options
     }
+
 
     /**
      * Instance of the Druxt Client.
@@ -301,7 +303,6 @@ class DruxtRouter {
       // Prevent invalid routes (404) from throwing validation errors.
       validateStatus: status => status < 500
     })
-
     const data = {
       isHomePath: false,
       jsonapi: {},

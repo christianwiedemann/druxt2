@@ -1,10 +1,11 @@
 <script lang="ts">
-import { useComponent, render } from '#imports';
+import { druxtTheme, druxtRender, useDruxtClient } from '#imports';
 export default {
   setup() {
+    const client = useDruxtClient()
     // use an array to return multiple root nodes
-    return () => render(
-      useComponent('DruxtDemoComponent', [[]], {},{ 'content': [useComponent('DruxtDemoComponent')]})
+    return () => druxtRender(
+      druxtTheme('DruxtDemoComponent', [[]], {},{ 'content': [druxtTheme('DruxtDemoComponent')]})
     )
   }
 }

@@ -1,9 +1,9 @@
-import {addAutoImport, createResolver, defineNuxtModule, resolveModule} from '@nuxt/kit'
+import {addImports, createResolver, defineNuxtModule, resolveModule} from '@nuxt/kit'
 import {
   useEntityIsLayoutBuilderEnabled, useEntityLayoutBuilderRender,
   useEntityLayoutBuilderSections,
   useEntitySchema
-} from "~/entity/src/runtime/composables/useEntity";
+} from "./runtime/composables/useEntity";
 
 
 export interface ModuleOptions {
@@ -50,7 +50,7 @@ const DruxtEntityNuxtModule =  defineNuxtModule<ModuleOptions>({
     });
 
     // Register composables
-    addAutoImport([
+    addImports([
       { name: 'useEntityLayoutBuilderRender', as: 'useEntityLayoutBuilderRender', from: resolveRuntimeModule('./composables/useEntity') },
       { name: 'useEntityComponentOptions', as: 'useEntityComponentOptions', from: resolveRuntimeModule('./composables/useEntity') },
       { name: 'useEntitySchema', as: 'useEntitySchema', from: resolveRuntimeModule('./composables/useEntity') },

@@ -4,10 +4,11 @@ import {
   addTemplate,
   createResolver,
   resolveModule,
-  addAutoImport,
+  addImports,
 } from '@nuxt/kit'
 import consola from 'consola'
 import { DruxtSchema } from './runtime/schema'
+import {DruxtClient} from "~/core/dist";
 
 const SchemaNuxtModule = defineNuxtModule({
   meta: {
@@ -25,16 +26,16 @@ const SchemaNuxtModule = defineNuxtModule({
     const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: resolve('./runtime') })
 
     // Register composables
-    addAutoImport([
+    addImports([
       { name: 'useSchema', as: 'useSchema', from: resolveRuntimeModule('./composables/useSchema') },
     ])
 
     // @ts-ignore
     const { baseUrl } = options
+    const axios = require('axios').default;
     const drupalSchema = new DruxtSchema(baseUrl, {
+      axios,
       ...options,
-      // Disable API Proxy, as Proxies aren't available at build.
-      // @ts-ignore
       proxy: {}
     })
     const { schemas } = await drupalSchema.get()

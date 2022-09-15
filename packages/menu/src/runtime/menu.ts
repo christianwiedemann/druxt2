@@ -1,5 +1,5 @@
 import { useDruxtClient } from '#imports'
-import { DruxtClient } from '@druxt2/druxt/client'
+import { DruxtClient } from '@druxt2/core'
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 
 /**

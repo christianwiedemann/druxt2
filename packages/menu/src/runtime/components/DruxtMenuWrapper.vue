@@ -3,7 +3,7 @@
 import merge from 'deepmerge'
 
 import {DruxtMenuStore} from "../stores/menu";
-import {useComponent, render} from "#imports";
+import {druxtTheme, druxtRender} from "#imports";
 
 export default {
   name: 'DruxtMenuWrapper',
@@ -225,11 +225,11 @@ export default {
 
     const slots = [];
     items.forEach((item)=>{
-      slots.push(useComponent('DruxtMenuItemWrapper', [['default', name]], {item, menuName: name}))
+      slots.push(druxtTheme('DruxtMenuItemWrapper', [['default', name]], {item, menuName: name}))
     })
-    const menuComponent = useComponent('DruxtMenu', [['default', name, ]], {}, {items: slots});
+    const menuTheme = druxtTheme('DruxtMenu', [['default', name, ]], {}, {items: slots});
     return () => {
-      return render(menuComponent);
+      return druxtRender(menuTheme);
     }
 
   },

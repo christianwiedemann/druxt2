@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {useDruxtRouter} from "#imports";
+import {useDruxtRouter} from "../composables/useDruxtRouter";
 
 const DruxtRouterStore = defineStore({
   id: 'druxt-router-store',

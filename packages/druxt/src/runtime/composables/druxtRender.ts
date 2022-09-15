@@ -1,7 +1,7 @@
 import { h, resolveComponent } from 'vue'
 import { Component } from '../index'
 
-export const render = (component:Component, slots = {}) => {
+export const druxtRender = (component:Component, slots = {}) => {
   const componentIs = component.is()
   const resolvedComponent = !componentIs.endsWith('!') ? resolveComponent(componentIs) : componentIs.substring(0, componentIs.length - 1)
   const collectSlots = {}
@@ -15,7 +15,7 @@ export const render = (component:Component, slots = {}) => {
       if (Array.isArray(slots)) {
         for (const slotItem of slots) {
           collectSlots[slotName].push(
-            render(slotItem)
+            druxtRender(slotItem)
           )
         }
       }

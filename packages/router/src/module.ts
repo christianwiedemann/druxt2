@@ -67,7 +67,9 @@ const DruxtRouterNuxtModule =  defineNuxtModule<ModuleOptions>({
 
       // Fetch languages.
       let languages = []
+      const axios = require('axios').default;
       const druxt = new DruxtClient(options.baseUrl, {
+        axios,
         ...options,
         // Disable API Proxy, as Proxies aren't available at build.
         proxy: {...moduleOptions.proxy || {}, api: false},

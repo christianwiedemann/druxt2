@@ -31,8 +31,8 @@ export default {
 
       return () => h('DruxtDebug', {title: 'Entity not found', json: props})
     }
-    const component = useComponent('DruxtLabel', [[entity.data.type]], {entity, lang: props.lang});
-    return () => render(component)
+    const component = druxtTheme('DruxtLabel', [[entity.data.type]], {entity, lang: props.lang});
+    return () => druxtRender(component)
   }
 }
 </script>

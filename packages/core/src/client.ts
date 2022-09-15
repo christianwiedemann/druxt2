@@ -1,9 +1,8 @@
-const axios = require('axios').default;
 import consola from 'consola'
 import {stringify} from "querystring";
 
 interface Options {
-  axios?: any
+  axios: any
   proxy?: {}
   debug?: false
   api?: null
@@ -36,7 +35,7 @@ class DruxtClient {
    * @param {string} baseUrl - The Drupal base URL.
    * @param {DruxtClientOptions} [options] - The DruxtClient options object.
    */
-  constructor(baseUrl, options:Options = {}) {
+  constructor(baseUrl:string, options:Options) {
     // Consola logger.
     this.log = consola.create({ defaults: {
         tag: 'DruxtClient'
@@ -53,24 +52,13 @@ class DruxtClient {
      * @see {@link https://github.com/axios/axios#instance-methods}
      * @type {object}
      */
-    // Use Axios instance if provided.
-    if (typeof options.axios === 'function') {
-      this.axios = options.axios
-    }
-
-    // Else, setup new instance of Axios.
-    else {
-      this.axios = axios.create({
-        ...options.axios || {},
-        // Set baseURL if proxy is not enabled.
+      this.axios = options.axios.create({
         baseURL: baseUrl
       })
-    }
 
     // If Debug mode is enabled, add an Axios interceptor to log out all
     // requests and errors.
     if (options.debug) {
-      const log = this.log
       // @TODO - Add test coverage.
       this.axios.interceptors.request.use((config) => {
         return config
@@ -282,15 +270,14 @@ class DruxtClient {
    *
    * @returns {object} The Axios response.
    */
-  async get(url, options:any = {}) {
+  async get(url: string, options:any = {}) {
     try {
       const res = await this.axios.get(url, options)
-
       // Check that the response hasn't omitted data due to missing permissions.
       this.checkPermissions(res)
-
       return res
     } catch(err) {
+      console.log(err)
       // Throw formatted error.
       this.error(err, { url })
     }

@@ -1,6 +1,5 @@
 <script lang="ts">
 import {h} from "vue";
-import {useComponent, render} from "#imports";
 
 export default {
   computed: {
@@ -133,7 +132,7 @@ export default {
     const slots = {};
     if ((this.label || {}).text) {
       slots['label'] = [];
-      slots['label'].push(useComponent('DruxtLabel', {label: this.label.text, position: this.label.position}));
+      slots['label'].push(druxtTheme('DruxtLabel', {label: this.label.text, position: this.label.position}));
     }
 
     const items = (this.model || {}).data
@@ -142,16 +141,16 @@ export default {
     slots[`items`] = [];
     for (const delta in items) {
       const item = items[delta]
-      slots[`items`][delta] = useComponent('DruxtFieldItemFormatterWrapper', [[props.schema.type, props.schema.id]], {
+      slots[`items`][delta] = druxtTheme('DruxtFieldItemFormatterWrapper', [[props.schema.type, props.schema.id]], {
         item,
         schema: props.schema,
         lang: this.lang,
         parent: props.entity
       }, this.lang)
     }
-    const component = useComponent('DruxtField', [[props.schema.type, props.schema.id]], {entity: props.entity, value: props.model}, slots, this.lang)
+    const component = druxtTheme('DruxtField', [[props.schema.type, props.schema.id]], {entity: props.entity, value: props.model}, slots, this.lang)
 
-    return render(component);
+    return druxtRender(component);
   },
   /**
    * Provides the scoped slots object for the Module render function.
@@ -211,7 +210,7 @@ export default {
         const item = items[delta]
         scopedSlots[`field-${delta}`] = (attrs) => {
           if (this.isFile && schemaType === 'view') {
-            return useComponent('DruxtEntityWrapper', {
+            return druxtTheme('DruxtEntityWrapper', {
               attrs,
               entity: {},
               lang: this.lang,
@@ -222,7 +221,7 @@ export default {
 
           // Image: View
           if (this.isImage && schemaType === 'view') {
-            return useComponent('DruxtEntityWrapper',
+            return druxtTheme('DruxtEntityWrapper',
                 {
                   attrs,
                   lang: this.lang,
@@ -235,21 +234,21 @@ export default {
           if (this.isLink && schemaType === 'view') {
             if (!(item || {}).uri) return
             return /^(?:[a-z]+:)?\/\//i.test(item.uri)
-                ? useComponent('a!', {attrs, href: item.uri, target: '_blank'}, [item.title])
-                : useComponent('NuxtLink', {attrs, props: {to: item.uri.replace('internal:', '')}}, [item.title])
+                ? druxtTheme('a!', {attrs, href: item.uri, target: '_blank'}, [item.title])
+                : druxtTheme('NuxtLink', {attrs, props: {to: item.uri.replace('internal:', '')}}, [item.title])
           }
 
           // Relationship: View.
           if (this.relationship && (item || {}).id && schemaType === 'view') {
             if (this.schema.type === 'entity_reference_label') {
-              return useComponent('DruxtEntityLabelWrapper', {
+              return druxtTheme('DruxtEntityLabelWrapper', {
                 attrs,
                 lang: this.lang,
                 type: item.type,
                 uuid: item.id,
               })
             } else {
-              return useComponent('DruxtEntityWrapper', {
+              return druxtTheme('DruxtEntityWrapper', {
                 attrs,
                 lang: this.lang,
                 viewMode: this.schema.settings.display.view_mode || 'default',
@@ -264,12 +263,12 @@ export default {
           if (schemaType === 'view') {
             // Return data if data is a basic native.
             if (['number', 'string'].includes(typeof item)) {
-              return useComponent('DruxtField', [[]], {attrs, innerHTML: item})
+              return druxtTheme('DruxtField', [[]], {attrs, innerHTML: item})
             }
 
             // Return `.processed` or `.value` if present.
             if (((item || {}).processed || (item || {}).value)) {
-              return useComponent('div', {attrs, innerHTML: item.processed || item.value})
+              return druxtTheme('div', {attrs, innerHTML: item.processed || item.value})
             }
           }
 

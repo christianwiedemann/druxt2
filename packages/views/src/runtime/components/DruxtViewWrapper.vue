@@ -3,7 +3,7 @@ import merge from 'deepmerge'
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import { parse, stringify } from 'qs'
 import { DruxtViewsStore } from '../stores/views';
-import { DruxtStore, useComponent, render } from '#imports';
+import { DruxtStore, druxtTheme, druxtRender } from '#imports';
 
 /**
  * The DruxtView component renders Drupal Views using configuration and
@@ -428,7 +428,7 @@ export default {
 
   },
   render () {
-    const mappedResults = this.results.map((result) => useComponent('DruxtEntityWrapper', [[]], {
+    const mappedResults = this.results.map((result) => druxtTheme('DruxtEntityWrapper', [[]], {
       viewMode: this.mode,
       entity: result,
       key: result.id,
@@ -436,13 +436,13 @@ export default {
       type: result.type,
       uuid: result.id
     }))
-    const druxtView = useComponent('DruxtView', [
+    const druxtView = druxtTheme('DruxtView', [
       [this.viewId || ((this.view.data || {}).attributes || {}).drupal_internal__id, this.displayId],
       [this.uuid || (this.view.data || {}).id, this.displayId],
       [this.displayId]
     ], {}, {results: mappedResults});
 
-    return render(druxtView)
+    return druxtRender(druxtView)
   },
 
   /** DruxtModule settings */

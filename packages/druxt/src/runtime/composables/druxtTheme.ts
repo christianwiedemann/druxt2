@@ -46,7 +46,7 @@ const componentOptions = (theme, options: [[]], lang = null) => {
 }
 const isComponent = name => typeof resolveDynamicComponent(name) !== 'string'
 
-export const useComponent = (theme, options: [[]] = [[]], props = {}, slots: {}, lang = null):Component => {
+export const druxtTheme = (theme, options: [[]] = [[]], props = {}, slots: {}, lang = null):Component => {
   const casedTheme = pascalCase(theme)
   if (!Array.isArray(options)) {
     options = [[]];

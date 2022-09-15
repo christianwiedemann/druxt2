@@ -1,4 +1,4 @@
-import {useSchema, useComponent, useDruxtClient, render} from "#imports";
+import {useSchema, druxtTheme, useDruxtClient, druxtRender} from "#imports";
 import {h, resolveComponent} from "vue";
 import {useEntityFields} from "./useEntityField";
 
@@ -97,12 +97,12 @@ export const useEntityDefaultRender = async (entity, viewMode = 'full', lang = '
   // Build scoped slots for each field.
   const scopedSlots = {};
   Object.entries(fields).map(([id, field]) => {
-    scopedSlots[id] = [useComponent('DruxtFieldWrapper', [[]],  {lang, entity, key: id, ref: id, relationship: field.relationship, schema: field.schema, 'model': field.value})]
+    scopedSlots[id] = [druxtTheme('DruxtFieldWrapper', [[]],  {lang, entity, key: id, ref: id, relationship: field.relationship, schema: field.schema, 'model': field.value})]
   })
   const options = await useEntityComponentOptions(entity, viewMode);
-  const entityComponent = useComponent('DruxtEntity', options, {entity, viewMode, lang}, scopedSlots);
+  const entityComponent = druxtTheme('DruxtEntity', options, {entity, viewMode, lang}, scopedSlots);
   return () => {
-    return render(entityComponent);
+    return druxtRender(entityComponent);
   }
 }
 
@@ -138,27 +138,26 @@ export const useEntityLayoutBuilderRender = async (entity, viewMode = 'full', la
         const blockRevisionId = drupalComponent.configuration?.block_revision_id;
         const childViewMode = drupalComponent.configuration?.view_mode;
         const childEntity = {data: includedBlocksByRevisionId[blockRevisionId]};
-        const blockComponent = useComponent('DruxtEntityWrapper', [[]], {lang, viewMode: childViewMode, entity: childEntity});
+        const blockComponent = druxtTheme('DruxtEntityWrapper', [[]], {lang, viewMode: childViewMode, entity: childEntity});
         slots[slotName].push(blockComponent);
       } else if (id.startsWith('field_block')) {
         const fieldConfig = id.split(':');
         const fieldName = fieldConfig[fieldConfig.length - 1];
         const field = fields[fieldName];
         if (!field) {
-          //slots[slotName].push(useComponent('DruxtDebug', [[]], {title: 'Unable to find field with name: ' + fieldName}));
           console.error('Unable to find field with name ' + fieldName)
         } else {
-          const fieldComponent = useComponent('DruxtFieldWrapper', [[]],  {entity, lang, key: id, ref: id, relationship: field.relationship, schema: field.schema, 'model': field.value})
+          const fieldComponent = druxtTheme('DruxtFieldWrapper', [[]],  {entity, lang, key: id, ref: id, relationship: field.relationship, schema: field.schema, 'model': field.value})
           slots[slotName].push(fieldComponent);
         }
       }
     }
-    layoutComponents.push(useComponent(layoutId, [['wrapper']], props, slots));
+    layoutComponents.push(druxtTheme(layoutId, [['wrapper']], props, slots));
   }
   return () => {
     const renderedComponent = [];
     for (const layoutComponent of layoutComponents) {
-      renderedComponent.push(render(layoutComponent))
+      renderedComponent.push(druxtRender(layoutComponent))
     }
     return h('div', {}, renderedComponent);
   }

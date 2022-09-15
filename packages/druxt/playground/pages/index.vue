@@ -2,6 +2,9 @@
   <div>
     Demo:
     <DruxtDemo />
+    <ClientOnly>
+      <DruxtDemo />
+    </ClientOnly>
     End:
   </div>
 </template>

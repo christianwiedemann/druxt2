@@ -3,13 +3,13 @@
   "version": "0.0.4-alpha.8",
   "license": "MIT",
   "main": "./dist/index.js",
-  "module": "./dist/index.umd.js",
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "require": "./dist/index.umd.js"
+      "require": "./dist/index.umd.cjs"
     }
   },
+  "type": "module",
   "files": [
     "dist",
     "templates"
@@ -23,7 +23,8 @@
   "dependencies": {
     "chalk": "^5.0.1",
     "querystring": "^0.2.1",
-    "scule": "^0.3.2"
+    "scule": "^0.3.2",
+    "url-parse": "^1.5.10"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.3",

@@ -22,7 +22,7 @@ third_party_settings:
         layout_settings:
           label: ''
         components:
-          74a08c63-70dc-42e7-89f8-e4c62efb07ce:
+          -
             uuid: 74a08c63-70dc-42e7-89f8-e4c62efb07ce
             region: content
             configuration:
@@ -37,7 +37,7 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 0
             additional: {  }
-          57ad7b26-a88b-439e-a056-40f2de29a943:
+          -
             uuid: 57ad7b26-a88b-439e-a056-40f2de29a943
             region: content
             configuration:
@@ -47,7 +47,7 @@ third_party_settings:
                 entity: layout_builder.entity
             weight: 1
             additional: {  }
-          01b94e28-e38c-4849-98d6-ed77bca30afc:
+          -
             uuid: 01b94e28-e38c-4849-98d6-ed77bca30afc
             region: content
             configuration:

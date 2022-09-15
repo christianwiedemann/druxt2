@@ -1,4 +1,3 @@
-import {defineNuxtConfig} from 'nuxt'
 import DruxtNuxtModule from '..'
 
 export default defineNuxtConfig({
@@ -11,7 +10,7 @@ export default defineNuxtConfig({
     }
   },
   modules: [
+    '@pinia/nuxt',
     DruxtNuxtModule
   ],
-  buildModules: ['@pinia/nuxt']
 })

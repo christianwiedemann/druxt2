@@ -7,8 +7,6 @@ module:
   block_content: 0
   breakpoint: 0
   ckeditor: 0
-  jsonapi_hypermedia: 0
-  mysql: 0
   color: 0
   config: 0
   config_translation: 0
@@ -30,6 +28,7 @@ module:
   history: 0
   image: 0
   jsonapi: 0
+  jsonapi_hypermedia: 0
   jsonapi_include: 0
   jsonapi_include_lb: 0
   jsonapi_menu_items: 0
@@ -44,6 +43,7 @@ module:
   media_library: 0
   menu_link_content: 0
   menu_ui: 0
+  mysql: 0
   node: 0
   options: 0
   page_cache: 0

@@ -1,7 +1,7 @@
 <script>
 
 import { DruxtRouterStore } from "../stores/router";
-import { useComponent, render, useRoute } from "#imports";
+import { druxtTheme, druxtRender, useRoute } from "#imports";
 
 /**
  * The DruxtRouter component renders a Drupal decoupled route, or path, using
@@ -142,7 +142,7 @@ export default {
     props: ({route}) => (route || {}).props || false,
   },
   render() {
-    return render(useComponent('DruxtRouter',[[
+    return druxtRender(druxtTheme('DruxtRouter',[[
       this.module || 'error',
       this.route.isHomePath ? 'front' : 'not-front',
       'default',
@@ -150,6 +150,7 @@ export default {
   },
 
   async setup() {
+
     const nuxtRoute = useRoute();
     const store = new DruxtRouterStore();
 

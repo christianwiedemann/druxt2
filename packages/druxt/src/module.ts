@@ -62,8 +62,8 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
     addImports([
       { name: 'DruxtStore', as: 'DruxtStore', from: resolveRuntimeModule('./stores/druxt') },
       { name: 'useDruxtClient', as: 'useDruxtClient', from: resolveRuntimeModule('./composables/useDruxtClient') },
-      { name: 'useComponent', as: 'useComponent', from: resolveRuntimeModule('./composables/useComponent') },
-      { name: 'render', as: 'render', from: resolveRuntimeModule('./composables/render') }
+      { name: 'druxtTheme', as: 'druxtTheme', from: resolveRuntimeModule('./composables/druxtTheme') },
+      { name: 'druxtRender', as: 'druxtRender', from: resolveRuntimeModule('./composables/druxtRender') }
     ])
 
     // Normalize slashes.
@@ -78,7 +78,9 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
       // Disable API Proxy, as Proxies aren't available at build.
       proxy: { ...options.proxy || {}, api: false }
     }
-    const druxt = new DruxtClient(options.baseUrl, {})
+
+    const axios = require('axios').default;
+    const druxt = new DruxtClient(options.baseUrl, {axios})
 
     // Nuxt proxy integration.
     if (options.proxy) {

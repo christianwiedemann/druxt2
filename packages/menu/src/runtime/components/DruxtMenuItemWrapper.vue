@@ -59,15 +59,15 @@ export default {
 
       // Render external links.
       if (!this.to) {
-        return useComponent('a!', [[]], { href: entity.attributes.url || (entity.attributes.link || {}).uri, innerHTML: entity.attributes.title })
+        return druxtTheme('a!', [[]], { href: entity.attributes.url || (entity.attributes.link || {}).uri, innerHTML: entity.attributes.title })
       }
       // Render internal links.
-      return useComponent('DruxtMenuLink', [['Default']], { to: this.to, title: entity.attributes.title})
+      return druxtTheme('DruxtMenuLink', [['Default']], { to: this.to, title: entity.attributes.title})
     },
   },
   render() {
-    const itemComponent = useComponent('DruxtMenuItem', [['default', this.menuName]], {classes: this.classes}, {link: [this.getLink(this.item.entity)]});
-    return render(itemComponent)
+    const itemComponent = druxtTheme('DruxtMenuItem', [['default', this.menuName]], {classes: this.classes}, {link: [this.getLink(this.item.entity)]});
+    return druxtRender(itemComponent)
   },
 }
 </script>

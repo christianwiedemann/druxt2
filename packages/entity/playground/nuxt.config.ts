@@ -1,7 +1,13 @@
-import {defineNuxtConfig} from 'nuxt'
 import DruxtEntityNuxtModule from '..'
 
 export default defineNuxtConfig({
+  vite: {
+    server: {
+      hmr: {
+        protocol: 'wss'
+      }
+    }
+  },
   'druxt': {
     baseUrl: 'http://druxt-drupal.docksal/',
     query: {
