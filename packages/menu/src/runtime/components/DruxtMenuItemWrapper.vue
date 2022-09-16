@@ -1,6 +1,6 @@
 <script>
 import {useDruxtMenuTrial} from "../composables/useDruxtMenu";
-
+import {druxtTheme, druxtRender} from "#imports";
 /**
  * Used by the DruxtMenu component to render individual Druxt Wrapper themeable
  * menu items.
