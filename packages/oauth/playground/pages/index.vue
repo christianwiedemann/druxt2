@@ -30,7 +30,7 @@ export default {
       const token = app.$auth.strategy.token.get();
 
 
-      $fetch('http://oidconnect.docksal/oauth/debug', {
+      $fetch('http://eep-develop.docksal/oauth/debug', {
         headers: {
           'Authorization': token
         }

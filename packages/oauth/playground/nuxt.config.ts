@@ -14,14 +14,13 @@ export default defineNuxtConfig({
         strategies: {
             drupal: {
                 scheme: 'oauth2',
-                clientId: '1faa7a96-e416-4bb2-8678-a1ecee6e7472',
+                clientId: '694458c4-8b59-4e68-ab01-d69b98443c24',
                 clientSecret: 'test',
                 endpoints: {
-                    //configuration: 'http://oidconnect.docksal/.well-known/openid-configuration'
-                    authorization: 'http://oidconnect.docksal/oauth/authorize',
-                    token: 'http://oidconnect.docksal/druxt-oauth/token'
+                    authorization: 'http://eep-develop.docksal/oauth/authorize',
+                    token: 'http://eep-develop.docksal/eep-oauth/token'
                 },
-                scope: ['openid'],
+                scope: ['profile'],
                 responseType: 'code',
                 grantType: 'authorization_code',
                 codeChallengeMethod: 'S256'
