@@ -1,6 +1,6 @@
 import {DruxtRouter} from "../router";
 import { useRuntimeConfig } from "#app";
-import axios from 'axios';
+import * as axios from 'axios';
 let client = null;
 
 export const useDruxtRouter = () => {
