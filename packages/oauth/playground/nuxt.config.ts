@@ -1,5 +1,3 @@
-import {defineNuxtConfig} from 'nuxt'
-
 export default defineNuxtConfig({
     druxt: {
         baseUrl: 'http://druxt-drupal.docksal/',
