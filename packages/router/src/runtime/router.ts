@@ -6,8 +6,6 @@
  */
 
 import { DruxtClient } from '@druxt2/core'
-import Url from 'url-parse'
-
 
 /**
  * DruxtRouter class.
@@ -194,7 +192,7 @@ class DruxtRouter {
     if (((route.redirect || [])[0] || {}).to) {
       return route.redirect[0].to
     }
-    const url = Url(path)
+    const url = new URL(path)
 
     // Redirect to root if route is home path but path isn't root.
     if (route.isHomePath) {
@@ -207,7 +205,7 @@ class DruxtRouter {
 
     // Redirect if path does not match resolved clean url path.
     if (typeof route.canonical === 'string') {
-      const canonicalUrl = new Url(route.canonical)
+      const canonicalUrl = new URL(route.canonical)
 
       if (url.pathname !== canonicalUrl.pathname) {
         return canonicalUrl.pathname
@@ -303,6 +301,7 @@ class DruxtRouter {
       // Prevent invalid routes (404) from throwing validation errors.
       validateStatus: status => status < 500
     })
+
     const data = {
       isHomePath: false,
       jsonapi: {},
@@ -311,7 +310,6 @@ class DruxtRouter {
 
       ...response.data
     }
-
     let route = {
       error: false,
       type: false,
@@ -322,7 +320,7 @@ class DruxtRouter {
       label: data.label,
       props: false,
       redirect: data.redirect,
-      resolvedPath: Url(data.resolved).pathname,
+      resolvedPath: data.resolved ? new URL(data.resolved).pathname : null,
       entity: data.entity
     }
 

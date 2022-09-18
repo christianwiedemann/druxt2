@@ -43,15 +43,6 @@ const DruxtRouterMixin = {
       default: undefined,
     },
 
-    /**
-     * The Decoupled router object.
-     *
-     * @type {object}
-     */
-    route: {
-      type: Object,
-      required: true
-    }
   }
 }
 

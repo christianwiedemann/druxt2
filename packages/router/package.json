@@ -44,8 +44,7 @@
     "@druxt2/druxt": "^0.0.4-alpha.13",
     "@druxt2/schema": "^0.0.4-alpha.13",
     "consola": "^2.15.0",
-    "drupal-jsonapi-params": "^2.1.0",
-    "url-parse": "^1.5.10"
+    "drupal-jsonapi-params": "^2.1.0"
   },
   "peerDependencies": {
     "consola": "*"

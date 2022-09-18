@@ -1,7 +1,6 @@
 <template>
-  <div><DruxtDebug :json="route"></DruxtDebug></div>
+  <div><DruxtDebug></DruxtDebug></div>
   Path: {{ path }}<br>
-  language: {{ language }}
 
 </template>
 
