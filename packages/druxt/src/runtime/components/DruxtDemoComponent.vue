@@ -1,6 +1,8 @@
 <template>
   Demo Component
 
+  asdf
+
   Slots:
   <slot name="content"></slot>
 </template>

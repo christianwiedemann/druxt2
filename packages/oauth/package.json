@@ -1,0 +1,59 @@
+{
+  "name": "@druxt2/oauth",
+  "version": "0.0.2",
+  "description": "The Fully Decoupled Drupal Framework for Nuxt.js.",
+  "keywords": [
+    "cms",
+    "decoupled",
+    "drupal",
+    "druxt",
+    "headless",
+    "jsonapi",
+    "json:api",
+    "nuxt",
+    "module",
+    "vue"
+  ],
+  "homepage": "https://gitlab.devel.techcast.com/devel/eep",
+  "bugs": {
+    "url": "https://gitlab.devel.techcast.com/devel/eep"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/druxt/druxt.js"
+  },
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "nuxi": "nuxi",
+    "module:build": "nuxt-module-build",
+    "dev": "nuxt-module-build && nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "prepack": "nuxt-module-build"
+  },
+  "dependencies": {
+    "@nuxtjs-alt/auth": "^2.0.3",
+    "deepmerge": "^4.2.2",
+    "drupal-jsonapi-params": "^2.1.0",
+    "@druxt2/druxt": "^0.0.4-alpha.9"
+  },
+  "peerDependencies": {
+    "consola": "*"
+  },
+  "optionalDependencies": {
+    "core-js": "^3.16.1",
+    "vue": "^3.2.26"
+  }
+}
