@@ -2,6 +2,7 @@
 
 import { DruxtRouterStore } from "../stores/router";
 import { druxtTheme, druxtRender, useRoute } from "#imports";
+import {DruxtRouterMixin} from "../mixins/index";
 
 /**
  * The DruxtRouter component renders a Drupal decoupled route, or path, using
@@ -41,7 +42,7 @@ import { druxtTheme, druxtRender, useRoute } from "#imports";
  */
 export default {
   name: 'DruxtRouter',
-
+  mixins: [DruxtRouterMixin],
   /** */
   props: {
     /**
@@ -146,7 +147,7 @@ export default {
       this.module || 'error',
       this.route.isHomePath ? 'front' : 'not-front',
       'default',
-    ],['debug']], {language: this.language, route: this.route, path: this.nuxtRoute.path }));
+    ],['debug']], {lang: this.lang, route: this.route, path: this.nuxtRoute.path }));
   },
 
   async setup() {

@@ -28,7 +28,7 @@ const DruxtRouterMixin = {
      *
      * @type {string}
      */
-    langcode: {
+    lang: {
       type: String,
       default: undefined,
     },
