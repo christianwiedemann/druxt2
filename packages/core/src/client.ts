@@ -2,7 +2,7 @@ import consola from 'consola'
 import {stringify} from "querystring";
 
 interface Options {
-  axios: any
+  axios?: any
   proxy?: {}
   debug?: false
   api?: null
