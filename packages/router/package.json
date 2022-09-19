@@ -1,6 +1,6 @@
 {
   "name": "@druxt2/router",
-  "version": "0.0.4-alpha.16",
+  "version": "0.0.4-alpha.17",
   "description": "The Fully Decoupled Drupal Framework for Nuxt.js.",
   "keywords": [
     "cms",
@@ -40,9 +40,9 @@
     "build": "yarn dev:prepare && yarn prepack"
   },
   "dependencies": {
-    "@druxt2/core": "^0.0.4-alpha.9",
-    "@druxt2/druxt": "^0.0.4-alpha.13",
-    "@druxt2/schema": "^0.0.4-alpha.13",
+    "@druxt2/core": "^0.0.4-alpha.17",
+    "@druxt2/druxt": "^0.0.4-alpha.17",
+    "@druxt2/schema": "^0.0.4-alpha.17",
     "consola": "^2.15.0",
     "drupal-jsonapi-params": "^2.1.0"
   },
