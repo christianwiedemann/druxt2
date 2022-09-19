@@ -3,7 +3,7 @@ import merge from 'deepmerge'
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import { parse, stringify } from 'qs'
 import { DruxtViewsStore } from '../stores/views';
-import { DruxtStore, druxtTheme, druxtRender } from '#imports';
+import { DruxtStore, druxtTheme, druxtRender, useDruxtClient } from '#imports';
 
 /**
  * The DruxtView component renders Drupal Views using configuration and
