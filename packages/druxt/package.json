@@ -1,6 +1,6 @@
 {
   "name": "@druxt2/druxt",
-  "version": "0.0.4-alpha.21",
+  "version": "0.0.4-alpha.22",
   "license": "MIT",
   "type": "module",
   "exports": {
