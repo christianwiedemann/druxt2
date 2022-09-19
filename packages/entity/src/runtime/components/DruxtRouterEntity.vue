@@ -26,7 +26,7 @@ export default {
     const entity = res.data?.data;
     return {
       entity,
-      lang: 'en'
+      lang: props.lang
     }
   }
 }

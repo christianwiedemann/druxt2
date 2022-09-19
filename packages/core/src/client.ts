@@ -276,7 +276,9 @@ class DruxtClient {
       this.checkPermissions(res)
       return res
     } catch (err) {
-      console.log(err);
+      if (options.validateStatus) {
+        return {data: err.data, status: 404}
+      }
       // Throw formatted error.
       this.error(err, {url})
     }
