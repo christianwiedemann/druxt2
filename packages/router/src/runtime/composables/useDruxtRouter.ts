@@ -1,13 +1,12 @@
-import {DruxtRouter} from "../router";
+import { DruxtRouter } from "../router";
 import { useRuntimeConfig } from "#app";
-import * as axios from 'axios';
 let client = null;
 
 export const useDruxtRouter = () => {
   const runtimeConfig = useRuntimeConfig();
   const baseUrl = runtimeConfig.public.baseUrl;
   if (client === null) {
-    client = new DruxtRouter(baseUrl, {axios})
+    client = new DruxtRouter(baseUrl, $fetch, {})
   }
   return client
 }

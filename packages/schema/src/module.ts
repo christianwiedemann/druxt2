@@ -9,6 +9,7 @@ import {
 import consola from 'consola'
 import { DruxtSchema } from './runtime/schema'
 import {DruxtClient} from "~/core/dist";
+import {$fetch} from "ohmyfetch/dist/node";
 
 const SchemaNuxtModule = defineNuxtModule({
   meta: {
@@ -32,9 +33,8 @@ const SchemaNuxtModule = defineNuxtModule({
 
     // @ts-ignore
     const { baseUrl } = options
-    const axios = require('axios').default;
-    const drupalSchema = new DruxtSchema(baseUrl, {
-      axios,
+    const { $fetch } = require('ohmyfetch')
+    const drupalSchema = new DruxtSchema(baseUrl, $fetch, {
       ...options,
       proxy: {}
     })

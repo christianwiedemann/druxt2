@@ -23,11 +23,10 @@ export default {
       apiParams.addInclude(query[id].includes);
     }
     const res = await client.get(`${jsonapiUrl}?${apiParams.getQueryString()}`);
-
     const entity = res.data?.data;
     return {
       entity,
-      lang: 'en'
+      lang: props.lang
     }
   }
 }

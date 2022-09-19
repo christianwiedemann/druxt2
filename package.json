@@ -39,7 +39,6 @@
     "@nuxt/kit": "^3.0.0-rc.9",
     "@nuxt/schema": "^3.0.0-rc.9",
     "@pinia/nuxt": "^0.4.1",
-    "axios": "^0.27.2",
     "drupal-jsonapi-params": "^2.0.0",
     "pinia": "^2.0.14"
   },
