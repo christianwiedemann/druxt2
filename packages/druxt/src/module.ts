@@ -79,8 +79,8 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
       proxy: { ...options.proxy || {}, api: false }
     }
 
-    const axios = require('axios').default;
-    const druxt = new DruxtClient(options.baseUrl, {axios})
+    const { $fetch } = require('ohmyfetch')
+    const druxt = new DruxtClient(options.baseUrl, $fetch, {} )
 
     // Nuxt proxy integration.
     if (options.proxy) {

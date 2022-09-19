@@ -1,8 +1,8 @@
 import { existsSync } from 'fs'
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import { DruxtClient } from '@druxt2/core'
-import {defineNuxtModule, addPlugin, extendPages, createResolver, addImports, resolveModule} from '@nuxt/kit'
-import {fileURLToPath} from "url";
+import {defineNuxtModule, extendPages, createResolver, addImports, resolveModule} from '@nuxt/kit'
+import {$fetch} from "ohmyfetch/dist/node";
 
 
 export interface ModuleOptions {
@@ -67,9 +67,8 @@ const DruxtRouterNuxtModule =  defineNuxtModule<ModuleOptions>({
 
       // Fetch languages.
       let languages = []
-      const axios = require('axios').default;
-      const druxt = new DruxtClient(options.baseUrl, {
-        axios,
+      const { $fetch } = require('ohmyfetch')
+      const druxt = new DruxtClient(options.baseUrl, $fetch, {
         ...options,
         // Disable API Proxy, as Proxies aren't available at build.
         proxy: {...moduleOptions.proxy || {}, api: false},

@@ -2,23 +2,23 @@ import consola from 'consola'
 import {stringify} from "querystring";
 
 interface Options {
-  axios: any
   proxy?: {}
   debug?: false
   api?: null
   endpoint?: '/jsonapi',
-  jsonapiResourceConfig?:any
-  baseUrl?:''
+  jsonapiResourceConfig?: any
+  baseUrl?: ''
 }
+
 /**
  * The Druxt JSON:API client.
  */
 class DruxtClient {
   protected index = {}
-  protected url = '';
+  protected baseUrl = '';
   protected log = {};
-  protected axios:any = null
-  protected options:Options = {}
+  protected $fetch: any = null
+  protected options: Options = {}
   protected debug = false;
 
   /**
@@ -35,37 +35,27 @@ class DruxtClient {
    * @param {string} baseUrl - The Drupal base URL.
    * @param {DruxtClientOptions} [options] - The DruxtClient options object.
    */
-  constructor(baseUrl:string, options:Options) {
+  constructor(baseUrl:string, $fetch,  options:Options) {
     // Consola logger.
-    this.log = consola.create({ defaults: {
+    this.log = consola.create({
+      defaults: {
         tag: 'DruxtClient'
-      }})
+      }
+    })
 
     // Check for URL.
     if (!baseUrl) {
       throw new Error('The \'baseUrl\' parameter is required.')
     }
 
+
     /**
-     * The Axios instance.
+     * The fetch instance.
      *
      * @see {@link https://github.com/axios/axios#instance-methods}
      * @type {object}
      */
-      this.axios = options.axios.create({
-        baseURL: baseUrl
-      })
-
-    // If Debug mode is enabled, add an Axios interceptor to log out all
-    // requests and errors.
-    if (options.debug) {
-      // @TODO - Add test coverage.
-      this.axios.interceptors.request.use((config) => {
-        return config
-      }, (error) => {
-        return Promise.reject(error)
-      })
-    }
+    this.$fetch = $fetch;
 
     /**
      * Druxt base options.
@@ -75,9 +65,10 @@ class DruxtClient {
     this.options = {
       endpoint: '/jsonapi',
       jsonapiResourceConfig: 'jsonapi_resource_config--jsonapi_resource_config',
-
       ...options
     }
+
+    this.baseUrl = baseUrl
 
     /**
      * JSON:API Index.
@@ -94,13 +85,13 @@ class DruxtClient {
    *
    * @param {object} headers - An object containing HTTP headers.
    */
-  addHeaders (headers) {
+  addHeaders(headers) {
     if (typeof headers === 'undefined') {
       return false
     }
 
     for (const name in headers) {
-      this.axios.defaults.headers.common[name] = headers[name]
+     // this.axios.defaults.headers.common[name] = headers[name]
     }
   }
 
@@ -117,7 +108,7 @@ class DruxtClient {
    *
    * @return {string} The URL with query string.
    */
-  buildQueryUrl (url, query) {
+  buildQueryUrl(url, query) {
     if (!query) {
       return url
     }
@@ -150,7 +141,7 @@ class DruxtClient {
    *
    * @private
    */
-  checkPermissions (res) {
+  checkPermissions(res) {
     // Error handling: Required permissions.
     if (res.data.meta && res.data.meta.omitted) {
       const permissions = {}
@@ -169,7 +160,7 @@ class DruxtClient {
           response: {
             statusText: res.data.meta.omitted.detail,
             data: {
-              errors: [{ detail: `Required permissions:\n - ${Object.keys(permissions).join('\n - ')}` }]
+              errors: [{detail: `Required permissions:\n - ${Object.keys(permissions).join('\n - ')}`}]
             }
           }
         }
@@ -201,28 +192,30 @@ class DruxtClient {
       return this.updateResource(resource, prefix)
     }
 
-    const { href } = await this.getIndex(resource.type, prefix)
+    const {href} = await this.getIndex(resource.type, prefix)
     if (!href) {
       return false
     }
 
     let response
+    const options = {
+      method: "POST",
+      baseUrl: this.baseUrl,
+      headers: {
+        'Content-Type': 'application/vnd.api+json'
+      },
+      body: JSON.stringify({data: resource}),
+    };
     try {
-      response = await this.axios.post(
-        href,
-        { data: resource },
-        {
-          headers: {
-            'Content-Type': 'application/vnd.api+json'
-          }
-        }
-      )
+      const fetchResponse = await this.$fetch.raw(href, options);
+      response = {data: fetchResponse._data, status: fetchResponse.status}
     } catch (err) {
-      this.error(err, { url: href })
+      this.error(err, {url: href})
     }
 
     return response
   }
+
 
   /**
    * Throw a formatted error.
@@ -231,8 +224,8 @@ class DruxtClient {
    *
    * @throws {Error} A formatted error.
    */
-  error(err, context:any = {}) {
-    let { url } = context
+  error(err, context: any = {}) {
+    let {url} = context
     if (!url && ((err.response || {}).config || {}).url) {
       url = err.response.config.url
     }
@@ -241,7 +234,7 @@ class DruxtClient {
       (err.response || {}).status,
       (err.response || {}).statusText || err.message
     ].filter((s) => s).join(': ')
-    const meta = { url: url && [this.options.baseUrl, url].join('') }
+    const meta = {url: url && [this.baseUrl, url].join('')}
 
     // Build message.
     let message = [title]
@@ -256,30 +249,36 @@ class DruxtClient {
       message.push(err.response.data.errors[0].detail)
     }
 
-    const error:any = Error(message.join('\n\n'))
+    const error: any = Error(message.join('\n\n'))
     error.response = err.response
     error.druxt = context
     throw error
   }
 
   /**
-   * Execute an Axios GET request, with permission checking and error handling.
+   * Execute an fetch GET request, with permission checking and error handling.
    *
    * @param {string} url - The URL to GET.
    * @param {object} options - An Axios options object.
    *
-   * @returns {object} The Axios response.
+   * @returns {object} The fetch response.
    */
-  async get(url: string, options:any = {}) {
+  async get(url: string, options: any = {}) {
     try {
-      const res = await this.axios.get(url, options)
+      const fetchOptions = {
+        'method': 'GET',
+        'baseURL': this.baseUrl,
+      }
+      const rawResult = await this.$fetch.raw(url, fetchOptions)
+
+      const res = {data: rawResult._data, status: rawResult.status}
       // Check that the response hasn't omitted data due to missing permissions.
       this.checkPermissions(res)
       return res
-    } catch(err) {
-      console.log(err)
+    } catch (err) {
+      console.log(err);
       // Throw formatted error.
-      this.error(err, { url })
+      this.error(err, {url})
     }
   }
 
@@ -300,7 +299,7 @@ class DruxtClient {
    * )
    */
   async getCollection(type, query, prefix = null) {
-    const { href } = await this.getIndex(type, prefix)
+    const {href} = await this.getIndex(type, prefix)
     if (!href) {
       return false
     }
@@ -363,17 +362,18 @@ class DruxtClient {
     }
 
     const url = [prefix, this.options.endpoint].join('')
-    const { data } = await this.get(url)
+    const {data} = await this.get(url)
     let index = data.links
 
     // Throw error if index is invalid.
     if (typeof index !== 'object') {
-      const err = { response: { statusText: 'Invalid JSON:API endpoint' }}
-      this.error(err, { url })
+      const err = {response: {statusText: 'Invalid JSON:API endpoint'}}
+      console.log('ERROR getIndex########')
+      this.error(err, {url})
     }
 
     // Remove Base URL from the resource URL.
-    const baseUrl = this.options.baseUrl
+    const baseUrl = this.baseUrl
     index = Object.fromEntries(Object.entries(index).map(([key, value]) => {
       // @ts-ignore
       value.href = value.href.replace(baseUrl, '')
@@ -388,7 +388,7 @@ class DruxtClient {
       // Get JSON:API resource config if permissions setup correctly.
       try {
         resources = (await this.get(index[this.options.jsonapiResourceConfig].href)).data.data
-      } catch(err) {
+      } catch (err) {
       }
 
       for (const resourceType in resources) {
@@ -440,13 +440,13 @@ class DruxtClient {
       return false
     }
 
-    let { href } = await this.getIndex(type, prefix)
+    let {href} = await this.getIndex(type, prefix)
     if (!href) {
       href = this.options.endpoint + '/' + type.replace('--', '/')
     }
 
     const url = this.buildQueryUrl(`${href}/${id}/${related}`, query)
-    const { data } = await this.get(url)
+    const {data} = await this.get(url)
     return data
   }
 
@@ -474,14 +474,14 @@ class DruxtClient {
       return false
     }
 
-    let { href } = await this.getIndex(type, prefix)
+    let {href} = await this.getIndex(type, prefix)
     // @TODO - Add test coverage.
     if (!href) {
       href = this.options.endpoint + '/' + type.replace('--', '/')
     }
 
     const url = this.buildQueryUrl([href, id].join('/'), query)
-    const { data } = await this.get(url)
+    const {data} = await this.get(url)
     return data
   }
 
@@ -505,7 +505,7 @@ class DruxtClient {
    * @returns {object} The response data
    */
   async updateResource(resource, prefix) {
-    const { href } = await this.getIndex(resource.type, prefix)
+    const {href} = await this.getIndex(resource.type, prefix)
     if (!href) {
       return false
     }
@@ -515,7 +515,7 @@ class DruxtClient {
     try {
       response = await this.axios.patch(
         url,
-        { data: resource },
+        {data: resource},
         {
           headers: {
             'Content-Type': 'application/vnd.api+json'
@@ -523,6 +523,7 @@ class DruxtClient {
         }
       )
     } catch (err) {
+      console.log('ERROR updateResource ########')
       this.error(err)
     }
 
@@ -531,7 +532,7 @@ class DruxtClient {
   }
 }
 
-export { DruxtClient }
+export {DruxtClient}
 
 /**
  * DruxtClient options object.

@@ -34,7 +34,7 @@ class DruxtSchema {
    * @todo Document DruxtSchema authentication options.
    * @todo Document DruxtSchema filter options.
    */
-  constructor(baseUrl, options = {}) {
+  constructor(baseUrl, $fetch, options = {}) {
     // Check for URL.
     if (!baseUrl) throw new Error('The \'baseUrl\' parameter is required.')
 
@@ -56,7 +56,7 @@ class DruxtSchema {
      * @see {@link http://Drupaljs.org/api/client}
      */
 
-    this.drupal = new DruxtClient(baseUrl, this.options)
+    this.drupal = new DruxtClient(baseUrl, $fetch, this.options)
   }
 
   /**

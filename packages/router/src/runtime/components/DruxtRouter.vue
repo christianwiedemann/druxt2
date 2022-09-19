@@ -150,7 +150,7 @@ export default {
     ],['debug']], {lang: this.lang, route: this.route, path: this.nuxtRoute.path }));
   },
 
-  async setup() {
+  async setup(props) {
 
     const nuxtRoute = useRoute();
     const store = new DruxtRouterStore();
@@ -169,8 +169,10 @@ export default {
       store.setRoute(path);
     }
     const module = route.type;
+    console.log('route')
+    console.log(route)
 
-    return {nuxtRoute, route, module, language: 'en'}
+    return {nuxtRoute, route, module, lang: props.lang}
   },
 }
 
