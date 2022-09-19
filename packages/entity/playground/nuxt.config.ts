@@ -8,6 +8,12 @@ export default defineNuxtConfig({
       }
     }
   },
+  components: {
+    global: true,
+    dirs: [
+      '~/src/components',
+    ],
+  },
   'druxt': {
     baseUrl: 'http://druxt-drupal.docksal/',
     query: {

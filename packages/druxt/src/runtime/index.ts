@@ -1,5 +1,5 @@
 
-export type Component = {
+export type DruxtTheme = {
   suggestions: string[];
   props?: {};
   slots?: any;

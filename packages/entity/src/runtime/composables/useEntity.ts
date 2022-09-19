@@ -134,12 +134,13 @@ export const useEntityLayoutBuilderRender = async (entity, viewMode = 'full', la
       if (!slots[slotName]) {
         slots[slotName] = [];
       }
+
       if (id.startsWith('inline_block')) {
         const blockRevisionId = drupalComponent.configuration?.block_revision_id;
         const childViewMode = drupalComponent.configuration?.view_mode;
         const childEntity = {data: includedBlocksByRevisionId[blockRevisionId]};
-        const blockComponent = druxtTheme('DruxtEntityWrapper', [[]], {lang, viewMode: childViewMode, entity: childEntity});
-        slots[slotName].push(blockComponent);
+        const blockTheme = druxtTheme('DruxtEntityWrapper', [[]], {lang, viewMode: childViewMode, entity: childEntity});
+        slots[slotName].push(blockTheme);
       } else if (id.startsWith('field_block')) {
         const fieldConfig = id.split(':');
         const fieldName = fieldConfig[fieldConfig.length - 1];
@@ -147,9 +148,17 @@ export const useEntityLayoutBuilderRender = async (entity, viewMode = 'full', la
         if (!field) {
           console.error('Unable to find field with name ' + fieldName)
         } else {
-          const fieldComponent = druxtTheme('DruxtFieldWrapper', [[]],  {entity, lang, key: id, ref: id, relationship: field.relationship, schema: field.schema, 'model': field.value})
-          slots[slotName].push(fieldComponent);
+          const fieldTheme = druxtTheme('DruxtFieldWrapper', [[]],  {entity, lang, key: id, ref: id, relationship: field.relationship, schema: field.schema, 'model': field.value})
+          slots[slotName].push(fieldTheme);
         }
+      } else if (id.startsWith('views_block')) {
+        const viewConfig = id.split(':')[1];
+        const viewId = viewConfig.split('-')[0];
+        const viewTheme = druxtTheme('DruxtViewWrapper', [[]], {lang, viewId});
+        slots[slotName].push(viewTheme);
+      } else {
+        console.log('Undefined id: ' + id);
+        console.log(drupalComponent);
       }
     }
     layoutComponents.push(druxtTheme(layoutId, [['wrapper']], props, slots));
