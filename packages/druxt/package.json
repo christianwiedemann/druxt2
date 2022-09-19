@@ -1,6 +1,6 @@
 {
   "name": "@druxt2/druxt",
-  "version": "0.0.4-alpha.13",
+  "version": "0.0.4-alpha.21",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -23,7 +23,7 @@
     "build": "yarn dev:prepare && yarn prepack"
   },
   "dependencies": {
-    "@druxt2/core": "^0.0.4-alpha.9",
+    "@druxt2/core": "^0.0.4-alpha.21",
     "chalk": "^5.0.1",
     "querystring": "^0.2.1",
     "scule": "^0.3.2"
