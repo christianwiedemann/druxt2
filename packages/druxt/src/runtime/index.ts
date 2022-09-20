@@ -1,7 +1,7 @@
 
 export type DruxtTheme = {
   suggestions: string[];
-  props?: {};
+  props?: any;
   slots?: any;
   is: () => string
 }

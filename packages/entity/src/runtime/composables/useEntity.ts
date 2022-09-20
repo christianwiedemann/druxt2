@@ -97,7 +97,7 @@ export const useEntityDefaultRender = async (entity, viewMode = 'full', lang = '
   // Build scoped slots for each field.
   const scopedSlots = {};
   Object.entries(fields).map(([id, field]) => {
-    scopedSlots[id] = [druxtTheme('DruxtFieldWrapper', [[]],  {lang, entity, key: id, ref: id, relationship: field.relationship, schema: field.schema, 'model': field.value})]
+    scopedSlots[id] = [druxtTheme('DruxtFieldWrapper', [[]],  {lang, entity, key: id, ref: id, relationship: field.relationship, schema: field.schema, value: field.value})]
   })
   const options = await useEntityComponentOptions(entity, viewMode);
   const entityComponent = druxtTheme('DruxtEntity', options, {context: {entity, viewMode}}, scopedSlots);
@@ -148,7 +148,7 @@ export const useEntityLayoutBuilderRender = async (entity, viewMode = 'full', la
         if (!field) {
           console.error('Unable to find field with name ' + fieldName)
         } else {
-          const fieldTheme = druxtTheme('DruxtFieldWrapper', [[]],  {entity, lang, key: id, ref: id, relationship: field.relationship, schema: field.schema, 'model': field.value})
+          const fieldTheme = druxtTheme('DruxtFieldWrapper', [[]],  {entity, lang, key: id, ref: id, relationship: field.relationship, schema: field.schema, 'value': field.value})
           slots[slotName].push(fieldTheme);
         }
       } else if (id.startsWith('views_block')) {

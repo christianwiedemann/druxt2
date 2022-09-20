@@ -440,7 +440,7 @@ export default {
       [this.viewId || ((this.view.data || {}).attributes || {}).drupal_internal__id, this.displayId],
       [this.uuid || (this.view.data || {}).id, this.displayId],
       [this.displayId]
-    ], {}, {results: mappedResults});
+    ], {context: {viewId: this.viewId, displayId:  this.displayId, view: this.view}}, {results: mappedResults});
 
     return druxtRender(druxtView)
   },

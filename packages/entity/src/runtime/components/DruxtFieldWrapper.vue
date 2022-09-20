@@ -75,11 +75,6 @@ export default {
   },
   props: {
 
-    druxtComponent: {
-      type: Object,
-      required: false
-    },
-
     entity: {
       type: Object,
       required: true
@@ -88,11 +83,6 @@ export default {
     lang: {
       type: String,
       required: false
-    },
-
-    model: {
-      type: Object,
-      required: true
     },
 
     /**
@@ -135,9 +125,9 @@ export default {
       slots['label'].push(druxtTheme('DruxtLabel', {label: this.label.text, position: this.label.position}));
     }
 
-    const items = (this.model || {}).data
-        ? Array.isArray(this.model.data) ? this.model.data : [this.model.data]
-        : Array.isArray(this.model) ? this.model : [this.model]
+    const items = (this.value || {}).data
+        ? Array.isArray(this.value.data) ? this.value.data : [this.value.data]
+        : Array.isArray(this.value) ? this.value : [this.value]
     slots[`items`] = [];
     for (const delta in items) {
       const item = items[delta]
@@ -190,9 +180,9 @@ export default {
         }
       }
 
-      const items = (this.model || {}).data
-          ? Array.isArray(this.model.data) ? this.model.data : [this.model.data]
-          : Array.isArray(this.model) ? this.model : [this.model]
+      const items = (this.value || {}).data
+          ? Array.isArray(this.value.data) ? this.value.data : [this.value.data]
+          : Array.isArray(this.value) ? this.value : [this.value]
 
       // Render a slot for each field delta.
       for (const delta in items) {

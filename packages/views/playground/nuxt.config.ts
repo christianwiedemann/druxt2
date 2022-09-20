@@ -1,6 +1,4 @@
-import {defineNuxtConfig} from 'nuxt'
 import DruxtViewsNuxtModule from '..'
-import dynamicImport from "vite-plugin-dynamic-import";
 
 export default defineNuxtConfig({
   'druxt': {
@@ -14,9 +12,10 @@ export default defineNuxtConfig({
       }
     }
   },
-  vite: {
-    plugins: [
-      dynamicImport(),
+  components: {
+    global: true,
+    dirs: [
+      '~/components',
     ],
   },
   modules: [

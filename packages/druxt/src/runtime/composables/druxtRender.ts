@@ -24,7 +24,10 @@ export const druxtRender = (druxtTheme:DruxtTheme, slots = {}) => {
       renderedSlots[slotName] = () => collectSlots[slotName];
     }
   }
-  const props = druxtTheme.is() === 'DruxtDebug' ? { title: 'Unable to resolve theme', json: {druxtTheme, slots: {...slots, ...druxtTheme.slots}} } : {};
+  const props = druxtTheme.is() === 'DruxtDebug' ? { title: 'Unable to resolve theme', json: {druxtTheme, slots: [...Object.keys(slots), ...Object.keys(druxtTheme.slots)]} } : {};
+  if (druxtTheme.props?.context && druxtTheme.is() !== 'DruxtDebug') {
+    druxtTheme.props.context['druxtTheme'] = druxtTheme;
+  }
   const componentH = h(resolvedComponent, {...druxtTheme.props, ...props}, {...renderedSlots, ...slots})
 
   return componentH
