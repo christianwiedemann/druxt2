@@ -13,6 +13,14 @@ export default {
       type: Object,
       required: true
     },
+    lang: {
+      type: String,
+      required: true
+    },
+    entity: {
+      type: Object,
+      required: true
+    },
   }
 }
 </script>

@@ -129,7 +129,6 @@ export default {
   },
 
   render(props) {
-    //console.log(props.schema)
     const slots = {};
     if ((this.label || {}).text) {
       slots['label'] = [];
@@ -146,10 +145,10 @@ export default {
         item,
         schema: props.schema,
         lang: this.lang,
-        parent: props.entity
+        entity: props.entity
       }, this.lang)
     }
-    const component = druxtTheme('DruxtField', [[props.schema.type, props.schema.id]], {entity: props.entity, value: props.model}, slots, this.lang)
+    const component = druxtTheme('DruxtField', [[props.schema.type, props.schema.id]], {context: {entity: props.entity}}, slots, this.lang)
 
     return druxtRender(component);
   },

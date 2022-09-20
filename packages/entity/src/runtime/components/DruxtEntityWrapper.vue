@@ -1,4 +1,5 @@
 <script>
+import {provide} from "vue";
 import {
   useEntity,
   useEntityRender
@@ -39,6 +40,7 @@ export default {
       const druxtDebug = resolveComponent('DruxtDebug');
       return () => h(druxtDebug, {title: 'Entity not found', json: props})
     }
+    // provide('entity', entity);
     return useEntityRender(entity, props.viewMode);
   }
 }

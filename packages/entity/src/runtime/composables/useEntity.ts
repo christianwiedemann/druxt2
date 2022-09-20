@@ -1,5 +1,5 @@
 import {useSchema, druxtTheme, useDruxtClient, druxtRender} from "#imports";
-import {h, resolveComponent} from "vue";
+import {h, provide, resolveComponent} from "vue";
 import {useEntityFields} from "./useEntityField";
 
 /**
@@ -100,7 +100,7 @@ export const useEntityDefaultRender = async (entity, viewMode = 'full', lang = '
     scopedSlots[id] = [druxtTheme('DruxtFieldWrapper', [[]],  {lang, entity, key: id, ref: id, relationship: field.relationship, schema: field.schema, 'model': field.value})]
   })
   const options = await useEntityComponentOptions(entity, viewMode);
-  const entityComponent = druxtTheme('DruxtEntity', options, {entity, viewMode, lang}, scopedSlots);
+  const entityComponent = druxtTheme('DruxtEntity', options, {context: {entity, viewMode}}, scopedSlots);
   return () => {
     return druxtRender(entityComponent);
   }

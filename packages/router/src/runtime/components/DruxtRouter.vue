@@ -2,7 +2,6 @@
 
 import { DruxtRouterStore } from "../stores/router";
 import { druxtTheme, druxtRender, useRoute } from "#imports";
-import {DruxtRouterMixin} from "../mixins/index";
 
 /**
  * The DruxtRouter component renders a Drupal decoupled route, or path, using
@@ -42,7 +41,7 @@ import {DruxtRouterMixin} from "../mixins/index";
  */
 export default {
   name: 'DruxtRouter',
-  mixins: [DruxtRouterMixin],
+
   /** */
   props: {
     /**
@@ -61,6 +60,16 @@ export default {
     },
 
     /**
+     * The JSON:API resource language code.
+     *
+     * @type {string}
+     */
+    lang: {
+      type: String,
+      default: undefined,
+    },
+
+    /**
      * The Router object, used to determine the resolved route component.
      *
      * Setting this value will bypass the JSON:API.
@@ -73,16 +82,6 @@ export default {
       default: () => undefined
     }
   },
-
-  /**
-   * @property {object} model - The model object.
-   */
-  data: ({value}) => ({
-    debug: {
-      path: undefined,
-    },
-    model: value,
-  }),
 
   /**
    * Nuxt head method.
@@ -111,37 +110,6 @@ export default {
     return head
   },
 
-  /** */
-  computed: {
-    /**
-     * The route module.
-     *
-     * @type {string}
-     */
-    module: ({route}) =>
-        (route || {}).component && route.component.startsWith('druxt-') ? route.component.substring(6) : false,
-
-    /**
-     * The route object.
-     *
-     * @type {object}
-     */
-    route: ({model}) => model,
-
-    /**
-     * Route title.
-     * @type {boolean|string}
-     * @default false
-     */
-    title: ({route}) => (route || {}).label || false,
-
-    /**
-     * Route component property data.
-     * @type {object|string}
-     * @default false
-     */
-    props: ({route}) => (route || {}).props || false,
-  },
   render() {
     return druxtRender(druxtTheme('DruxtRouter',[[
       this.module || 'error',
@@ -150,7 +118,7 @@ export default {
     ],['debug']], {lang: this.lang, route: this.route, path: this.nuxtRoute.path }));
   },
 
-  async setup() {
+  async setup(props) {
 
     const nuxtRoute = useRoute();
     const store = new DruxtRouterStore();
@@ -170,7 +138,7 @@ export default {
     }
     const module = route.type;
 
-    return {nuxtRoute, route, module, language: 'en'}
+    return {nuxtRoute, route, module, lang: props.lang}
   },
 }
 
