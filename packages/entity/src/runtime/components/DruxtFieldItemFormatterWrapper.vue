@@ -6,7 +6,7 @@
 export default {
   props: {
     item: {
-      type: Object,
+      type: [Array, Boolean, Number, String, Object],
       required: true
     },
     schema: {

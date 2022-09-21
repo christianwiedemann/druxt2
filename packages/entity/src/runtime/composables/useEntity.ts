@@ -124,7 +124,7 @@ export const useEntityLayoutBuilderRender = async (entity, viewMode = 'full', la
     const settings = pattern?.settings ?? {};
     const variant = pattern?.variant ?? '';
 
-    const props = {...{variant}, ...settings};
+
     const slots = {};
     const drupalComponents:any = section.components;
     const fields = useEntityFields(schema, entity, lang)
@@ -161,6 +161,7 @@ export const useEntityLayoutBuilderRender = async (entity, viewMode = 'full', la
         console.log(drupalComponent);
       }
     }
+    const props = {...{variant}, ...settings, context: {entity, viewMode}};
     layoutComponents.push(druxtTheme(layoutId, [['wrapper']], props, slots));
   }
   return () => {
