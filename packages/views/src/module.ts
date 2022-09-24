@@ -1,7 +1,5 @@
 import {createResolver, defineNuxtModule} from '@nuxt/kit'
 
-
-
 export interface ModuleOptions {
   baseUrl: String
   router: Object

@@ -41,8 +41,6 @@ const DruxtRouterNuxtModule =  defineNuxtModule<ModuleOptions>({
     configKey: 'druxt',
   },
   async setup(moduleOptions, nuxt) {
-
-
     const { resolve } = createResolver(import.meta.url)
     const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: resolve('./runtime') })
     // Set default options.
@@ -54,6 +52,9 @@ const DruxtRouterNuxtModule =  defineNuxtModule<ModuleOptions>({
         ...moduleOptions.router,
       }
     }
+
+    addPlugin(resolveRuntimeModule('./plugins/redirect'));
+    addPlugin(resolveRuntimeModule('./plugins/druxtRouter'));
 
     addImports([
       { name: 'useDruxtRouter', as: 'useDruxtRouter', from: resolveRuntimeModule('./composables/useDruxtRouter') },

@@ -960,5 +960,9 @@
     ],
     "file.ec87f886-bd8a-4c3a-b412-744b982e5195": [
         "user.1bc973b1-4bee-403f-8f76-52387c936207"
+    ],
+    "redirect.0afd8ce8-f468-4fda-89a0-80b3acd1f3d3": [
+        "user.1bc973b1-4bee-403f-8f76-52387c936207",
+        "node.ad0641e8-3e01-4f95-b411-4d9ae0b0a409"
     ]
 }

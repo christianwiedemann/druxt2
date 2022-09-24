@@ -1,6 +1,6 @@
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 
-import { defineNuxtModule, createResolver, extendViteConfig, addImports, resolveModule } from '@nuxt/kit'
+import {defineNuxtModule, createResolver, extendViteConfig, addImports, resolveModule, addPlugin} from '@nuxt/kit'
 import { DruxtClient } from '@druxt2/core'
 
 interface ProxyInterface {
@@ -65,6 +65,7 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
       { name: 'druxtTheme', as: 'druxtTheme', from: resolveRuntimeModule('./composables/druxtTheme') },
       { name: 'druxtRender', as: 'druxtRender', from: resolveRuntimeModule('./composables/druxtRender') }
     ])
+    addPlugin(resolveRuntimeModule('./plugins/druxtClient'));
 
     // Normalize slashes.
     options.baseUrl = options.baseUrl = options.baseUrl.endsWith('/') ? options.baseUrl.slice(0, -1) : options.baseUrl

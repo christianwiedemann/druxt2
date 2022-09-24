@@ -1,10 +1,6 @@
-label: Archivo
-description: 'Todo el contenido, por mes.'
 display:
   default:
-    display_title: 'Por defecto'
     display_options:
-      title: 'Archivo mensual'
       pager:
         options:
           tags:
@@ -16,19 +12,9 @@ display:
             offset_label: Desplazamiento
       exposed_form:
         options:
-          submit_button: Aplicar
           reset_button_label: Restablecer
           exposed_sorts_label: 'Ordenar por'
           sort_asc_label: Asc
           sort_desc_label: Desc
-      arguments:
-        created_year_month:
-          title: '{{ arguments.created_year_month }}'
-  block_1:
-    display_title: Bloque
-    display_options:
-      arguments:
-        created_year_month:
-          title: '{{ arguments.created_year_month }}'
   page_1:
     display_title: Página

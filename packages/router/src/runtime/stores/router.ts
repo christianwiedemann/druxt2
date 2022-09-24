@@ -1,5 +1,5 @@
-import {defineStore} from 'pinia'
-import {useDruxtRouter} from "../composables/useDruxtRouter";
+import { defineStore } from 'pinia'
+import { useDruxtRouter } from "../composables/useDruxtRouter";
 
 const DruxtRouterStore = defineStore({
   id: 'druxt-router-store',
@@ -14,6 +14,44 @@ const DruxtRouterStore = defineStore({
    * Vuex Actions.
    */
   actions: {
+    /**
+     * @name setRedirect
+     * @param {object} redirect - The Redirect object.
+     */
+    setRedirect (redirect) {
+      this.redirect = redirect
+    },
+
+    /**
+     * Get route and redirect information.
+     *
+     * - Dispatches `druxtRouter/getRoute` action.
+     * - Sets the active route.
+     * - Sets the active redirect.
+     *
+     * @name get
+     * @action get=route
+     * @param {string} path The router path.
+     * @return {object} The route and redirect information.
+     *
+     * @example @lang js
+     * const { redirect, route } = await this.$store.dispatch('druxtRouter/get', '/')
+     */
+    async get (path, router = null) {
+      // Get route by path from 'getRoute'.
+      const route = await this.getRoute(path)
+      // Handle route errors.
+      if (route.error && typeof route.error.statusCode !== 'undefined' && ((this.app || {}).context || {}).error) {
+        return this.app.context.error(route.error)
+      }
+      const druxtRouter = router ?? useDruxtRouter();
+      // Set active redirect.
+      const redirect = druxtRouter.getRedirect(path, route)
+      this.setRedirect(redirect)
+
+      return { redirect, route }
+    },
+
     /**
      * Get Route.
      *
@@ -35,7 +73,8 @@ const DruxtRouterStore = defineStore({
       }
 
       try {
-        this.routes[path] = await useDruxtRouter().getRoute(path)
+        const route = await useDruxtRouter().getRoute(path);
+        this.routes[path] = route;
       } catch (err) {
         this.routes[path] = {error: {statusCode: err.response.status, message: err.response.data.message}}
       }

@@ -1,8 +1,5 @@
-label: 'Término de la taxonomía'
-description: 'Contenido perteneciente a un determinado término de taxonomía.'
 display:
   default:
-    display_title: 'Por defecto'
     display_options:
       pager:
         options:
@@ -15,7 +12,6 @@ display:
             offset_label: Desplazamiento
       exposed_form:
         options:
-          submit_button: Aplicar
           reset_button_label: Restablecer
           exposed_sorts_label: 'Ordenar por'
           sort_asc_label: Asc
@@ -24,8 +20,5 @@ display:
         tid:
           exception:
             title: Todo(s)
-          title: '{{ arguments.tid }}'
-  feed_1:
-    display_title: 'Canal de noticias'
   page_1:
     display_title: Página
