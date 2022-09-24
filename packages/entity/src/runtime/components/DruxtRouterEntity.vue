@@ -1,5 +1,5 @@
 <template>
-  <DruxtEntityWrapper :entity="entity" viewMode="full" :lang="lang"></DruxtEntityWrapper>
+  <DruxtEntityWrapper :entity="entity" :viewMode="viewMode" :lang="lang"></DruxtEntityWrapper>
 </template>
 <script>
 import { DruxtRouterMixin } from '@druxt2/router/mixins'
@@ -27,6 +27,7 @@ export default {
     const entity = res.data?.data;
     return {
       entity,
+      viewMode: drupalRoute.entity.view_mode ?? 'full',
       lang: 'en'
     }
   }
