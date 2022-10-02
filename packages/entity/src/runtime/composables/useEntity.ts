@@ -101,7 +101,7 @@ export const useEntityDefaultRender = async (entity, viewMode = 'full', lang = '
   // Build scoped slots for each field.
   const scopedSlots = {};
   Object.entries(fields).map(([id, field]) => {
-    scopedSlots[id] = [druxtTheme('DruxtFieldWrapper', DruxtFieldWrapper,  {lang, entity, key: id, ref: id, relationship: field.relationship, schema: field.schema, value: field.value, context: {entity} })]
+    scopedSlots[id] = [druxtTheme('DruxtFieldWrapper', [[]],  {lang, entity, key: id, ref: id, relationship: field.relationship, schema: field.schema, value: field.value, context: {entity} })]
   })
   const options = await useEntityComponentOptions(entity, viewMode);
   const entityComponent = druxtTheme('DruxtEntity', options, {context: {entity, viewMode}}, scopedSlots);

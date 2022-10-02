@@ -3,7 +3,7 @@ import { DruxtTheme } from '../index'
 
 export const druxtRender = (druxtTheme:DruxtTheme, slots = {}) => {
   const componentIs = druxtTheme.is()
-  const resolvedComponent = typeof componentIs === 'object' ? componentIs : !componentIs.endsWith('!') ? resolveComponent(componentIs) : componentIs.substring(0, componentIs.length - 1)
+  const resolvedComponent = !componentIs.endsWith('!') ? resolveComponent(componentIs) : componentIs.substring(0, componentIs.length - 1)
   const collectSlots = {}
   const renderedSlots = {}
   if (druxtTheme.slots) {
@@ -29,6 +29,7 @@ export const druxtRender = (druxtTheme:DruxtTheme, slots = {}) => {
     druxtTheme.props = druxtTheme.props || {}
     druxtTheme.props.context.druxtTheme = druxtTheme
   }
+
   const componentH = h(resolvedComponent, { ...druxtTheme.props, ...props }, { ...renderedSlots, ...slots })
 
   return componentH

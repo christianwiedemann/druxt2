@@ -123,7 +123,6 @@ export default {
     const slots = {};
     if ((this.label || {}).text) {
       slots['label'] = [];
-      console.log(this.label);
       slots['label'].push(druxtTheme('DruxtLabel', [[]], {label: this.label.text, position: this.label.position}));
     }
 
