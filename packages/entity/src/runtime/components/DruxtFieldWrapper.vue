@@ -1,5 +1,6 @@
 <script lang="ts">
 import {druxtTheme, druxtRender} from "#imports";
+import {default as DruxtField} from "./DruxtField";
 import {h} from "vue";
 
 export default {
@@ -122,7 +123,8 @@ export default {
     const slots = {};
     if ((this.label || {}).text) {
       slots['label'] = [];
-      slots['label'].push(druxtTheme('DruxtLabel', {label: this.label.text, position: this.label.position}));
+      console.log(this.label);
+      slots['label'].push(druxtTheme('DruxtLabel', [[]], {label: this.label.text, position: this.label.position}));
     }
 
     const items = (this.value || {}).data
@@ -135,8 +137,9 @@ export default {
         item,
         schema: props.schema,
         lang: this.lang,
-        entity: props.entity
-      }, this.lang)
+        entity: props.entity,
+        context: {entity: props.entity}
+      }, {}, this.lang)
     }
     const component = druxtTheme('DruxtField', [[props.schema.type, props.schema.id]], {context: {entity: props.entity}}, slots, this.lang)
 

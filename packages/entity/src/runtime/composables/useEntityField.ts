@@ -1,3 +1,5 @@
+import {default as DruxtFieldWrapper} from "../components/DruxtFieldWrapper";
+
 const isEmpty = (value) => {
   if (typeof value === 'undefined') return true
 
@@ -35,4 +37,28 @@ export const useEntityFields = (schema, entity={}, lang) => {
     }
   }
   return fields;
+}
+
+/**
+ * Returns entity field formatter props.
+ */
+export const useEntityFieldFormatterProps = () => {
+  return {
+    item: {
+      type: Object,
+      required: true
+    },
+    entity: {
+      type: Object,
+      required: true
+    },
+    schema: {
+      type: Object,
+      required: true
+    },
+    lang: {
+      type: String,
+      required: true
+    },
+  };
 }

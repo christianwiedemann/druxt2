@@ -2,7 +2,7 @@ import merge from 'deepmerge'
 import md5 from 'md5'
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import {defineStore} from "pinia";
-import {useDruxtClient} from "#imports";
+import {useDruxtClient, DruxtStore} from "#imports";
 
 const getDrupalJsonApiParams = (query) => {
   return new DrupalJsonApiParams().initialize(query);
@@ -249,7 +249,7 @@ const DruxtStore = defineStore({
       // Request the resource from the DruxtClient if required.
       let resource
       if (!storedResource || fields) {
-        resource = await this.$druxt.getResource(type, id, getDrupalJsonApiParams(queryObject), prefix)
+        resource = await useDruxtClient().getResource(type, id, getDrupalJsonApiParams(queryObject), prefix)
         this.addResource({ prefix, resource: { ...resource } })
       }
 

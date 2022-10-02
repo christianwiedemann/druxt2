@@ -1,9 +1,10 @@
 import { pascalCase, splitByCase } from 'scule'
-import { Component } from '../index'
+import { DruxtTheme } from '../index'
 import {resolveDynamicComponent} from "vue";
+import {VNodeTypes} from "@vue/runtime-core";
 
 
-const componentOptions = (theme, options: [[]], lang = null) => {
+const suggestionsOptions = (theme, options: [[]], lang = null) => {
   // Build list of available components.
   const components = []
   for (const set of options.filter(set => Array.isArray(set))) {
@@ -46,19 +47,26 @@ const componentOptions = (theme, options: [[]], lang = null) => {
 }
 const isComponent = name => typeof resolveDynamicComponent(name) !== 'string'
 
-export const druxtTheme = (theme, options: [[]] = [[]], props = {}, slots: {}, lang = null):Component => {
-  const casedTheme = pascalCase(theme)
-  if (!Array.isArray(options)) {
-    options = [[]];
+export const druxtTheme = (theme, options: [[]] | VNodeTypes = [[]], props = {}, slots = {}, lang = null):DruxtTheme => {
+  const component = typeof options === 'object' ? options : null;
+  let suggestions = {};
+  if (component === null) {
+    const casedTheme = pascalCase(theme)
+    if (!Array.isArray(options)) {
+      options = [[]];
+    }
+    const suggestionsOpt = suggestionsOptions(casedTheme, options, lang);
+    suggestions = suggestionsOpt.map(o => pascalCase(o.name)) || [];
+    suggestions.push(casedTheme);
   }
-  const compOpt = componentOptions(casedTheme, options, lang);
-  const suggestions = compOpt.map(o => pascalCase(o.name)) || [];
-  suggestions.push(casedTheme);
   return {
     suggestions,
     props,
     slots,
     is: () => {
+      if (component) {
+        return component;
+      }
       for (const suggestion of suggestions) {
         if (suggestion.endsWith('!')) {
           return suggestion;

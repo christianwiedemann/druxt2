@@ -1,14 +1,12 @@
 <template>
   <label>{{label}}</label>
 </template>
-<script lang="ts">
+<script lang="ts" setup>
 
-export default {
-  props: {
-    label: {
-      type: String,
-      required: false
-    },
-  }
-}
+const { label } = defineProps({
+  label: {
+    type: String,
+    required: true
+  },
+})
 </script>

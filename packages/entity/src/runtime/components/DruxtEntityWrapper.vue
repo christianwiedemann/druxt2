@@ -1,5 +1,4 @@
 <script>
-import {provide} from "vue";
 import {
   useEntity,
   useEntityRender

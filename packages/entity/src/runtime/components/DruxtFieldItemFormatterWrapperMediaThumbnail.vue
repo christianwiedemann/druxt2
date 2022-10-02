@@ -1,29 +1,12 @@
 <template>
-  <img src="{{src}}">
+  <img :src="src">
 </template>
-<script lang="ts">
-import {useEntity, useEntityRender} from "../composables/useEntity";
 
-export default {
-  props: {
-    item: {
-      type: Object,
-      required: true
-    },
-    schema: {
-      type: Object,
-      required: true
-    },
-    lang: {
-      type: String,
-      required: true
-    },
-  },
-  async setup(props) {
-    const media = await useEntity({type: props.item.type, uuid: props.item.id, lang: props.lang});
-    return {
-      src: ""
-    };
-  }
-}
+<script lang="ts" setup>
+import {useEntityFieldFormatterProps} from "../composables/useEntityField";
+import {useEntity} from "../composables/useEntity";
+const props = defineProps(useEntityFieldFormatterProps())
+const { item, lang } = props;
+const media = await useEntity({type: item.type, uuid: item.id, lang});
+console.log("MEDIA: ", item, media);
 </script>

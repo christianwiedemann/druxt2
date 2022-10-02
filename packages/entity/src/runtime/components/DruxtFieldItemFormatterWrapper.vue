@@ -1,26 +1,7 @@
 <template>
-  <div>{{item}}</div>
+  {{item}}
 </template>
 <script lang="ts">
-
-export default {
-  props: {
-    item: {
-      type: [Array, Boolean, Number, String, Object],
-      required: true
-    },
-    schema: {
-      type: Object,
-      required: true
-    },
-    lang: {
-      type: String,
-      required: true
-    },
-    entity: {
-      type: Object,
-      required: true
-    },
-  }
-}
+import { useEntityFieldFormatterProps } from "../composables/useEntityField";
+const { item } = defineProps(useEntityFieldFormatterProps())
 </script>
