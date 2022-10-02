@@ -1,5 +1,5 @@
 <template>
-  {{item}}
+  {{ item }}
 </template>
 <script lang="ts">
 import { defineProps } from "vue";

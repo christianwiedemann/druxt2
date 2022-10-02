@@ -92,7 +92,6 @@ class DruxtRouter {
   async get (path) {
     const route = await this.getRoute(path)
     const redirect = await this.getRedirect(path, route)
-    console.log('REDIRECT: ', redirect)
     return { redirect, route }
   }
 
@@ -130,13 +129,13 @@ class DruxtRouter {
     }
 
     // Redirect if path does not match resolved clean url path.
-    if (typeof route.canonical === 'string') {
+    /*if (typeof route.canonical === 'string') {
       const canonicalUrl = new URL(route.canonical, this.baseUrl)
 
       if (url.pathname !== canonicalUrl.pathname) {
         return canonicalUrl.pathname
       }
-    }
+    }*/
 
     return false
   }
