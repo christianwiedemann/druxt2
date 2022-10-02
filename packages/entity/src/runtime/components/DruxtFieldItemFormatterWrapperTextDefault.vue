@@ -3,6 +3,7 @@
 </template>
 
 <script lang="ts" setup>
+import { defineProps } from "vue";
 import {useEntityFieldFormatterProps} from "../composables/useEntityField";
 const props = defineProps(useEntityFieldFormatterProps())
 const { item } = props;
