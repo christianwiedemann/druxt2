@@ -26,6 +26,7 @@
         "drupal/jsonapi_hypermedia": "^1.8",
         "drupal/jsonapi_include_lb": "1.0.x-dev",
         "drupal/redirect": "^1.8",
+        "drupal/simple_oauth": "^5.2",
         "drupal/tome": "^1.6",
         "drush/drush": "^11.0"
     },

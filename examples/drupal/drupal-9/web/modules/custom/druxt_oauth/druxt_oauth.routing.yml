@@ -1,0 +1,7 @@
+druxt_oauth.token:
+  path: '/druxt-oauth/token'
+  defaults:
+    _controller: 'Drupal\druxt_oauth\Controller\Token::tokenOverride'
+  methods: [POST]
+  requirements:
+    _access: 'TRUE'

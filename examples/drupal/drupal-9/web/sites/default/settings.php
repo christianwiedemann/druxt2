@@ -290,7 +290,7 @@ $settings['config_sync_directory'] = '../config/sync';
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = 'vpjD-K6iai_xapFpnQ-bbVpPy6XzOBafvShV2xq0sSnzhq1qbJGTDqf6q3Ycy3JXilleptLvjg';
+$settings['hash_salt'] = 'rOgdl4x7B4hTvxNUyQMcLI9hzQ6-5QMBy9cCjjuUUlRWgIc4_CrezFk0zfHeXaToJfxaT1QwEA';
 
 /**
  * Deployment identifier.
@@ -792,3 +792,14 @@ if (file_exists(__DIR__ . '/settings.docksal.php') && getenv('IS_DOCKSAL') == 't
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 
+$databases['default']['default'] = array (
+  'database' => 'default',
+  'username' => 'root',
+  'password' => 'demo',
+  'prefix' => '',
+  'host' => 'db',
+  'port' => '3306',
+  'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
+  'driver' => 'mysql',
+  'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
+);
