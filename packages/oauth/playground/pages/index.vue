@@ -29,7 +29,7 @@ export default {
       app.$auth.refreshTokens();
       const token = app.$auth.strategy.token.get();
 
-      $fetch('http://eep-develop.docksal/oauth/debug', {
+      $fetch('http://druxt-drupal.docksal/oauth/debug', {
         headers: {
           'Authorization': token
         }

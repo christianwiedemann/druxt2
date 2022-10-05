@@ -1,10 +1,27 @@
+label: Guardián
+description: 'Mensajes recientes del registro'
 display:
   default:
+    display_title: 'Por defecto'
     display_options:
+      title: 'Mensajes recientes del registro'
       fields:
+        nothing:
+          admin_label: Icono
+        wid:
+          label: WID
+        severity:
+          label: Gravedad
         type:
           label: Tipo
+        timestamp:
+          label: Fecha
+        message:
+          label: Mensaje
+          alter:
+            alt: '{{ message }}'
         name:
+          label: Usuario
           separator: ', '
         link:
           label: Operaciones
@@ -24,9 +41,16 @@ display:
           exposed_sorts_label: 'Ordenar por'
           sort_asc_label: Asc
           sort_desc_label: Desc
+      empty:
+        area:
+          admin_label: 'No hay mensajes de registro disponibles.'
+          content: 'No hay mensajes de registro disponibles.'
       filters:
         type:
           expose:
             label: Tipo
+        severity:
+          expose:
+            label: Gravedad
   page:
     display_title: Página

@@ -12,11 +12,11 @@ export default defineNuxtConfig({
         strategies: {
             drupal: {
                 scheme: 'oauth2',
-                clientId: '694458c4-8b59-4e68-ab01-d69b98443c24',
+                clientId: 'eb9a638f-5a63-4184-b2e2-cb4e243b3d49',
                 clientSecret: 'test',
                 endpoints: {
-                    authorization: 'http://eep-develop.docksal/oauth/authorize',
-                    token: 'http://eep-develop.docksal/eep-oauth/token'
+                    authorization: 'http://druxt-drupal.docksal/oauth/authorize',
+                    token: 'http://druxt-drupal.docksal/druxt-oauth/token'
                 },
                 scope: ['profile'],
                 responseType: 'code',
