@@ -1,3 +1,4 @@
+import DruxtOauthModule from "..";
 export default defineNuxtConfig({
     druxt: {
         baseUrl: 'http://druxt-drupal.docksal/',
@@ -8,15 +9,14 @@ export default defineNuxtConfig({
         }
     },
     auth: {
-        enableMiddleware: true,
         strategies: {
             drupal: {
                 scheme: 'oauth2',
-                clientId: 'c79d2f5a-a153-4d3e-bb3d-1350f6f92d72',
+                clientId: 'eb9a638f-5a63-4184-b2e2-cb4e243b3d49',
                 clientSecret: 'test',
                 endpoints: {
-                    authorization: 'http://eep-develop.docksal/oauth/authorize',
-                    token: 'http://eep-develop.docksal/eep-oauth/token'
+                    authorization: 'http://druxt-drupal.docksal/oauth/authorize',
+                    token: 'http://druxt-drupal.docksal/druxt-oauth/token'
                 },
                 scope: ['profile'],
                 responseType: 'code',
@@ -25,9 +25,13 @@ export default defineNuxtConfig({
             }
         }
     },
+    modules: [
+        DruxtOauthModule
+    ],
     buildModules: [
         '@nuxtjs-alt/auth',
         "@nuxtjs-alt/http",
-        '@pinia/nuxt'
+        '@pinia/nuxt',
+        '@druxt2/druxt'
     ]
 })

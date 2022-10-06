@@ -1,43 +1,19 @@
 <template>
   <div>
     <OauthLogin/>
-    <br><br>
-    <button @click="testLoggedIn">Test token</button>
-    <br><br>
-    User id: {{ user_id }}<br>
-    Roles: {{ roles }}
+    <br/><br/>
+    <OauthTester/>
   </div>
 </template>
 
 
 <script>
 import OauthLogin from '../../src/runtime/components/OauthLogin.vue';
+import OauthTester from '../../src/runtime/components/OauthTester.vue';
 
 export default {
   components: {
-    OauthLogin
+    OauthLogin, OauthTester
   },
-  data() {
-    return {
-      user_id: '',
-      roles: '',
-    };
-  },
-  methods: {
-    testLoggedIn() {
-      const app = useNuxtApp()
-      app.$auth.refreshTokens();
-      const token = app.$auth.strategy.token.get();
-
-      $fetch('http://eep-develop.docksal/oauth/debug', {
-        headers: {
-          'Authorization': token
-        }
-      }).then((response) => {
-        this.user_id = response.id;
-        this.roles = response.roles;
-      });
-    }
-  }
 }
 </script>
