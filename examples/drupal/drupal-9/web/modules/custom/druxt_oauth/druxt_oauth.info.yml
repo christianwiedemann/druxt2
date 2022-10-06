@@ -1,8 +1,0 @@
-name: Druxt OAuth
-type: module
-description: 'OAuth customizations for druxt.'
-core: 8.x
-core_version_requirement: '^8 || ^9'
-package: druxt
-dependencies:
-  - simple_oauth:simple_oauth

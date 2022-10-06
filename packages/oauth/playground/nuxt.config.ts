@@ -1,3 +1,4 @@
+import DruxtOauthModule from "..";
 export default defineNuxtConfig({
     druxt: {
         baseUrl: 'http://druxt-drupal.docksal/',
@@ -8,7 +9,6 @@ export default defineNuxtConfig({
         }
     },
     auth: {
-        enableMiddleware: true,
         strategies: {
             drupal: {
                 scheme: 'oauth2',
@@ -25,9 +25,13 @@ export default defineNuxtConfig({
             }
         }
     },
+    modules: [
+        DruxtOauthModule
+    ],
     buildModules: [
         '@nuxtjs-alt/auth',
         "@nuxtjs-alt/http",
-        '@pinia/nuxt'
+        '@pinia/nuxt',
+        '@druxt2/druxt'
     ]
 })

@@ -1,4 +1,4 @@
-import {addAutoImport, createResolver, defineNuxtModule, resolveModule} from '@nuxt/kit'
+import {addAutoImport, addImports, addPlugin, createResolver, defineNuxtModule, resolveModule} from '@nuxt/kit'
 import type { NuxtModule } from '@nuxt/schema'
 
 
@@ -41,6 +41,7 @@ const DruxtOauthModule =  defineNuxtModule<ModuleOptions>({
     const { resolve } = createResolver(import.meta.url);
     const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: resolve('./runtime') })
 
+    addPlugin(resolveRuntimeModule('./plugins/authorize'));
 
     nuxt.hook("components:dirs", (dirs) => {
       dirs.push({ path: resolve('./runtime/components'),global: true });
