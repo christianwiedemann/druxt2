@@ -23,6 +23,7 @@
         "drupal/core-recommended": "^9.3",
         "drupal/decoupled_router": "2.0.3",
         "drupal/druxt": "^1.1.1",
+        "drupal/druxt_oauth": "1.0.x-dev",
         "drupal/jsonapi_hypermedia": "^1.8",
         "drupal/jsonapi_include_lb": "1.0.x-dev",
         "drupal/redirect": "^1.8",

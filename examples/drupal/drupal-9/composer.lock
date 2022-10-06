@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7a4f0c93ca64c35d9a6bd10fdd97a6c3",
+    "content-hash": "475266da49344cc611d215c3729e5b93",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1849,6 +1849,49 @@
             "homepage": "https://www.drupal.org/project/druxt",
             "support": {
                 "source": "https://git.drupalcode.org/project/druxt"
+            }
+        },
+        {
+            "name": "drupal/druxt_oauth",
+            "version": "dev-1.0.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/druxt_oauth.git",
+                "reference": "a753d28680333f1384d84ebf7bf89e140910eed0"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/simple_oauth": "^5.2"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.0.x": "1.0.x-dev"
+                },
+                "drupal": {
+                    "version": "1.0.x-dev",
+                    "datestamp": "1665068106",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Rafael König",
+                    "homepage": "https://www.drupal.org/user/856550",
+                    "email": "rafael.schally@key-tec.de"
+                }
+            ],
+            "description": "Some additions to simple_oauth, to make it compatible with druxt oauth.",
+            "homepage": "https://www.drupal.org/project/druxt_oauth",
+            "support": {
+                "source": "https://git.drupalcode.org/project/druxt_oauth"
             }
         },
         {
@@ -11727,6 +11770,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal-tome/tome_drush": 20,
+        "drupal/druxt_oauth": 20,
         "drupal/jsonapi_include_lb": 20
     },
     "prefer-stable": true,

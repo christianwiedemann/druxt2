@@ -290,7 +290,7 @@ $settings['config_sync_directory'] = '../config/sync';
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = 'rOgdl4x7B4hTvxNUyQMcLI9hzQ6-5QMBy9cCjjuUUlRWgIc4_CrezFk0zfHeXaToJfxaT1QwEA';
+$settings['hash_salt'] = 'vpjD-K6iai_xapFpnQ-bbVpPy6XzOBafvShV2xq0sSnzhq1qbJGTDqf6q3Ycy3JXilleptLvjg';
 
 /**
  * Deployment identifier.
@@ -755,16 +755,7 @@ $settings['entity_update_backup'] = TRUE;
  * node migrations.
  */
 $settings['migrate_node_migrate_type_classic'] = FALSE;
-$databases['default']['default'] = array (
-  'database' => 'default',
-  'username' => 'root',
-  'password' => 'demo',
-  'prefix' => '',
-  'host' => 'db',
-  'port' => '3306',
-  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-  'driver' => 'mysql',
-);
+
 // Automatically generated include for settings managed by ddev.
 if (file_exists(__DIR__ . '/settings.ddev.php') && getenv('IS_DDEV_PROJECT') == 'true') {
   include __DIR__ . '/settings.ddev.php';
@@ -791,7 +782,6 @@ if (file_exists(__DIR__ . '/settings.docksal.php') && getenv('IS_DOCKSAL') == 't
 # if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
-
 $databases['default']['default'] = array (
   'database' => 'default',
   'username' => 'root',
@@ -799,7 +789,6 @@ $databases['default']['default'] = array (
   'prefix' => '',
   'host' => 'db',
   'port' => '3306',
-  'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
-  'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
 );
