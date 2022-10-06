@@ -12,7 +12,7 @@ export default defineNuxtConfig({
         strategies: {
             drupal: {
                 scheme: 'oauth2',
-                clientId: '694458c4-8b59-4e68-ab01-d69b98443c24',
+                clientId: 'c79d2f5a-a153-4d3e-bb3d-1350f6f92d72',
                 clientSecret: 'test',
                 endpoints: {
                     authorization: 'http://eep-develop.docksal/oauth/authorize',

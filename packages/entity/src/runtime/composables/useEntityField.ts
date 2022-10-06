@@ -45,7 +45,7 @@ export const useEntityFields = (schema, entity={}, lang) => {
 export const useEntityFieldFormatterProps = () => {
   return {
     item: {
-      type: Object,
+      type: [Object, String, Array, Number],
       required: true
     },
     entity: {
