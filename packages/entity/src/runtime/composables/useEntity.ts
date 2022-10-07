@@ -143,7 +143,7 @@ export const useEntityLayoutBuilderRender = async (entity, viewMode = 'full', la
         const blockRevisionId = drupalComponent.configuration?.block_revision_id;
         const childViewMode = drupalComponent.configuration?.view_mode;
         const childEntity = {data: includedBlocksByRevisionId[blockRevisionId]};
-        const blockTheme = druxtTheme('DruxtEntityWrapper',DruxtEntityWrapper, {lang, viewMode: childViewMode, entity: childEntity});
+        const blockTheme = druxtTheme('DruxtEntityWrapper',[[]], {lang, viewMode: childViewMode, entity: childEntity});
         slots[slotName].push(blockTheme);
       } else if (id.startsWith('field_block')) {
         const fieldConfig = id.split(':');
@@ -152,13 +152,13 @@ export const useEntityLayoutBuilderRender = async (entity, viewMode = 'full', la
         if (!field) {
           console.error('Unable to find field with name ' + fieldName)
         } else {
-          const fieldTheme = druxtTheme('DruxtFieldWrapper', DruxtFieldWrapper,  {context: {entity}, entity, lang, key: id, ref: id, relationship: field.relationship, schema: field.schema, 'value': field.value}, {}, lang)
+          const fieldTheme = druxtTheme('DruxtFieldWrapper', [[]],  {context: {entity}, entity, lang, key: id, ref: id, relationship: field.relationship, schema: field.schema, 'value': field.value}, {}, lang)
           slots[slotName].push(fieldTheme);
         }
       } else if (id.startsWith('views_block')) {
         const viewConfig = id.split(':')[1];
-        const viewId = viewConfig.split('-')[0];
-        const viewTheme = druxtTheme('DruxtViewWrapper', [[]], {lang, viewId});
+        const [viewId, displayId] = viewConfig.split('-');
+        const viewTheme = druxtTheme('DruxtViewWrapper', [[]], {lang, viewId, displayId});
         slots[slotName].push(viewTheme);
       } else {
         console.log('Undefined id: ' + id);
