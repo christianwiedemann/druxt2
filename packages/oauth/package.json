@@ -1,6 +1,6 @@
 {
   "name": "@druxt2/oauth",
-  "version": "0.0.5-y.7",
+  "version": "0.0.5-y.8",
   "description": "The Fully Decoupled Drupal Framework for Nuxt.js.",
   "keywords": [
     "cms",
@@ -40,7 +40,7 @@
     "prepack": "nuxt-module-build"
   },
   "dependencies": {
-    "@druxt2/druxt": "^0.0.5-y.3",
+    "@druxt2/druxt": "^0.0.5-y.8",
     "@nuxtjs-alt/auth": "^2.0.3",
     "deepmerge": "^4.2.2",
     "drupal-jsonapi-params": "^2.1.0"
