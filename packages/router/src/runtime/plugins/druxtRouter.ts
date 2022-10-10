@@ -1,6 +1,6 @@
 import { defineNuxtPlugin } from "#imports";
 import {useRuntimeConfig} from "#app";
-import * as axios from 'axios';
+import {default as axios} from 'axios';
 import {DruxtRouter} from "../router";
 
 export default defineNuxtPlugin(() => {
