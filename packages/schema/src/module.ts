@@ -4,11 +4,10 @@ import {
   addTemplate,
   createResolver,
   resolveModule,
-  addImports,
+  addImports, installModule,
 } from '@nuxt/kit'
 import consola from 'consola'
 import { DruxtSchema } from './runtime/schema'
-import {DruxtClient} from "~/core/dist";
 
 const SchemaNuxtModule = defineNuxtModule({
   meta: {
@@ -22,6 +21,7 @@ const SchemaNuxtModule = defineNuxtModule({
     const { resolve } = createResolver(import.meta.url)
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
     nuxt.options.build.transpile.push(runtimeDir)
+    installModule('@druxt2/druxt')
 
     const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: resolve('./runtime') })
 

@@ -10,7 +10,6 @@ export default defineNuxtConfig({
     }
   },
   modules: [
-    '@pinia/nuxt',
     DruxtNuxtModule
   ],
 })

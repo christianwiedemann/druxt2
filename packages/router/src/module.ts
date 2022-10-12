@@ -1,7 +1,15 @@
 import { existsSync } from 'fs'
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import { DruxtClient } from '@druxt2/core'
-import {defineNuxtModule, addPlugin, extendPages, createResolver, addImports, resolveModule} from '@nuxt/kit'
+import {
+  defineNuxtModule,
+  addPlugin,
+  extendPages,
+  createResolver,
+  addImports,
+  resolveModule,
+  installModule
+} from '@nuxt/kit'
 import {fileURLToPath} from "url";
 
 
@@ -42,7 +50,11 @@ const DruxtRouterNuxtModule =  defineNuxtModule<ModuleOptions>({
   },
   async setup(moduleOptions, nuxt) {
     const { resolve } = createResolver(import.meta.url)
-    const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: resolve('./runtime') })
+    const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
+    const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: runtimeDir })
+    nuxt.options.build.transpile.push(runtimeDir)
+
+    installModule('@druxt2/schema')
     // Set default options.
     const options = {
       baseUrl: moduleOptions.baseUrl,
@@ -58,6 +70,7 @@ const DruxtRouterNuxtModule =  defineNuxtModule<ModuleOptions>({
 
     addImports([
       { name: 'useDruxtRouter', as: 'useDruxtRouter', from: resolveRuntimeModule('./composables/useDruxtRouter') },
+      { name: 'useDruxtRouterProps', as: 'useDruxtRouterProps', from: resolveRuntimeModule('./composables/useDruxtRouter') },
     ])
 
     nuxt.hook("components:dirs", (dirs) => {

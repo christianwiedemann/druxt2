@@ -47,7 +47,7 @@ export default {
     /**
      * The Decoupled router path.
      *
-     * If not set, the Vue router value will be used instead.
+     * If not set, the Nuxt router value will be used instead.
      *
      * @type {string}
      *
@@ -69,18 +69,6 @@ export default {
       default: undefined,
     },
 
-    /**
-     * The Router object, used to determine the resolved route component.
-     *
-     * Setting this value will bypass the JSON:API.
-     *
-     * @type {object}
-     * @model
-     */
-    value: {
-      type: Object,
-      default: () => undefined
-    }
   },
 
   /**
@@ -110,14 +98,6 @@ export default {
     return head
   },
 
-  render() {
-    return druxtRender(druxtTheme('DruxtRouter',[[
-      this.module || 'error',
-      this.route.isHomePath ? 'front' : 'not-front',
-      'default',
-    ],['debug']], {lang: this.lang, route: this.route, path: this.nuxtRoute.path }));
-  },
-
   async setup(props) {
 
     const nuxtRoute = useRoute();
@@ -126,7 +106,7 @@ export default {
     // Get the route from the Drupal decoupled router module via the
     // druxtRouter store.
     // Use the Path prop or the Vue Router as the route to lookup.
-    const path = nuxtRoute.path || nuxtRoute.fullPath
+    const path = props.path || nuxtRoute.path || nuxtRoute.fullPath
 
     const route = await store.getRoute(path);
     // If this the path is the active Vue route, set the active route in the
@@ -137,8 +117,15 @@ export default {
       store.setRoute(path);
     }
     const module = route.type;
+    const lang = props.lang
 
-    return {nuxtRoute, route, module, lang: props.lang}
+    return () => {
+      return druxtRender(druxtTheme('DruxtRouter',[[
+        module || 'error',
+        route.isHomePath ? 'front' : 'not-front',
+        'default',
+      ],['debug']], {lang, route, path: nuxtRoute.path }));
+    }
   },
 }
 

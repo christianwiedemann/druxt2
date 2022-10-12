@@ -1,9 +1,10 @@
-import {addImports, createResolver, defineNuxtModule, resolveModule} from '@nuxt/kit'
+import {addImports, createResolver, defineNuxtModule, installModule, resolveModule} from '@nuxt/kit'
 import {
   useEntityIsLayoutBuilderEnabled, useEntityLayoutBuilderRender,
   useEntityLayoutBuilderSections,
   useEntitySchema
 } from "./runtime/composables/useEntity";
+import {fileURLToPath} from "url";
 
 
 export interface ModuleOptions {
@@ -43,7 +44,13 @@ const DruxtEntityNuxtModule =  defineNuxtModule<ModuleOptions>({
   },
   async setup(moduleOptions, nuxt) {
     const { resolve } = createResolver(import.meta.url);
-    const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: resolve('./runtime') })
+    const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
+    const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: runtimeDir })
+
+    nuxt.options.build.transpile.push(runtimeDir)
+
+    installModule('@druxt2/router')
+    installModule('@druxt2/schema')
 
     nuxt.hook("components:dirs", (dirs) => {
       dirs.push({ path: resolve('./runtime/components'), global: true });

@@ -1,7 +1,7 @@
-import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
+import {DrupalJsonApiParams} from 'drupal-jsonapi-params'
 
-import {defineNuxtModule, createResolver, extendViteConfig, addImports, resolveModule, addPlugin} from '@nuxt/kit'
-import { DruxtClient } from '@druxt2/core'
+import {defineNuxtModule, createResolver, installModule, addImports, resolveModule, addPlugin} from '@nuxt/kit'
+import {DruxtClient} from '@druxt2/core'
 
 interface ProxyInterface {
   api: Boolean
@@ -51,21 +51,26 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
     endpoint: '/jsonapi'
   },
 
-  async setup (moduleOptions, nuxt) {
-    const { resolve } = createResolver(import.meta.url)
-    const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: resolve('./runtime') })
+  async setup(moduleOptions, nuxt) {
+
+    const {resolve} = createResolver(import.meta.url)
+    const runtimeDir = resolve('./runtime')
+    const resolveRuntimeModule = (path: string) => resolveModule(path, {paths: runtimeDir})
     const options: any = {
       ...(moduleOptions || {})
     }
 
+    nuxt.options.build.transpile.push(runtimeDir)
+    nuxt.options.build.transpile.push('@druxt/core')
+
     // Register composables
     addImports([
-      { name: 'DruxtStore', as: 'DruxtStore', from: resolveRuntimeModule('./stores/druxt') },
-      { name: 'useDruxtClient', as: 'useDruxtClient', from: resolveRuntimeModule('./composables/useDruxtClient') },
-      { name: 'druxtTheme', as: 'druxtTheme', from: resolveRuntimeModule('./composables/druxtTheme') },
-      { name: 'druxtRender', as: 'druxtRender', from: resolveRuntimeModule('./composables/druxtRender') }
+      {name: 'DruxtStore', as: 'DruxtStore', from: resolveRuntimeModule('./stores/druxt')},
+      {name: 'useDruxtClient', as: 'useDruxtClient', from: resolveRuntimeModule('./composables/useDruxtClient')},
+      {name: 'druxtTheme', as: 'druxtTheme', from: resolveRuntimeModule('./composables/druxtTheme')},
+      {name: 'druxtRender', as: 'druxtRender', from: resolveRuntimeModule('./composables/druxtRender')}
     ])
-    addPlugin(resolveRuntimeModule('./plugins/druxtClient'));
+    addPlugin(resolveRuntimeModule('./plugins/druxtClient'))
 
     // Normalize slashes.
     options.baseUrl = options.baseUrl = options.baseUrl.endsWith('/') ? options.baseUrl.slice(0, -1) : options.baseUrl
@@ -77,7 +82,7 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
     nuxt.options.runtimeConfig.public.options = {
       ...options,
       // Disable API Proxy, as Proxies aren't available at build.
-      proxy: { ...options.proxy || {}, api: false }
+      proxy: {...options.proxy || {}, api: false}
     }
 
     const axios = require('axios').default;
@@ -115,40 +120,27 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
         const filesPath = typeof options.proxy.files === 'string' ? options.proxy.files : 'default'
         proxies[`/sites/${filesPath}/files`] = options.baseUrl
       }
-      // If there are existing proxy settings, merge in the appropriate format.
-      if (options.proxy) {
-        if (Array.isArray(options.proxy)) {
-          options.proxy = [
-            ...options.proxy,
-            ...Object.keys(proxies).map(path => `${options.baseUrl}${path}`)
-          ]
-        } else {
-          options.proxy = {
-            ...options.proxy,
-            ...proxies
-          }
-        }
-      }
-      // Otherwise just set the the required proxies.
-      else {
-        options.proxy = proxies
-      }
-      // Optimize cross-fetch
-      extendViteConfig((config) => {
-        config.server.proxy = {}
+      const pathRewrite = {}
+      const pathFilter = []
+      Object.keys(proxies).forEach((path) => {
+        pathRewrite['^' + path + '/'] = path + '/'
+        pathFilter.push(path + '/')
+      })
 
-        Object.keys(proxies).forEach((key) => {
-          config.server.proxy[key] = {
-            target: proxies[key],
-            changeOrigin: true,
-            ws: true
-          }
-        })
+      installModule('@pinia/nuxt')
+      installModule('nuxt-proxy', {
+        options: {
+          target: options.baseUrl,
+          changeOrigin: true,
+          pathRewrite,
+          pathFilter
+        }
       })
     }
 
+
     nuxt.hook('components:dirs', (dirs) => {
-      dirs.push({ path: resolve('./runtime/components'), global: true })
+      dirs.push({path: resolve('./runtime/components'), global: true})
     })
 
     // options.cli.badgeMessages.push(`${chalk.blue.bold('Druxt')} @ v${meta.version}`)
