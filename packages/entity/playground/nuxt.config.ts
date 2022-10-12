@@ -18,10 +18,10 @@ export default defineNuxtConfig({
     baseUrl: 'http://druxt-drupal.docksal/',
     query: {
       'node--landingpage': {
-        includes: ['layout_builder__blocks']
+        include: ['layout_builder__blocks']
       },
       'node--recipe': {
-        includes: ['layout_builder__blocks']
+        include: ['layout_builder__blocks']
       }
     }
   },

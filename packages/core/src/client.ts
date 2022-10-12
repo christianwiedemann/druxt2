@@ -3,7 +3,7 @@ import {stringify} from "querystring";
 
 interface Options {
   axios?: any
-  proxy?: {}
+  proxy?: {api: boolean}
   debug?: false
   api?: null
   endpoint?: '/jsonapi',
@@ -46,6 +46,9 @@ class DruxtClient {
       throw new Error('The \'baseUrl\' parameter is required.')
     }
 
+
+    const axiosBaseUrl = baseUrl && !options?.proxy?.api ? baseUrl : void 0;
+
     /**
      * The Axios instance.
      *
@@ -53,7 +56,7 @@ class DruxtClient {
      * @type {object}
      */
       this.axios = options.axios.create({
-        baseURL: baseUrl
+        baseURL: axiosBaseUrl
       })
 
     // If Debug mode is enabled, add an Axios interceptor to log out all
@@ -272,6 +275,7 @@ class DruxtClient {
    */
   async get(url: string, options:any = {}) {
     try {
+      console.log('GET', url)
       const res = await this.axios.get(url, options)
       // Check that the response hasn't omitted data due to missing permissions.
       this.checkPermissions(res)

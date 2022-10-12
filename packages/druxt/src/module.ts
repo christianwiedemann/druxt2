@@ -73,17 +73,13 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
     addPlugin(resolveRuntimeModule('./plugins/druxtClient'))
 
     // Normalize slashes.
-    options.baseUrl = options.baseUrl = options.baseUrl.endsWith('/') ? options.baseUrl.slice(0, -1) : options.baseUrl
+    const baseUrl = options.baseUrl = options.baseUrl.endsWith('/') ? options.baseUrl.slice(0, -1) : options.baseUrl
     options.endpoint = options.endpoint = options.endpoint.startsWith('/') ? options.endpoint : `/${options.endpoint}`
     options.query = options.query ?? null
     // Provide runtime configuration
-    nuxt.options.runtimeConfig.public.baseUrl = options.baseUrl
+    nuxt.options.runtimeConfig.public.baseUrl = baseUrl
     nuxt.options.runtimeConfig.public.endpoint = options.endpoint
-    nuxt.options.runtimeConfig.public.options = {
-      ...options,
-      // Disable API Proxy, as Proxies aren't available at build.
-      proxy: {...options.proxy || {}, api: false}
-    }
+    nuxt.options.runtimeConfig.public.options = options
 
     const axios = require('axios').default;
     const druxt = new DruxtClient(options.baseUrl, {axios})
@@ -123,10 +119,9 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
       const pathRewrite = {}
       const pathFilter = []
       Object.keys(proxies).forEach((path) => {
-        pathRewrite['^' + path + '/'] = path + '/'
-        pathFilter.push(path + '/')
+        pathRewrite['^' + path] = path
+        pathFilter.push(path)
       })
-
       installModule('@pinia/nuxt')
       installModule('nuxt-proxy', {
         options: {

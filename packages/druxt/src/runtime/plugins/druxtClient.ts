@@ -5,9 +5,10 @@ import { DruxtClient } from '@druxt2/core'
 
 export default defineNuxtPlugin(() => {
 
-  const runtimeConfig = useRuntimeConfig();
-  const baseUrl = runtimeConfig.public.baseUrl;
-  const client = new DruxtClient(baseUrl, {axios});
+  const runtimeConfig = useRuntimeConfig()
+  const { baseUrl, options } = runtimeConfig.public
+  const clientOptions = { axios, ...options, ...!process?.client ? { proxy: { api: false } } : {} }
+  const client = new DruxtClient(baseUrl, clientOptions)
 
   return {
     provide: {

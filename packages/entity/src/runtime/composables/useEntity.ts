@@ -36,14 +36,14 @@ export const useEntityLayoutBuilderSections = async (entity, viewMode = 'full') 
   return sections;
 }
 
-export const useEntity = async ( props: {type?, uuid?, entity?, lang} ) => {
+export const useEntity = async ( props: {type?, uuid?, entity?, lang, query?} ) => {
 
   if (props.entity) {
     return props.entity
   }
   if (props.uuid && props.type) {
     const client = useDruxtClient();
-    const resource = await client.getResource(props.type, props.uuid, {}, props.lang);
+    const resource = await client.getResource(props.type, props.uuid, props.query ?? {}, props.lang);
     return resource?.data;
   }
 }

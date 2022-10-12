@@ -4,10 +4,10 @@ import {default as axios} from 'axios';
 import {DruxtRouter} from "../router";
 
 export default defineNuxtPlugin(() => {
-
   const runtimeConfig = useRuntimeConfig();
-  const baseUrl = runtimeConfig.public.baseUrl;
-  const client = new DruxtRouter(baseUrl, {axios})
+  const { baseUrl, options } = runtimeConfig.public
+  const clientOptions = { axios, ...options, ...!process?.client ? { proxy: { api: false } } : {} }
+  const client = new DruxtRouter(baseUrl, clientOptions)
 
   return {
     provide: {
