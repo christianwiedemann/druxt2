@@ -1,4 +1,5 @@
 import DruxtOauthModule from "..";
+
 export default defineNuxtConfig({
     druxt: {
         baseUrl: 'http://druxt-drupal.docksal/',
@@ -6,9 +7,12 @@ export default defineNuxtConfig({
             'node--landing_page': {
                 includes: ['layout_builder__blocks']
             }
+        },
+        proxy: {
+            oauth: true
         }
     },
-    auth: {
+    auth:{
         strategies: {
             drupal: {
                 scheme: 'oauth2',
@@ -16,22 +20,20 @@ export default defineNuxtConfig({
                 clientSecret: 'test',
                 endpoints: {
                     authorization: 'http://druxt-drupal.docksal/oauth/authorize',
-                    token: 'http://druxt-drupal.docksal/druxt-oauth/token'
+                    token: '/druxt-oauth/token'
                 },
                 scope: ['profile'],
                 responseType: 'code',
                 grantType: 'authorization_code',
                 codeChallengeMethod: 'S256'
             }
-        }
+        },
     },
     modules: [
-        DruxtOauthModule
-    ],
-    buildModules: [
         '@nuxtjs-alt/auth',
         "@nuxtjs-alt/http",
         '@pinia/nuxt',
-        '@druxt2/druxt'
+        '@druxt2/druxt',
+        DruxtOauthModule
     ]
 })

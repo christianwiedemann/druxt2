@@ -5,6 +5,7 @@ import {DruxtClient} from '@druxt2/core'
 
 interface ProxyInterface {
   api: Boolean
+  oauth: Boolean
   files: String
 }
 
@@ -45,6 +46,7 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
   defaults: {
     proxy: {
       api: true,
+      oauth: true,
       files: 'default'
     },
     baseUrl: '',
@@ -111,6 +113,14 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
         // Decoupled Router Endpoint.
         proxies['/router/translate-path'] = options.baseUrl
       }
+
+      // Enable proxying of the oauth endpoint.
+      // This is primarily used to avoid CORS errors.
+      if ((options.proxy || {}).oauth) {
+        proxies['/druxt-oauth/token'] = options.baseUrl;
+        proxies['/oauth/debug'] = options.baseUrl;
+      }
+
       // Enable proxying of the Drupal site files.
       if ((options.proxy || {}).files) {
         const filesPath = typeof options.proxy.files === 'string' ? options.proxy.files : 'default'
