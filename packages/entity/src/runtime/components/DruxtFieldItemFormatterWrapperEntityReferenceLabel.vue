@@ -1,5 +1,5 @@
 <template>
-  {{label}}
+  {{ label }}
 </template>
 <script lang="ts" setup>
 import { useEntityFieldFormatterProps } from "../composables/useEntityField";

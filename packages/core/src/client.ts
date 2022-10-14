@@ -366,7 +366,9 @@ class DruxtClient {
       return this.index[prefix][resource] ? this.index[prefix][resource] : false
     }
 
-    const url = [prefix, this.options.endpoint].join('')
+    console.log('this.options.endpointt',this.options.endpoint)
+    const suffixUrl = [prefix, this.options.endpoint].join('')
+    const url = suffixUrl.startsWith('/') === false ? '/' + suffixUrl : suffixUrl;
     const { data } = await this.get(url)
     let index = data.links
 
@@ -483,7 +485,7 @@ class DruxtClient {
     if (!href) {
       href = this.options.endpoint + '/' + type.replace('--', '/')
     }
-
+    console.log('HREF', href)
     const url = this.buildQueryUrl([href, id].join('/'), query)
     const { data } = await this.get(url)
     return data
