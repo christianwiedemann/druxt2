@@ -1,6 +1,6 @@
 {
   "name": "@druxt2/druxt",
-  "version": "0.0.5-y.11",
+  "version": "0.0.5-y.12",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -23,7 +23,7 @@
     "build": "yarn dev:prepare && yarn prepack"
   },
   "dependencies": {
-    "@druxt2/core": "^0.0.5-y.11",
+    "@druxt2/core": "^0.0.5-y.12",
     "chalk": "^5.0.1",
     "nuxt-proxy": "^0.2.4",
     "querystring": "^0.2.1",
