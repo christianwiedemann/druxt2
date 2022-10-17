@@ -275,7 +275,6 @@ class DruxtClient {
    */
   async get(url: string, options:any = {}) {
     try {
-      console.log('GET', url)
       const res = await this.axios.get(url, options)
       // Check that the response hasn't omitted data due to missing permissions.
       this.checkPermissions(res)
@@ -366,7 +365,6 @@ class DruxtClient {
       return this.index[prefix][resource] ? this.index[prefix][resource] : false
     }
 
-    console.log('this.options.endpointt',this.options.endpoint)
     const suffixUrl = [prefix, this.options.endpoint].join('')
     const url = suffixUrl.startsWith('/') === false ? '/' + suffixUrl : suffixUrl;
     const { data } = await this.get(url)
