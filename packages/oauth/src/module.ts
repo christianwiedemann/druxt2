@@ -1,11 +1,21 @@
-import {addAutoImport, addImports, addPlugin, createResolver, defineNuxtModule, resolveModule} from '@nuxt/kit'
-import type { NuxtModule } from '@nuxt/schema'
+import {
+    addAutoImport,
+    addImports,
+    addPlugin,
+    createResolver,
+    defineNuxtModule,
+    installModule,
+    resolveModule
+} from '@nuxt/kit'
+import type {NuxtModule} from '@nuxt/schema'
+import {useNuxtApp} from "#app";
+import {usePinia} from "~/menu/playground/.nuxt/imports";
+import {createPinia, getActivePinia, setActivePinia} from "pinia";
 
 
 export interface ModuleOptions {
-  baseUrl: String
-  router: Object
-  proxy: any
+    clientId: String,
+    clientSecret: String
 }
 
 /**
@@ -32,21 +42,27 @@ export interface ModuleOptions {
  * @property {string} options.druxt.baseUrl - Base URL of Drupal JSON:API backend.
  * @property {string} options.druxt.router.component - File to custom Router component.
  */
-const DruxtOauthModule =  defineNuxtModule<ModuleOptions>({
-  meta: {
-    name: 'druxt-oauth',
-    configKey: 'druxt',
-  },
-  async setup(moduleOptions, nuxt) {
-    const { resolve } = createResolver(import.meta.url);
-    const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: resolve('./runtime') })
+const DruxtOauthModule = defineNuxtModule<ModuleOptions>({
+    meta: {
+        name: 'druxt-oauth',
+        configKey: 'druxtOauth',
+    },
+    defaults: {
+        clientId: '',
+        clientSecret: ''
+    },
+    async setup(moduleOptions, nuxt) {
 
-    addPlugin(resolveRuntimeModule('./plugins/authorize'));
+        const {resolve} = createResolver(import.meta.url);
+        const resolveRuntimeModule = (path: string) => resolveModule(path, {paths: resolve('./runtime')})
 
-    nuxt.hook("components:dirs", (dirs) => {
-      dirs.push({ path: resolve('./runtime/components'),global: true });
-    });
-  },
+
+        addPlugin(resolveRuntimeModule('./plugins/authorize'));
+
+        nuxt.hook("components:dirs", (dirs) => {
+            dirs.push({path: resolve('./runtime/components'), global: true});
+        });
+    },
 });
 
 
