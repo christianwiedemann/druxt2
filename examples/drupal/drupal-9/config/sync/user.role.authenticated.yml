@@ -10,6 +10,7 @@ dependencies:
     - media
     - search
     - shortcut
+    - simple_oauth
     - system
 _core:
   default_config_hash: PhpjKGbPRzHm1FDviTaPLu3g-svxhir96cooP-e8wSM
@@ -21,6 +22,7 @@ permissions:
   - 'access content'
   - 'access shortcuts'
   - 'access site-wide contact form'
+  - 'grant simple_oauth codes'
   - 'search content'
   - 'use text format basic_html'
   - 'view media'

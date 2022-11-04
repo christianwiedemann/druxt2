@@ -10,6 +10,7 @@ dependencies:
     - filter
     - media
     - search
+    - simple_oauth
     - system
 _core:
   default_config_hash: Gl1lr_RJQ9pMz_DZhY6pNX94k874Gqh15Gm8Du1EepQ
@@ -21,6 +22,7 @@ permissions:
   - 'access content'
   - 'access druxt resources'
   - 'access site-wide contact form'
+  - 'grant simple_oauth codes'
   - 'search content'
   - 'use text format restricted_html'
   - 'view media'
