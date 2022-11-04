@@ -5,7 +5,6 @@
 import {useNuxtApp} from "#app";
 const app = useNuxtApp();
 const login = () => {
-  app.$auth.reset();
   app.$auth.loginWith('drupal');
 }
 </script>
