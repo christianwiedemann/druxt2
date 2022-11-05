@@ -96,6 +96,13 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
         // Main API Endpoint.
         proxies[options.endpoint] = options.baseUrl
 
+        // Enable proxying of the oauth endpoint.
+        // This is primarily used to avoid CORS errors.
+        if ((options.proxy || {}).oauth) {
+          proxies['/druxt-oauth/token'] = options.baseUrl;
+          proxies['/oauth/debug'] = options.baseUrl;
+        }
+
         // Langcode prefixed API endpoints.
         const languageResourceType = 'configurable_language--configurable_language'
         if (((await druxt.getIndex(languageResourceType)) || {}).href) {
@@ -107,6 +114,10 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
             .map(o => o.attributes.drupal_internal__id)
           for (const langcode of languages) {
             proxies[`/${langcode}${options.endpoint}`] = options.baseUrl
+            if ((options.proxy || {}).oauth) {
+              proxies[`/${langcode}/druxt-oauth/token`] = options.baseUrl;
+              proxies[`/${langcode}/oauth/debug`] = options.baseUrl;
+            }
           }
         }
 
@@ -114,12 +125,7 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
         proxies['/router/translate-path'] = options.baseUrl
       }
 
-      // Enable proxying of the oauth endpoint.
-      // This is primarily used to avoid CORS errors.
-      if ((options.proxy || {}).oauth) {
-        proxies['/druxt-oauth/token'] = options.baseUrl;
-        proxies['/oauth/debug'] = options.baseUrl;
-      }
+
 
       // Enable proxying of the Drupal site files.
       if ((options.proxy || {}).files) {
@@ -138,7 +144,6 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
           target: options.baseUrl,
           changeOrigin: true,
           autoRewrite: true,
-          hostRewrite: true,
           pathRewrite,
           pathFilter
         }
