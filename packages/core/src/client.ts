@@ -364,7 +364,8 @@ class DruxtClient {
       return this.index[prefix][resource] ? this.index[prefix][resource] : false
     }
 
-    const url = [prefix, this.options.endpoint].join('')
+    const suffixUrl = [prefix, this.options.endpoint].join('')
+    const url = suffixUrl.startsWith('/') === false ? '/' + suffixUrl : suffixUrl;
     const { data } = await this.get(url)
     let index = data.links
 
