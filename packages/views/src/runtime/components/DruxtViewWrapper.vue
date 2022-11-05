@@ -395,13 +395,13 @@ export default {
     if (!props.view && (props.uuid || props.viewId)) {
       if (props.uuid) {
         view = await druxtStore.getResource({
-          prefix: '/' + props.lang,
+          prefix: props.lang,
           type: props.type,
           id: props.uuid,
         })
       } else {
         const collection = await druxtStore.getCollection({
-          prefix: '/' + props.lang,
+          prefix: props.lang,
           type: props.type,
           query: new DrupalJsonApiParams().addFilter('drupal_internal__id', props.viewId)
         })
@@ -414,7 +414,7 @@ export default {
       const query = await getQuery()
       const resource = await viewsStore.getResults({
         displayId: props.displayId,
-        prefix: '/' + props.lang,
+        prefix: props.lang,
         query: stringify(query),
         viewId,
         druxtClient

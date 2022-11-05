@@ -228,7 +228,6 @@ class DruxtRouter {
       break
     }
 
-    console.log('fetch Route. Path: ' + path)
     // Process Axios error.
     if (!(response.status >= 200 && response.status < 300)) {
       // Handle 404 errors.
