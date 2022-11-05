@@ -8,10 +8,10 @@ export default defineNuxtPlugin(() => {
         const token = app.$auth.strategy.token.get();
 
         if (typeof token != 'undefined') {
-            router.addHeaders({
+            druxt.addHeaders({
                 'Authorization': token
             });
-            druxt.addHeaders({
+            router.getDruxtClient().addHeaders({
                 'Authorization': token
             });
         }

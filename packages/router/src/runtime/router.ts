@@ -13,6 +13,10 @@ import { DruxtClient } from '@druxt2/core'
  * Provides core Drupal JSON:API query functionality.
  */
 class DruxtRouter {
+  private druxt: DruxtClient;
+  private options: any;
+  private baseUrl: any;
+
   /**
    * DruxtRouter constructor.
    *
@@ -76,7 +80,15 @@ class DruxtRouter {
      */
     this.druxt = new DruxtClient(baseUrl, this.options)
 
-    this.axios = this.druxt.axios
+  }
+
+  /**
+   * Returns druxt client.
+   *
+   * @return {DruxtClient} The druxt client.
+   */
+  public getDruxtClient() {
+    return this.druxt;
   }
 
   /**
