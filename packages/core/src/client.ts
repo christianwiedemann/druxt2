@@ -481,7 +481,6 @@ class DruxtClient {
     if (!href) {
       href = this.options.endpoint + '/' + type.replace('--', '/')
     }
-    console.log('HREF', href)
     const url = this.buildQueryUrl([href, id].join('/'), query)
     const { data } = await this.get(url)
     return data

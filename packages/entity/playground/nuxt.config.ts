@@ -10,6 +10,11 @@ export default defineNuxtConfig({
   },
   'druxt': {
     baseUrl: 'http://druxt-drupal.docksal/',
+    proxy: {
+      api: false,
+      oauth: false,
+      files: 'default'
+    },
     query: {
       'node--landingpage': {
         include: ['layout_builder__blocks']
