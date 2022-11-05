@@ -75,7 +75,6 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
 
     // Normalize slashes.
     const baseUrl = options.baseUrl = options.baseUrl.endsWith('/') ? options.baseUrl.slice(0, -1) : options.baseUrl
-    const nuxtUrl = nuxt.options.server.https ? 'https://' : 'http://' + nuxt.options.server.host + ':' + nuxt.options.server.port;
     options.endpoint = options.endpoint = options.endpoint.startsWith('/') ? options.endpoint : `/${options.endpoint}`
     options.query = options.query ?? null
     // Provide runtime configuration

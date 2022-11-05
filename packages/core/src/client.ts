@@ -7,7 +7,6 @@ interface Options {
   debug?: false
   api?: null
   endpoint?: '/jsonapi',
-  nuxtUrl?: string;
   jsonapiResourceConfig?:any
   baseUrl?:''
 }
@@ -357,7 +356,6 @@ class DruxtClient {
    * @returns {object} The resource index object or the specified resource.
    */
   async getIndex(resource, prefix = null) {
-    console.log('getIndex', resource, prefix)
     if ((this.index || {})[prefix] && !resource) {
       return this.index[prefix]
     }
@@ -367,8 +365,6 @@ class DruxtClient {
     }
 
     const url = [prefix, this.options.endpoint].join('')
-    //const url = suffixUrl.startsWith('/') === false ? '/' + suffixUrl : suffixUrl;
-    console.log('getIndex', url)
     const { data } = await this.get(url)
     let index = data.links
 
