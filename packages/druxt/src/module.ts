@@ -61,7 +61,6 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
     const options: any = {
       ...(moduleOptions || {})
     }
-
     nuxt.options.build.transpile.push(runtimeDir)
     nuxt.options.build.transpile.push('@druxt/core')
 
@@ -76,15 +75,15 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
 
     // Normalize slashes.
     const baseUrl = options.baseUrl = options.baseUrl.endsWith('/') ? options.baseUrl.slice(0, -1) : options.baseUrl
+    const nuxtUrl = nuxt.options.server.https ? 'https://' : 'http://' + nuxt.options.server.host + ':' + nuxt.options.server.port;
     options.endpoint = options.endpoint = options.endpoint.startsWith('/') ? options.endpoint : `/${options.endpoint}`
     options.query = options.query ?? null
     // Provide runtime configuration
     nuxt.options.runtimeConfig.public.baseUrl = baseUrl
     nuxt.options.runtimeConfig.public.endpoint = options.endpoint
     nuxt.options.runtimeConfig.public.options = options
-
     const axios = require('axios').default;
-    const druxt = new DruxtClient(options.baseUrl, {axios})
+    const druxt = new DruxtClient(options.baseUrl, { axios })
 
     // Nuxt proxy integration.
     if (options.proxy) {

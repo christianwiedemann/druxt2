@@ -1132,13 +1132,5 @@
     ],
     "oauth2_token.769fe3e8-428b-4c51-996c-3ea05de4413a": [
         "user.1bc973b1-4bee-403f-8f76-52387c936207"
-    ],
-    "oauth2_token.5780efb0-052a-4005-b843-c8edc68486e0": [
-        "user.1bc973b1-4bee-403f-8f76-52387c936207",
-        "consumer.eb9a638f-5a63-4184-b2e2-cb4e243b3d49"
-    ],
-    "oauth2_token.367f578c-3f9f-4ac6-8730-c830b7a1f120": [
-        "user.1bc973b1-4bee-403f-8f76-52387c936207",
-        "consumer.eb9a638f-5a63-4184-b2e2-cb4e243b3d49"
     ]
 }

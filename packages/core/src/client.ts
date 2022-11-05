@@ -7,6 +7,7 @@ interface Options {
   debug?: false
   api?: null
   endpoint?: '/jsonapi',
+  nuxtUrl?: string;
   jsonapiResourceConfig?:any
   baseUrl?:''
 }
@@ -45,7 +46,6 @@ class DruxtClient {
     if (!baseUrl) {
       throw new Error('The \'baseUrl\' parameter is required.')
     }
-
 
     const axiosBaseUrl = baseUrl && !options?.proxy?.api ? baseUrl : void 0;
 
@@ -357,6 +357,7 @@ class DruxtClient {
    * @returns {object} The resource index object or the specified resource.
    */
   async getIndex(resource, prefix = null) {
+    console.log('getIndex', resource, prefix)
     if ((this.index || {})[prefix] && !resource) {
       return this.index[prefix]
     }
@@ -365,8 +366,9 @@ class DruxtClient {
       return this.index[prefix][resource] ? this.index[prefix][resource] : false
     }
 
-    const suffixUrl = [prefix, this.options.endpoint].join('')
-    const url = suffixUrl.startsWith('/') === false ? '/' + suffixUrl : suffixUrl;
+    const url = [prefix, this.options.endpoint].join('')
+    //const url = suffixUrl.startsWith('/') === false ? '/' + suffixUrl : suffixUrl;
+    console.log('getIndex', url)
     const { data } = await this.get(url)
     let index = data.links
 

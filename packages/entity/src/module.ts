@@ -49,6 +49,7 @@ const DruxtEntityNuxtModule =  defineNuxtModule<ModuleOptions>({
 
     nuxt.options.build.transpile.push(runtimeDir)
 
+    installModule('@druxt2/druxt')
     installModule('@druxt2/router')
     installModule('@druxt2/schema')
 

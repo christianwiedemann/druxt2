@@ -1,13 +1,7 @@
-import DruxtEntityNuxtModule from '..'
+import DruxtEntityNuxtModule from '../src/module'
 
 export default defineNuxtConfig({
-  vite: {
-    server: {
-      hmr: {
-        protocol: 'wss'
-      }
-    }
-  },
+  ssr: true,
   components: {
     global: true,
     dirs: [
@@ -26,7 +20,6 @@ export default defineNuxtConfig({
     }
   },
   modules: [
-    DruxtEntityNuxtModule
+    DruxtEntityNuxtModule,
   ],
-  buildModules: ['@pinia/nuxt', '@druxt2/druxt', '@druxt2/schema', '@druxt2/router' ]
 })
