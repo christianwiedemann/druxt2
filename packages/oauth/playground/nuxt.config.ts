@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     auth:{
         strategies: {
             drupal: {
+                'redirectUri': 'http://localhost:3000/login',
                 scheme: 'oauth2',
                 clientId: 'eb9a638f-5a63-4184-b2e2-cb4e243b3d49',
                 clientSecret: 'test',
@@ -34,6 +35,8 @@ export default defineNuxtConfig({
         "@nuxtjs-alt/http",
         '@pinia/nuxt',
         '@druxt2/druxt',
+        '@druxt2/router',
+        '@druxt2/entity',
         DruxtOauthModule
     ]
 })

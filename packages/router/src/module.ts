@@ -60,6 +60,7 @@ const DruxtRouterNuxtModule =  defineNuxtModule<ModuleOptions>({
       baseUrl: moduleOptions.baseUrl,
       router: {
         pages: (await existsSync(resolve(nuxt.options.srcDir, nuxt.options.dir.pages))),
+
         wildcard: true,
         ...moduleOptions.router,
       }

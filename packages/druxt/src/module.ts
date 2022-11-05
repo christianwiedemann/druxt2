@@ -137,6 +137,8 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
         options: {
           target: options.baseUrl,
           changeOrigin: true,
+          autoRewrite: true,
+          hostRewrite: true,
           pathRewrite,
           pathFilter
         }
