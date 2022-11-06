@@ -107,7 +107,7 @@ const DruxtRouterNuxtModule =  defineNuxtModule<ModuleOptions>({
             //path: `/${o.attributes.drupal_internal__id}*`,
             path: '/${o.attributes.drupal_internal__id}:pathMatch(.*)*',
             file: resolve('./runtime/components/DruxtRouter.vue'),
-            meta: {langcode: o.attributes.drupal_internal__id}
+            meta: {langcode: o.attributes.drupal_internal__id, auth: { guest: true } }
           })
         })
 
@@ -117,6 +117,7 @@ const DruxtRouterNuxtModule =  defineNuxtModule<ModuleOptions>({
          // path: '*',
           path: '/:pathMatch(.*)*',
           file: resolve('./runtime/components/DruxtRouter.vue'),
+          meta: {auth: { guest: true } }
         })
       })
     }
