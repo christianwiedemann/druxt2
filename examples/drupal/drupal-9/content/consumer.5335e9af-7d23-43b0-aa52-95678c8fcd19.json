@@ -1,7 +1,7 @@
 {
     "uuid": [
         {
-            "value": "eb9a638f-5a63-4184-b2e2-cb4e243b3d49"
+            "value": "5335e9af-7d23-43b0-aa52-95678c8fcd19"
         }
     ],
     "langcode": [
@@ -15,9 +15,14 @@
             "target_uuid": "9037d975-34ff-4020-b8ff-18cf8715361a"
         }
     ],
+    "client_id": [
+        {
+            "value": "default_consumer"
+        }
+    ],
     "label": [
         {
-            "value": "Druxt demo consumer"
+            "value": "Default Consumer"
         }
     ],
     "description": [
@@ -28,7 +33,7 @@
     "image": [],
     "third_party": [
         {
-            "value": false
+            "value": true
         }
     ],
     "is_default": [
@@ -49,7 +54,18 @@
             "value": false
         }
     ],
-    "roles": [],
+    "roles": [
+        {
+            "target_id": "author",
+            "target_type": "user_role",
+            "target_uuid": "df8b77f7-493f-4d89-8f4c-e84bf03bed3c"
+        },
+        {
+            "target_id": "editor",
+            "target_type": "user_role",
+            "target_uuid": "087f5a24-7734-4563-a19c-f1b6475801f9"
+        }
+    ],
     "redirect": [
         {
             "value": "http:\/\/localhost:3000\/login"
