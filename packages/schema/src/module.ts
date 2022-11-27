@@ -51,7 +51,7 @@ const SchemaNuxtModule = defineNuxtModule({
       if (typeof schema === 'undefined') { continue }
       addTemplate({
         src: resolve(templatesDir, 'schema.json'),
-        fileName: resolve(`schemas/${name}.json`),
+        filename: resolve(`schemas/${name}.json`),
         options: { schema },
         write: true
       })

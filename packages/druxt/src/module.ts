@@ -86,7 +86,7 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
 
     // Nuxt proxy integration.
     if (options.proxy) {
-      const proxies = {}
+      const proxies:any = {}
 
       // Enable proxying of the API endpoint.
       // This is primarily used to avoid CORS errors.
@@ -130,8 +130,8 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
         const filesPath = typeof options.proxy.files === 'string' ? options.proxy.files : 'default'
         proxies[`/sites/${filesPath}/files`] = options.baseUrl
       }
-      const pathRewrite = {}
-      const pathFilter = []
+      const pathRewrite:any = {}
+      const pathFilter:string[] = []
       Object.keys(proxies).forEach((path) => {
         pathRewrite['^' + path] = path
         pathFilter.push(path)

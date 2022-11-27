@@ -1,4 +1,3 @@
-import {defineNuxtConfig} from 'nuxt'
 import DruxtRouterNuxtModule from '..'
 
 export default defineNuxtConfig({
