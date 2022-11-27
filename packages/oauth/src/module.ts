@@ -1,16 +1,9 @@
 import {
-    addAutoImport,
-    addImports,
     addPlugin,
     createResolver,
     defineNuxtModule,
-    installModule,
     resolveModule
 } from '@nuxt/kit'
-import type {NuxtModule} from '@nuxt/schema'
-import {useNuxtApp} from "#app";
-import {usePinia} from "~/menu/playground/.nuxt/imports";
-import {createPinia, getActivePinia, setActivePinia} from "pinia";
 
 
 export interface ModuleOptions {
