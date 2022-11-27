@@ -1,45 +1,18 @@
 <script>
 import {
   useEntity,
-  useEntityRender
+  useEntityRender,
+  useEntityWrapperProps
 } from "../composables/useEntity";
 
 export default {
-  props: {
-    lang: {
-      type: String,
-      required: true
-    },
-    druxtComponent: {
-      type: Object,
-      required: false
-    },
-    entity: {
-      type: Object,
-      required: false
-    },
-    viewMode: {
-      type: String,
-      required: true
-    },
-    type: {
-      type: String,
-      required: false
-    },
-    uuid: {
-      type: String,
-      required: false
-    },
-
-  },
-
+  props: useEntityWrapperProps(),
   async setup(props) {
     const entity = await useEntity(props);
     if (!entity) {
       const druxtDebug = resolveComponent('DruxtDebug');
       return () => h(druxtDebug, {title: 'Entity not found', json: props})
     }
-    // provide('entity', entity);
     return useEntityRender(entity, props.viewMode);
   }
 }

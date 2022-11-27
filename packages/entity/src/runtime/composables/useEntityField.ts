@@ -60,5 +60,9 @@ export const useEntityFieldFormatterProps = () => {
       type: String,
       required: true
     },
+    context: {
+      type: Object,
+      required: false
+    },
   };
 }

@@ -1,9 +1,8 @@
 import { pascalCase, splitByCase } from 'scule'
 import { DruxtTheme } from '../index'
-import {resolveDynamicComponent} from "vue";
+import { resolveDynamicComponent } from 'vue'
 
-
-const suggestionsOptions = (theme, options: [[]], lang = null) => {
+const suggestionsOptions = (theme: string, options: [[]], lang = null) => {
   // Build list of available components.
   const components = []
   for (const set of options.filter(set => Array.isArray(set))) {
@@ -11,7 +10,7 @@ const suggestionsOptions = (theme, options: [[]], lang = null) => {
 
     for (const item of set.filter(o => o)) {
       // Build array of name parts.
-      const parts = variants.length ? [...variants[0].parts] : []
+      const parts:string[] = variants.length ? [...variants[0].parts] : []
       parts.push(pascalCase(splitByCase(item)))
 
       // Convert parts into a pascalCase component name.
@@ -46,15 +45,15 @@ const suggestionsOptions = (theme, options: [[]], lang = null) => {
 }
 const isComponent = name => typeof resolveDynamicComponent(name) !== 'string'
 
-export const druxtTheme = (theme, options: [[]], props = {}, slots = {}, lang = null):DruxtTheme => {
-  let suggestions = {};
+export const druxtTheme = (theme: string, options: [[]], props = {}, slots = {}, lang = null):DruxtTheme => {
+  let suggestions:string[] = []
   const casedTheme = pascalCase(theme)
   if (!Array.isArray(options)) {
     options = [[]]
   }
-  const suggestionsOpt = suggestionsOptions(casedTheme, options, lang);
-  suggestions = suggestionsOpt.map(o => pascalCase(o.name)) || [];
-  suggestions.push(casedTheme);
+  const suggestionsOpt = suggestionsOptions(casedTheme, options, lang)
+  suggestions = suggestionsOpt.map(o => pascalCase(o.name)) || []
+  suggestions.push(casedTheme)
   return {
     suggestions,
     props,
@@ -62,7 +61,7 @@ export const druxtTheme = (theme, options: [[]], props = {}, slots = {}, lang = 
     is: () => {
       for (const suggestion of suggestions) {
         if (suggestion.endsWith('!')) {
-          return suggestion;
+          return suggestion
         }
         if (isComponent(suggestion)) {
           return suggestion

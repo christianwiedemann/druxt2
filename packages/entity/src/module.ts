@@ -1,9 +1,4 @@
-import {addImports, createResolver, defineNuxtModule, installModule, resolveModule} from '@nuxt/kit'
-import {
-  useEntityIsLayoutBuilderEnabled, useEntityLayoutBuilderRender,
-  useEntityLayoutBuilderSections,
-  useEntitySchema
-} from "./runtime/composables/useEntity";
+import {addImports, createResolver, defineNuxtModule, installModule } from '@nuxt/kit'
 import {fileURLToPath} from "url";
 
 
@@ -43,9 +38,9 @@ const DruxtEntityNuxtModule =  defineNuxtModule<ModuleOptions>({
     configKey: 'druxt',
   },
   async setup(moduleOptions, nuxt) {
+
     const { resolve } = createResolver(import.meta.url);
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
-    const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: runtimeDir })
 
     nuxt.options.build.transpile.push(runtimeDir)
 
@@ -59,12 +54,13 @@ const DruxtEntityNuxtModule =  defineNuxtModule<ModuleOptions>({
 
     // Register composables
     addImports([
-      { name: 'useEntityLayoutBuilderRender', as: 'useEntityLayoutBuilderRender', from: resolveRuntimeModule('./composables/useEntity') },
-      { name: 'useEntityComponentOptions', as: 'useEntityComponentOptions', from: resolveRuntimeModule('./composables/useEntity') },
-      { name: 'useEntitySchema', as: 'useEntitySchema', from: resolveRuntimeModule('./composables/useEntity') },
-      { name: 'useEntityIsLayoutBuilderEnabled', as: 'useEntityIsLayoutBuilderEnabled', from: resolveRuntimeModule('./composables/useEntity') },
-      { name: 'useEntityLayoutBuilderSections', as: 'useEntityLayoutBuilderSections', from: resolveRuntimeModule('./composables/useEntity') },
-
+      { name: 'druxtEntityWrapperTheme', as: 'druxtEntityWrapperTheme', from: resolve('./runtime/composables/druxtEntityWrapperTheme') },
+      { name: 'useEntity', as: 'useEntity', from: resolve('./runtime/composables/useEntity') },
+      { name: 'useEntityLayoutBuilderRender', as: 'useEntityLayoutBuilderRender', from: resolve('./runtime/composables/useEntity') },
+      { name: 'useEntityComponentOptions', as: 'useEntityComponentOptions', from: resolve('./runtime/composables/useEntity') },
+      { name: 'useEntitySchema', as: 'useEntitySchema', from: resolve('./runtime/composables/useEntity') },
+      { name: 'useEntityIsLayoutBuilderEnabled', as: 'useEntityIsLayoutBuilderEnabled', from: resolve('./runtime/composables/useEntity') },
+      { name: 'useEntityLayoutBuilderSections', as: 'useEntityLayoutBuilderSections', from: resolve('./runtime/composables/useEntity') },
     ])
   },
 });

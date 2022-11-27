@@ -2,6 +2,7 @@
 import {druxtTheme, druxtRender} from "#imports";
 import {default as DruxtField} from "./DruxtField";
 import {h} from "vue";
+import {druxtEntityWrapperTheme} from "../composables/druxtEntityWrapperTheme";
 
 export default {
   computed: {
@@ -202,7 +203,7 @@ export default {
         const item = items[delta]
         scopedSlots[`field-${delta}`] = (attrs) => {
           if (this.isFile && schemaType === 'view') {
-            return druxtTheme('DruxtEntityWrapper', {
+            return druxtEntityWrapperTheme( {
               attrs,
               entity: {},
               lang: this.lang,
@@ -213,13 +214,12 @@ export default {
 
           // Image: View
           if (this.isImage && schemaType === 'view') {
-            return druxtTheme('DruxtEntityWrapper',
-                {
-                  attrs,
-                  lang: this.lang,
-                  type: item.type,
-                  uuid: item.id
-                })
+            return druxtEntityWrapperTheme({
+              attrs,
+              lang: this.lang,
+              type: item.type,
+              uuid: item.id
+            })
           }
 
           // Link: View.
@@ -233,14 +233,14 @@ export default {
           // Relationship: View.
           if (this.relationship && (item || {}).id && schemaType === 'view') {
             if (this.schema.type === 'entity_reference_label') {
-              return druxtTheme('DruxtEntityLabelWrapper', {
+              return druxtEntityWrapperTheme( {
                 attrs,
                 lang: this.lang,
                 type: item.type,
                 uuid: item.id,
               })
             } else {
-              return druxtTheme('DruxtEntityWrapper', {
+              return druxtEntityWrapperTheme( {
                 attrs,
                 lang: this.lang,
                 viewMode: this.schema.settings.display.view_mode || 'default',
