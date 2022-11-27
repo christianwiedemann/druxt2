@@ -1,0 +1,19 @@
+uuid: 4e36f645-149e-46c9-afc0-14c157f326e9
+langcode: en
+status: true
+dependencies: {  }
+id: editor
+name: editor
+description: Editor
+grant_types:
+  authorization_code:
+    status: true
+  client_credentials:
+    status: true
+  refresh_token:
+    status: true
+umbrella: false
+parent: null
+granularity: role
+permission: null
+role: editor
