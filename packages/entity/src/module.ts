@@ -62,6 +62,7 @@ const DruxtEntityNuxtModule =  defineNuxtModule<ModuleOptions>({
       { name: 'useEntitySchema', as: 'useEntitySchema', from: resolve('./runtime/composables/useEntity') },
       { name: 'useEntityIsLayoutBuilderEnabled', as: 'useEntityIsLayoutBuilderEnabled', from: resolve('./runtime/composables/useEntity') },
       { name: 'useEntityLayoutBuilderSections', as: 'useEntityLayoutBuilderSections', from: resolve('./runtime/composables/useEntity') },
+      { name: 'useEntityWrapperProps', as: 'useEntityWrapperProps', from: resolve('./runtime/composables/useEntity') },
     ])
   },
 });
