@@ -1,6 +1,6 @@
 {
   "name": "@druxt2/entity",
-  "version": "0.0.5-y.27",
+  "version": "0.0.5-y.28",
   "description": "The Fully Decoupled Drupal Framework for Nuxt.js.",
   "keywords": [
     "cms",
