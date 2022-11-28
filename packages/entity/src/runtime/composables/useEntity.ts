@@ -124,6 +124,7 @@ export const useEntityRender = async (entity, viewMode = 'full', lang = 'en') =>
   return useEntityDefaultRender(entity, viewMode, lang)
 }
 
+
 export const useEntityDefaultRender = async (entity, viewMode = 'full', lang = 'en') => {
 
   const schema = await useEntitySchema(entity, viewMode);
