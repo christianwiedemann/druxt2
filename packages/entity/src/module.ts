@@ -56,6 +56,7 @@ const DruxtEntityNuxtModule =  defineNuxtModule<ModuleOptions>({
     addImports([
       { name: 'druxtEntityWrapperTheme', as: 'druxtEntityWrapperTheme', from: resolve('./runtime/composables/druxtEntityWrapperTheme') },
       { name: 'useEntity', as: 'useEntity', from: resolve('./runtime/composables/useEntity') },
+      { name: 'useEntityRender', as: 'useEntityRender', from: resolve('./runtime/composables/useEntity') },
       { name: 'useEntityLayoutBuilderRender', as: 'useEntityLayoutBuilderRender', from: resolve('./runtime/composables/useEntity') },
       { name: 'useEntityComponentOptions', as: 'useEntityComponentOptions', from: resolve('./runtime/composables/useEntity') },
       { name: 'useEntitySchema', as: 'useEntitySchema', from: resolve('./runtime/composables/useEntity') },
