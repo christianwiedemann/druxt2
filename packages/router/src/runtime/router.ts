@@ -49,7 +49,8 @@ class DruxtRouter {
           props: route => ({
             langcode: route.entity.langcode,
             type: route.jsonapi.resourceName,
-            uuid: route.entity.uuid
+            uuid: route.entity.uuid,
+            ...route.props
           })
         },
         {
