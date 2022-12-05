@@ -71,6 +71,7 @@ const DruxtRouterNuxtModule =  defineNuxtModule<ModuleOptions>({
 
     addImports([
       { name: 'useDruxtRouter', as: 'useDruxtRouter', from: resolveRuntimeModule('./composables/useDruxtRouter') },
+      { name: 'DruxtRouterStore', as: 'DruxtRouterStore', from: resolveRuntimeModule('./stores/router') },
       { name: 'useDruxtRouterProps', as: 'useDruxtRouterProps', from: resolveRuntimeModule('./composables/useDruxtRouter') },
     ])
 

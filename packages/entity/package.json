@@ -1,6 +1,6 @@
 {
   "name": "@druxt2/entity",
-  "version": "0.0.5-y.28",
+  "version": "0.0.5-y.32",
   "description": "The Fully Decoupled Drupal Framework for Nuxt.js.",
   "keywords": [
     "cms",
@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@druxt2/druxt": "^0.0.5-y.26",
-    "@druxt2/router": "^0.0.5-y.26",
+    "@druxt2/router": "^0.0.5-y.32",
     "@druxt2/schema": "^0.0.5-y.26",
     "consola": "^2.15.0",
     "drupal-jsonapi-params": "^2.1.0",
@@ -58,5 +58,5 @@
     "registry": "https://npm.pkg.github.com"
   },
   "repository": "https://github.com/christianwiedemann/druxt2.git",
-  "gitHead": "86baa0c3273cf0aeb1ab4e83837ed09f4cc8f995"
+  "gitHead": "a14c610ce2c0f4277e0396cb69ffe6dddcae1db7"
 }
