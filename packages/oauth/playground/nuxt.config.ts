@@ -20,7 +20,7 @@ export default defineNuxtConfig({
                 clientSecret: 'test',
                 endpoints: {
                     authorization: 'http://druxt-drupal.docksal/druxt-oauth/authorize',
-                    token: '/druxt-oauth/token'
+                    token: 'http://druxt-drupal.docksal/druxt-oauth/token'
                 },
                 scope: ['profile'],
                 responseType: 'code',

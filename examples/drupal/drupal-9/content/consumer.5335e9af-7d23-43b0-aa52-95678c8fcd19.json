@@ -68,7 +68,7 @@
     ],
     "redirect": [
         {
-            "value": "http:\/\/localhost:3000\/login"
+            "value": "http:\/\/localhost:3001\/login"
         }
     ],
     "user_id": [],
