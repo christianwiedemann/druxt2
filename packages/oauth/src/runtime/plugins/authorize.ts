@@ -9,7 +9,24 @@ export default defineNuxtPlugin(() => {
         if (to.query.tokenOverride) {
             app.$auth.setUserToken(to.query.tokenOverride);
         }
-        
+
+        if (app.$auth.$state.loggedIn) {
+            const {tokenExpired, refreshTokenExpired, isRefreshable} = app.$auth.check(true);
+            if (refreshTokenExpired) {
+                app.$auth.reset();
+            } else if (tokenExpired) {
+                if (isRefreshable) {
+                    try {
+                        await app.$auth.refreshTokens();
+                    } catch (error) {
+                        app.$auth.reset();
+                    }
+                } else {
+                    app.$auth.reset();
+                }
+            }
+        }
+
         const token = app.$auth.strategy.token.get();
 
         if (typeof token != 'undefined') {
