@@ -3,7 +3,7 @@
   "useNx": true,
   "useWorkspaces": true,
   "npmClient": "yarn",
-  "version": "0.0.5-y.36",
+  "version": "0.0.5-y.37",
   "packages": [
     "packages/*"
   ]
