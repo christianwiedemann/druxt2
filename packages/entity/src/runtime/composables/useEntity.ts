@@ -215,6 +215,7 @@ export const useEntityLayoutBuilderRender = async (sections, entity, viewMode = 
         slots[slotName].push(viewTheme);
       } else {
         const blockConfigIds = id.split(':');
+        console.log('CONFIG',drupalComponent);
         const blockTheme = druxtTheme('DruxtBlock', [blockConfigIds], {lang, id, blockId: blockConfigIds[1], context: {entity},});
         slots[slotName].push(blockTheme);
       }
