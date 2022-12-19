@@ -214,7 +214,8 @@ export const useEntityLayoutBuilderRender = async (sections, entity, viewMode = 
         const viewTheme = druxtTheme('DruxtViewWrapper', [[]], {lang, viewId, displayId});
         slots[slotName].push(viewTheme);
       } else {
-        const blockTheme = druxtTheme('DruxtBlock', [[id]], {lang, id});
+        const blockConfigIds = id.split(':');
+        const blockTheme = druxtTheme('DruxtBlock', [blockConfigIds], {lang, id, blockId: blockConfigIds[1], context: {entity},});
         slots[slotName].push(blockTheme);
       }
     }
