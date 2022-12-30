@@ -1,6 +1,5 @@
 import {useSchema, druxtTheme, useDruxtClient, druxtRender} from "#imports";
 import {default as DruxtFieldWrapper} from "../components/DruxtFieldWrapper";
-import {default as DruxtEntityWrapper} from "../components/DruxtEntityWrapper";
 
 import {h, resolveComponent} from "vue";
 import {useEntityFields} from "./useEntityField";

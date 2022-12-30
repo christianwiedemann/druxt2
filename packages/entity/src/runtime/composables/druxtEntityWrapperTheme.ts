@@ -1,6 +1,6 @@
 import { druxtTheme } from '#imports';
 
-export const druxtEntityWrapperTheme = async (props: { lang: string; type?: string; uuid?: string; entity?: {} ; attrs?: any, viewMode?: string, context?:any }) => {
+export const druxtEntityWrapperTheme = (props: { lang: string; type?: string; uuid?: string; entity?: {} ; attrs?: any, viewMode?: string, context?:any }) => {
   const entityInfo  = props.type ? props.type.split('--') : ['Default', 'Default'];
   const viewMode = props.viewMode || 'default';
   entityInfo.push(viewMode)
