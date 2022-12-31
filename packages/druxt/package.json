@@ -1,6 +1,6 @@
 {
   "name": "@druxt2/druxt",
-  "version": "0.0.5-y.26",
+  "version": "0.0.5-y.40",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -23,7 +23,7 @@
     "build": "yarn dev:prepare && yarn prepack"
   },
   "dependencies": {
-    "@druxt2/core": "^0.0.5-y.22",
+    "@druxt2/core": "^0.0.5-y.40",
     "chalk": "^5.0.1",
     "drupal-jsonapi-params": "^2.1.0",
     "nuxt-proxy": "^0.2.4",
