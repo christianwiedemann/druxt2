@@ -1,0 +1,132 @@
+0 silly argv {
+0 silly argv   _: [ 'publish' ],
+0 silly argv   composed: 'publish',
+0 silly argv   lernaVersion: '5.5.1',
+0 silly argv   '$0': 'node_modules/.bin/lerna'
+0 silly argv }
+1 notice cli v5.5.1
+2 verbose rootPath /home/cw/projects/druxt3.js
+3 verbose session c6c8f7119ab40b95
+4 verbose user-agent lerna/5.5.1/node@v16.13.1+x64 (linux)
+5 warn Yarn's registry proxy is broken, replacing with public npm registry
+6 warn If you don't have an npm token, you should exit and run `npm login`
+7 silly argv { _: [ 'publish' ], composed: 'publish', lernaVersion: '5.5.1' }
+8 verbose rootPath /home/cw/projects/druxt3.js
+9 info current version 0.0.5-y.26
+10 silly isAnythingCommitted
+11 verbose isAnythingCommitted 1
+12 silly getCurrentBranch
+13 verbose currentBranch next
+14 silly remoteBranchExists
+15 silly isBehindUpstream
+16 silly isBehindUpstream next is behind origin/next by 0 commit(s) and ahead by 0
+17 silly hasTags
+18 verbose hasTags true
+19 silly git-describe.sync "v0.0.5-y.26-1-g307c4c3" => {"lastTagName":"v0.0.5-y.26","lastVersion":"v0.0.5-y.26","refCount":"1","sha":"307c4c3","isDirty":false}
+20 info Looking for changed packages since v0.0.5-y.26
+21 silly checking diff packages/core
+22 silly no diff found in @druxt2/core
+23 silly checking diff packages/druxt
+24 silly no diff found in @druxt2/druxt
+25 silly checking diff packages/entity
+26 silly found diff in packages/entity/src/module.ts
+27 verbose filtered diff [ 'packages/entity/src/module.ts' ]
+28 silly checking diff packages/menu
+29 silly no diff found in @druxt2/menu
+30 silly checking diff packages/oauth
+31 silly no diff found in @druxt2/oauth
+32 silly checking diff packages/router
+33 silly no diff found in @druxt2/router
+34 silly checking diff packages/schema
+35 silly no diff found in @druxt2/schema
+36 silly checking diff packages/views
+37 silly no diff found in @druxt2/views
+38 verbose updated @druxt2/entity
+39 verbose updated @druxt2/views
+40 verbose git-describe undefined => "v0.0.5-y.26-1-g307c4c3"
+41 silly git-describe parsed => {"lastTagName":"v0.0.5-y.26","lastVersion":"v0.0.5-y.26","refCount":"1","sha":"307c4c3","isDirty":false}
+42 info execute Skipping releases
+43 silly lifecycle No script for "preversion" in "@druxt2/root", continuing
+44 silly lifecycle No script for "preversion" in "@druxt2/entity", continuing
+45 verbose version @druxt2/entity has no lockfile. Skipping lockfile update.
+46 silly lifecycle No script for "version" in "@druxt2/entity", continuing
+47 silly lifecycle No script for "preversion" in "@druxt2/views", continuing
+48 verbose version @druxt2/views has no lockfile. Skipping lockfile update.
+49 silly lifecycle No script for "version" in "@druxt2/views", continuing
+50 silly lifecycle "version" starting in "@druxt2/root"
+51 info lifecycle @druxt2/root@0.0.2~version: @druxt2/root@0.0.2
+52 silly lifecycle "version" finished in "@druxt2/root"
+53 silly gitAdd [
+53 silly gitAdd   'packages/entity/package.json',
+53 silly gitAdd   'packages/views/package.json',
+53 silly gitAdd   'lerna.json'
+53 silly gitAdd ]
+54 silly gitCommit v0.0.5-y.27
+55 verbose git [ 'commit', '-m', 'v0.0.5-y.27' ]
+56 silly gitTag v0.0.5-y.27
+57 verbose git [ 'tag', 'v0.0.5-y.27', '-m', 'v0.0.5-y.27' ]
+58 silly lifecycle No script for "postversion" in "@druxt2/entity", continuing
+59 silly lifecycle No script for "postversion" in "@druxt2/views", continuing
+60 silly lifecycle No script for "postversion" in "@druxt2/root", continuing
+61 info git Pushing tags...
+62 silly gitPush origin next
+63 info publish Publishing packages to npm...
+64 warn ENOLICENSE Packages @druxt2/entity and @druxt2/views are missing a license.
+64 warn ENOLICENSE One way to fix this is to add a LICENSE.md file to the root of this repository.
+64 warn ENOLICENSE See https://choosealicense.com for additional guidance.
+65 silly getCurrentSHA
+66 verbose getCurrentSHA 86baa0c3273cf0aeb1ab4e83837ed09f4cc8f995
+67 silly lifecycle No script for "prepublish" in "@druxt2/root", continuing
+68 silly lifecycle No script for "prepare" in "@druxt2/root", continuing
+69 silly lifecycle No script for "prepublishOnly" in "@druxt2/root", continuing
+70 silly lifecycle No script for "prepack" in "@druxt2/root", continuing
+71 verbose pack-directory packages/entity
+72 silly lifecycle No script for "prepublish" in "@druxt2/entity", continuing
+73 silly lifecycle No script for "prepare" in "@druxt2/entity", continuing
+74 silly lifecycle No script for "prepublishOnly" in "@druxt2/entity", continuing
+75 silly lifecycle "prepack" starting in "@druxt2/entity"
+76 info lifecycle @druxt2/entity@0.0.5-y.27~prepack: @druxt2/entity@0.0.5-y.27
+77 silly lifecycle "prepack" finished in "@druxt2/entity"
+78 silly lifecycle No script for "postpack" in "@druxt2/entity", continuing
+79 verbose packed packages/entity
+80 verbose pack-directory packages/views
+81 silly lifecycle No script for "prepublish" in "@druxt2/views", continuing
+82 silly lifecycle No script for "prepare" in "@druxt2/views", continuing
+83 silly lifecycle No script for "prepublishOnly" in "@druxt2/views", continuing
+84 silly lifecycle "prepack" starting in "@druxt2/views"
+85 info lifecycle @druxt2/views@0.0.5-y.27~prepack: @druxt2/views@0.0.5-y.27
+86 silly lifecycle "prepack" finished in "@druxt2/views"
+87 silly lifecycle No script for "postpack" in "@druxt2/views", continuing
+88 verbose packed packages/views
+89 silly lifecycle No script for "postpack" in "@druxt2/root", continuing
+90 verbose publish @druxt2/entity
+91 silly FetchError: request to https://npm.pkg.github.com/@druxt2%2fentity failed, reason: getaddrinfo EAI_AGAIN npm.pkg.github.com
+91 silly     at ClientRequest.<anonymous> (/home/cw/projects/druxt3.js/node_modules/minipass-fetch/lib/index.js:130:14)
+91 silly     at ClientRequest.emit (node:events:390:28)
+91 silly     at TLSSocket.socketErrorListener (node:_http_client:447:9)
+91 silly     at TLSSocket.emit (node:events:402:35)
+91 silly     at emitErrorNT (node:internal/streams/destroy:157:8)
+91 silly     at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+91 silly     at processTicksAndRejections (node:internal/process/task_queues:83:21)
+91 silly  FetchError: request to https://npm.pkg.github.com/@druxt2%2fentity failed, reason: getaddrinfo EAI_AGAIN npm.pkg.github.com
+91 silly     at ClientRequest.<anonymous> (/home/cw/projects/druxt3.js/node_modules/minipass-fetch/lib/index.js:130:14)
+91 silly     at ClientRequest.emit (node:events:390:28)
+91 silly     at TLSSocket.socketErrorListener (node:_http_client:447:9)
+91 silly     at TLSSocket.emit (node:events:402:35)
+91 silly     at emitErrorNT (node:internal/streams/destroy:157:8)
+91 silly     at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+91 silly     at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+91 silly   code: 'EAI_AGAIN',
+91 silly   errno: 'EAI_AGAIN',
+91 silly   syscall: 'getaddrinfo',
+91 silly   hostname: 'npm.pkg.github.com',
+91 silly   type: 'system'
+91 silly }
+92 error EAI_AGAIN request to https://npm.pkg.github.com/@druxt2%2fentity failed, reason: getaddrinfo EAI_AGAIN npm.pkg.github.com
+93 error FetchError: request to https://npm.pkg.github.com/@druxt2%2fentity failed, reason: getaddrinfo EAI_AGAIN npm.pkg.github.com
+93 error     at ClientRequest.<anonymous> (/home/cw/projects/druxt3.js/node_modules/minipass-fetch/lib/index.js:130:14)
+93 error     at ClientRequest.emit (node:events:390:28)
+93 error     at TLSSocket.socketErrorListener (node:_http_client:447:9)
+93 error     at TLSSocket.emit (node:events:402:35)
+93 error     at emitErrorNT (node:internal/streams/destroy:157:8)
+93 error     at emitErrorCloseNT (node:internal/streams/destroy:122:3)
