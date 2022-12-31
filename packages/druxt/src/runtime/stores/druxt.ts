@@ -1,8 +1,8 @@
 import merge from 'deepmerge'
 import md5 from 'md5'
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
-import {defineStore} from "pinia";
-import {useDruxtClient, DruxtStore} from "#imports";
+import { defineStore } from 'pinia'
+import { useDruxtClient } from '#imports'
 
 const getDrupalJsonApiParams = (query) => {
   return new DrupalJsonApiParams().initialize(query);

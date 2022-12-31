@@ -1,8 +1,6 @@
 import md5 from 'md5'
 
 import { defineStore } from 'pinia'
-import {useDruxtClient} from "#imports";
-
 
 const DruxtViewsStore = defineStore({
   id: 'druxt-views-store',
@@ -57,7 +55,7 @@ const DruxtViewsStore = defineStore({
       }
 
       const results = await druxtClient.getResource(`views--${viewId}`, displayId, query, prefix)
-      this.addResults({results, viewId, displayId, prefix, hash});
+      this.addResults({ results, viewId, displayId, prefix, hash });
       return results
     }
 

@@ -17,11 +17,10 @@ const SchemaNuxtModule = defineNuxtModule({
 
   async setup (options, nuxt) {
     // Add dynamic imports for vite.
-
     const { resolve } = createResolver(import.meta.url)
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
     nuxt.options.build.transpile.push(runtimeDir)
-    installModule('@druxt2/druxt')
+
 
     const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: resolve('./runtime') })
 
@@ -57,6 +56,7 @@ const SchemaNuxtModule = defineNuxtModule({
       })
     }
 
+    await installModule('@druxt2/druxt')
     consola.success('Drupal schema files generated!')
   }
 })

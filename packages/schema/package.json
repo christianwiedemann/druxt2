@@ -40,8 +40,16 @@
     "prepack": "nuxt-module-build"
   },
   "dependencies": {
+    "@changesets/cli": "^2.24.4",
     "@druxt2/core": "^0.0.5-y.22",
-    "@druxt2/druxt": "^0.0.5-y.26"
+    "@druxt2/druxt": "^0.0.5-y.26",
+    "@pinia/nuxt": "^0.4.1",
+    "drupal-jsonapi-params": "^2.1.0",
+    "lerna": "^5.3.0",
+    "nx": "^14.7.5",
+    "pinia": "^2.0.14",
+    "qs": "^6.11.0",
+    "vite-plugin-dynamic-import": "^1.0.0"
   },
   "peerDependencies": {
     "consola": "*"

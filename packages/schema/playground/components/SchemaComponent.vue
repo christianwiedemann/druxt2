@@ -1,8 +1,9 @@
 <template>
-  {{schema.layout_builder}}
+  <div>
   <div v-for="field of schema.fields" :key="field.id">
     <strong>{{ field.id }}: {{ field.type }}</strong>
     <br/>
+  </div>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
+import { resolveDynamicComponent } from 'vue'
 import { pascalCase, splitByCase } from 'scule'
 import { DruxtTheme } from '../index'
-import { resolveDynamicComponent } from 'vue'
 
 const suggestionsOptions = (theme: string, options: [[]], lang = null) => {
   // Build list of available components.

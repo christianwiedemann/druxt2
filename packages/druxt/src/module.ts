@@ -97,8 +97,8 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
         // Enable proxying of the oauth endpoint.
         // This is primarily used to avoid CORS errors.
         if ((options.proxy || {}).oauth) {
-          proxies['/druxt-oauth/token'] = options.baseUrl;
-          proxies['/oauth/debug'] = options.baseUrl;
+          proxies['/druxt-oauth/token'] = options.baseUrl
+          proxies['/oauth/debug'] = options.baseUrl
         }
 
         // Langcode prefixed API endpoints.
@@ -123,8 +123,6 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
         proxies['/router/translate-path'] = options.baseUrl
       }
 
-
-
       // Enable proxying of the Drupal site files.
       if ((options.proxy || {}).files) {
         const filesPath = typeof options.proxy.files === 'string' ? options.proxy.files : 'default'
@@ -136,8 +134,8 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
         pathRewrite['^' + path] = path
         pathFilter.push(path)
       })
-      installModule('@pinia/nuxt')
-      installModule('nuxt-proxy', {
+      await installModule('@pinia/nuxt')
+      await installModule('nuxt-proxy', {
         options: {
           target: options.baseUrl,
           changeOrigin: true,
@@ -148,9 +146,8 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
       })
     }
 
-
     nuxt.hook('components:dirs', (dirs) => {
-      dirs.push({path: resolve('./runtime/components'), global: true})
+      dirs.push({ path: resolve('./runtime/components'), global: true })
     })
 
     // options.cli.badgeMessages.push(`${chalk.blue.bold('Druxt')} @ v${meta.version}`)

@@ -34,7 +34,7 @@
   "scripts": {
     "nuxi": "nuxi",
     "module:build": "nuxt-module-build",
-    "dev": "nuxt-module-build && nuxi dev playground",
+    "dev": "export NODE_TLS_REJECT_UNAUTHORIZED=0 && nuxt-module-build && nuxi dev  --https --ssl-cert localhost.pem --ssl-key localhost-key.pem playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "prepack": "nuxt-module-build",

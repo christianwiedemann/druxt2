@@ -21,5 +21,4 @@ export default defineNuxtConfig({
   modules: [
     DruxtViewsNuxtModule
   ],
-  buildModules: ['@pinia/nuxt', '@druxt2/druxt', '@druxt2/schema', '@druxt2/entity']
 })

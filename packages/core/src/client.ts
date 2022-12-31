@@ -366,7 +366,6 @@ class DruxtClient {
 
     const suffixUrl = [prefix, this.options.endpoint].join('')
     const url = suffixUrl.startsWith('/') === false ? '/' + suffixUrl : suffixUrl;
-    
     const { data } = await this.get(url)
     let index = data.links
 
@@ -482,6 +481,9 @@ class DruxtClient {
     // @TODO - Add test coverage.
     if (!href) {
       href = this.options.endpoint + '/' + type.replace('--', '/')
+      if (prefix) {
+        href = prefix + href;
+      }
     }
     const url = this.buildQueryUrl([href, id].join('/'), query)
     const { data } = await this.get(url)

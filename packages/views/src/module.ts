@@ -1,4 +1,4 @@
-import {createResolver, defineNuxtModule} from '@nuxt/kit'
+import {createResolver, defineNuxtModule, installModule} from '@nuxt/kit'
 
 export interface ModuleOptions {
   baseUrl: String
@@ -36,10 +36,14 @@ const DruxtViewsNuxtModule = defineNuxtModule<ModuleOptions>({
     configKey: 'druxt',
   },
   async setup(moduleOptions, nuxt) {
+    await installModule('@druxt2/entity')
+
     const { resolve } = createResolver(import.meta.url);
+
     nuxt.hook("components:dirs", (dirs) => {
       dirs.push({ path: resolve('./runtime/components'),global: true });
     });
+
   },
 });
 

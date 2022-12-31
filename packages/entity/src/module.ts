@@ -44,9 +44,9 @@ const DruxtEntityNuxtModule =  defineNuxtModule<ModuleOptions>({
 
     nuxt.options.build.transpile.push(runtimeDir)
 
-    installModule('@druxt2/druxt')
-    installModule('@druxt2/router')
-    installModule('@druxt2/schema')
+    await installModule('@druxt2/druxt')
+    await installModule('@druxt2/router')
+    await installModule('@druxt2/schema')
 
     nuxt.hook("components:dirs", (dirs) => {
       dirs.push({ path: resolve('./runtime/components'), global: true });
