@@ -108,7 +108,7 @@ export default {
     // Use the Path prop or the Vue Router as the route to lookup.
     const path = props.path || nuxtRoute.path || nuxtRoute.fullPath
 
-    const route = await store.getRoute(path);
+    const route = await store.getRoute(path, props.lang);
     // If this the path is the active Vue route, set the active route in the
     // druxtRouter store for other modules to use.
     // This is also done when via the middleware if in use.

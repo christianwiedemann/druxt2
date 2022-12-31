@@ -5,7 +5,7 @@ export default defineNuxtPlugin(() => {
   addRouteMiddleware('druxt-redirect', async (to) => {
     const store = new DruxtRouterStore();
     const { path } = to
-    const { redirect } = await store.get(path, $druxtRouter());
+    const { redirect } = await store.get(path, 'en', $druxtRouter());
     if (redirect) {
       return redirect;
     }

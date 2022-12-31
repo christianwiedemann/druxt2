@@ -37,9 +37,9 @@ const DruxtRouterStore = defineStore({
      * @example @lang js
      * const { redirect, route } = await this.$store.dispatch('druxtRouter/get', '/')
      */
-    async get (path, router = null) {
+    async get (path, prefix, router = null) {
       // Get route by path from 'getRoute'.
-      const route = await this.getRoute(path)
+      const route = await this.getRoute(path, prefix)
       // Handle route errors.
       if (route.error && typeof route.error.statusCode !== 'undefined' && ((this.app || {}).context || {}).error) {
         return this.app.context.error(route.error)
@@ -67,13 +67,13 @@ const DruxtRouterStore = defineStore({
      * @example @lang js
      * const route = await this.$store.dispatch('druxtRouter/getRoute', '/')
      */
-    async getRoute( path) {
+    async getRoute( path, prefix) {
       if (typeof this.routes[path] !== 'undefined') {
         return this.routes[path]
       }
 
       try {
-        const route = await useDruxtRouter().getRoute(path);
+        const route = await useDruxtRouter().getRoute(path, prefix);
         this.routes[path] = route;
       } catch (err) {
         this.routes[path] = {error: {statusCode: err.response.status, message: err.response.data.message}}

@@ -54,7 +54,7 @@ const DruxtRouterNuxtModule =  defineNuxtModule<ModuleOptions>({
     const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: runtimeDir })
     nuxt.options.build.transpile.push(runtimeDir)
 
-    installModule('@druxt2/schema')
+    await installModule('@druxt2/schema')
     // Set default options.
     const options = {
       baseUrl: moduleOptions.baseUrl,

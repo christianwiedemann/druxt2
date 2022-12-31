@@ -179,10 +179,9 @@ class DruxtRouter {
    *
    * @returns {object} The route object.
    */
-  async getRoute (path = '/') {
+  async getRoute (path = '/', prefix = null) {
     // @TODO - Add validation/error handling.
-    const url = `/router/translate-path?path=${path}`
-
+    const url = (prefix ? '/' + prefix : '') + `/router/translate-path?path=${path}`
     const response = await this.druxt.get(url, {
       // Prevent invalid routes (404) from throwing validation errors.
       validateStatus: status => status < 500

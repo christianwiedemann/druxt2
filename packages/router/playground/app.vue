@@ -1,5 +1,5 @@
 <template>
-    <DruxtRouter></DruxtRouter>
+    <DruxtRouter lang="en"></DruxtRouter>
 
   <NuxtLink to="/node/1">
 Node 1
