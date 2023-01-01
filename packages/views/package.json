@@ -1,6 +1,6 @@
 {
   "name": "@druxt2/views",
-  "version": "0.0.5-y.43",
+  "version": "0.0.5-y.44",
   "description": "The Fully Decoupled Drupal Framework for Nuxt.js.",
   "keywords": [
     "cms",
