@@ -127,8 +127,10 @@ export const useEntityRender = async (entity, viewMode = 'full', lang = 'en') =>
 export const useEntityLoadAndRender = async (props: LoadEntityProps & { viewMode:'' }) => {
   const entity = await useEntity(props);
   if (!entity?.type) {
-    const druxtDebug = resolveComponent('DruxtDebug');
-    return () => h(druxtDebug, {title: 'Entity not found', json: props})
+    return () => {
+      const druxtDebug = resolveComponent('DruxtDebug');
+      return h(druxtDebug, {title: 'Entity not found', json: props})
+    }
   }
   return useEntityRender(entity, props.viewMode);
 }
