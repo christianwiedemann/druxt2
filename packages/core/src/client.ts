@@ -487,6 +487,7 @@ class DruxtClient {
     }
     const url = this.buildQueryUrl([href, id].join('/'), query)
     const { data } = await this.get(url)
+    console.log('fetch.url', url);
     return data
   }
 
