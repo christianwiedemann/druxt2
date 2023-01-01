@@ -5,6 +5,8 @@ import {h, resolveComponent} from "vue";
 import {useEntityFields} from "./useEntityField";
 import {druxtEntityWrapperTheme} from "./druxtEntityWrapperTheme";
 
+type LoadEntityProps = { type?, uuid?, entity?, lang, query? };
+
 export const useEntityWrapperProps = () => {
   return {
     lang: {
@@ -64,7 +66,7 @@ export const useEntityLayoutBuilderSections = async (entity, viewMode = 'full') 
   return sections;
 }
 
-export const useEntity = async (props: { type?, uuid?, entity?, lang, query? }) => {
+export const useEntity = async (props: LoadEntityProps) => {
 
   if (props.entity) {
     return props.entity
@@ -114,7 +116,7 @@ export const useEntityComponentOptions = async (entity, viewMode = 'full', schem
 }
 export const useEntityRender = async (entity, viewMode = 'full', lang = 'en') => {
   if (!entity?.type) {
-    return () => h(resolveComponent('DruxtDebug'), {title: 'Unable to render entity', json: entity})
+    throw new TypeError('Entity must be a valid drupal entity');
   }
   if (await useEntityIsLayoutBuilderEnabled(entity, viewMode)) {
     const sections = await useEntityLayoutBuilderSections(entity, viewMode);
@@ -122,7 +124,14 @@ export const useEntityRender = async (entity, viewMode = 'full', lang = 'en') =>
   }
   return useEntityDefaultRender(entity, viewMode, lang)
 }
-
+export const useEntityLoadAndRender = async (props: LoadEntityProps & { viewMode:'' }) => {
+  const entity = await useEntity(props);
+  if (!entity?.type) {
+    const druxtDebug = resolveComponent('DruxtDebug');
+    return () => h(druxtDebug, {title: 'Entity not found', json: props})
+  }
+  return useEntityRender(entity, props.viewMode);
+}
 
 export const useEntityDefaultRender = async (entity, viewMode = 'full', lang = 'en') => {
 

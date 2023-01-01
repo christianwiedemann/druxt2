@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.24.4",
-    "nuxt": "3.0.0",
+    "nuxt": "^3.0.0",
     "nx": "^14.7.5",
     "@nuxt/schema": "^3.0.0",
     "bundlewatch": "0.3.3",
