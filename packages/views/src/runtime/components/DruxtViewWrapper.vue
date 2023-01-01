@@ -282,59 +282,8 @@ export default {
     }
   },
 
-  watch: {
-    async '$route.query'(to) {
-      if (!Object.entries(to || {}).length) {
-        this.model = {
-          filter: {},
-          page: null,
-          sort: null,
-        }
-      }
-    },
-
-    async displayId() {
-      await this.$fetch()
-    },
-
-    'model.filter': {
-      deep: true,
-      async handler(to, from) {
-        if (!Object.entries(to || {}).length && !Object.entries(from || {}).length) {
-          return
-        }
-        await this.$fetch()
-      },
-    },
-
-    async 'model.page'(to, from) {
-      if (to !== from) {
-        await this.$fetch()
-      }
-    },
-
-    async 'model.sort'(to, from) {
-      if (to !== from) {
-        await this.$fetch()
-      }
-    },
-
-    async query() {
-      await this.$fetch()
-    },
-
-    async uuid() {
-      await this.$fetch()
-    },
-
-    async viewId() {
-      await this.$fetch()
-    },
-  },
 
   methods: {
-
-
     /**
      * Filters update event handler.
      */
