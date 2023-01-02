@@ -1,6 +1,6 @@
 {
   "name": "@druxt2/core",
-  "version": "0.0.5-y.45",
+  "version": "0.0.5-y.46",
   "license": "MIT",
   "main": "./dist/index.js",
   "exports": {
