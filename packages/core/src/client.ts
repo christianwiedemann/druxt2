@@ -344,6 +344,7 @@ class DruxtClient {
     return collections
   }
 
+
   /**
    * Get index of all available resources, or the optionally specified resource.
    *
@@ -364,8 +365,7 @@ class DruxtClient {
       return this.index[prefix][resource] ? this.index[prefix][resource] : false
     }
 
-    const suffixUrl = [prefix, this.options.endpoint].join('')
-    const url = suffixUrl.startsWith('/') === false ? '/' + suffixUrl : suffixUrl;
+    const url = this.getResourceBasePath(prefix);
     const { data } = await this.get(url)
     let index = data.links
 
@@ -445,12 +445,22 @@ class DruxtClient {
 
     let { href } = await this.getIndex(type, prefix)
     if (!href) {
-      href = this.options.endpoint + '/' + type.replace('--', '/')
+      href = this.getResourceBasePath(prefix) + '/' + type.replace('--', '/')
     }
 
     const url = this.buildQueryUrl(`${href}/${id}/${related}`, query)
     const { data } = await this.get(url)
     return data
+  }
+
+  /**
+   * Get JSON:API resource base path with language prefix.
+   *
+   * @param prefix
+   */
+  getResourceBasePath(prefix:string) {
+    const apiBasePath = [prefix, this.options.endpoint].join('')
+    return apiBasePath.startsWith('/') === false ? '/' + apiBasePath : apiBasePath;
   }
 
   /**
@@ -477,17 +487,14 @@ class DruxtClient {
       return false
     }
 
+
     let { href } = await this.getIndex(type, prefix)
     // @TODO - Add test coverage.
     if (!href) {
-      href = this.options.endpoint + '/' + type.replace('--', '/')
-      if (prefix) {
-        href = prefix + href;
-      }
+      href = this.getResourceBasePath(prefix) + '/' + type.replace('--', '/')
     }
     const url = this.buildQueryUrl([href, id].join('/'), query)
     const { data } = await this.get(url)
-    console.log('fetch.url', url);
     return data
   }
 

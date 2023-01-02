@@ -11,8 +11,8 @@ export default defineNuxtConfig({
   'druxt': {
     baseUrl: 'http://druxt-drupal.docksal/',
     proxy: {
-      api: false,
-      oauth: false,
+      api: true,
+      oauth: true,
       files: 'default'
     },
     query: {

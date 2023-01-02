@@ -113,8 +113,8 @@ const DruxtNuxtModule = defineNuxtModule<ModuleOptions>({
           for (const langcode of languages) {
             proxies[`/${langcode}${options.endpoint}`] = options.baseUrl
             if ((options.proxy || {}).oauth) {
-              proxies[`/${langcode}/druxt-oauth/token`] = options.baseUrl;
-              proxies[`/${langcode}/oauth/debug`] = options.baseUrl;
+              proxies[`/${langcode}/druxt-oauth/token`] = options.baseUrl
+              proxies[`/${langcode}/oauth/debug`] = options.baseUrl
             }
           }
         }

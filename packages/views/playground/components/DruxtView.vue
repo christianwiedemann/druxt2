@@ -1,7 +1,5 @@
 <template>
   <div>
-    <div>
-      <slot name="results"></slot>
-    </div>
+    <slot name="results"></slot>
   </div>
 </template>

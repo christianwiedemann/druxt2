@@ -26,7 +26,7 @@
     "@druxt2/core": "^0.0.5-y.45",
     "chalk": "^5.0.1",
     "drupal-jsonapi-params": "^2.1.0",
-    "nuxt-proxy": "^0.2.4",
+    "nuxt-proxy": "^0.3.7",
     "querystring": "^0.2.1",
     "scule": "^0.3.2"
   },
