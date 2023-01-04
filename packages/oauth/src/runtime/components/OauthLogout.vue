@@ -1,12 +1,13 @@
 <template>
-  <button @click="login">Login</button>
+  <button @click="logout">Logout</button>
 </template>
 <script lang="ts" setup>
 import {useNuxtApp} from "#app";
 
 const app = useNuxtApp();
-const login = () => {
+const logout = () => {
   app.$auth.reset();
-  app.$auth.loginWith('drupal',{params: {'redirect': '/dynamic'}});
+  app.$auth.logout();
+  window.location.reload(true)
 }
 </script>
