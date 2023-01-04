@@ -17,6 +17,10 @@ export const useEntityWrapperProps = () => {
       type: Object,
       required: false
     },
+    query: {
+      type: Object,
+      required: false
+    },
     entity: {
       type: Object,
       required: false
