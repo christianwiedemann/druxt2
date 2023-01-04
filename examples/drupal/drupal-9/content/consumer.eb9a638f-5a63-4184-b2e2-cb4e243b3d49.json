@@ -1,0 +1,67 @@
+{
+    "uuid": [
+        {
+            "value": "eb9a638f-5a63-4184-b2e2-cb4e243b3d49"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "owner_id": [
+        {
+            "target_type": "user",
+            "target_uuid": "9037d975-34ff-4020-b8ff-18cf8715361a"
+        }
+    ],
+    "client_id": [
+        {
+            "value": "kDqVfLuR8uVkT-tj15fSKjqO7KxvdD3KDmuQmFk9Diw"
+        }
+    ],
+    "label": [
+        {
+            "value": "Druxt demo consumer"
+        }
+    ],
+    "description": [
+        {
+            "value": "This is the default consumer. This was created programmatically when the Consumers module was first installed. Feel free to edit, or delete this."
+        }
+    ],
+    "image": [],
+    "third_party": [
+        {
+            "value": false
+        }
+    ],
+    "is_default": [
+        {
+            "value": true
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true
+        }
+    ],
+    "secret": [],
+    "confidential": [
+        {
+            "value": false
+        }
+    ],
+    "roles": [],
+    "redirect": [
+        {
+            "value": "http:\/\/localhost:3000\/login"
+        }
+    ],
+    "user_id": [],
+    "pkce": [
+        {
+            "value": false
+        }
+    ]
+}
