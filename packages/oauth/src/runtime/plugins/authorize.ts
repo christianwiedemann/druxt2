@@ -7,10 +7,12 @@ export default defineNuxtPlugin(() => {
         const app = useNuxtApp();
 
         if (to.query.tokenOverride) {
+            console.log('Set user token.: ', to.query.tokenOverride)
             app.$auth.setUserToken(to.query.tokenOverride);
         }
 
         if (app.$auth.$state.loggedIn) {
+            console.log('Is logged in')
             console.log('CHECK FOR EXPIRED TOKEN')
             const {tokenExpired, refreshTokenExpired, isRefreshable} = app.$auth.check(true);
             console.log(tokenExpired)

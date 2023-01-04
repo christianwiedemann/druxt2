@@ -1627,6 +1627,32 @@
   dependencies:
     nx "15.4.2"
 
+"@nuxt-alt/auth@^2.0.3":
+  version "2.1.9"
+  resolved "https://registry.yarnpkg.com/@nuxt-alt/auth/-/auth-2.1.9.tgz#603d80a8bf89e58584290bb65437a81696468290"
+  integrity sha512-69d4Rk0C/36OjHvdbPz8Osp7SQsdWYvHWY0k1qbW2NOmB9bEFVK+ERK11kZxdOTAG5lbwp+5Qz2vkstqNeaJsg==
+  dependencies:
+    "@nuxt-alt/http" latest
+    "@nuxt/kit" "^3.0.0"
+    "@pinia/nuxt" latest
+    body-parser latest
+    cookie-es latest
+    defu latest
+    jwt-decode latest
+    ohash latest
+    pathe latest
+    requrl latest
+
+"@nuxt-alt/http@latest":
+  version "1.5.6"
+  resolved "https://registry.yarnpkg.com/@nuxt-alt/http/-/http-1.5.6.tgz#d20093b310c990a427a915bcac88e7d6061f8012"
+  integrity sha512-GbGYOQT40A4EGgNh2TT75NVWUCu8pqZOYJk+3BKM08fObBCc5hom00USsKg32csJWyitR9PLPOm9D5Y9LzfHUQ==
+  dependencies:
+    "@nuxt/kit" "^3.0.0"
+    "@refactorjs/ofetch" latest
+    defu latest
+    ufo latest
+
 "@nuxt/devalue@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@nuxt/devalue/-/devalue-2.0.0.tgz#c7bd7e9a516514e612d5d2e511ffc399e0eac322"
@@ -1754,32 +1780,6 @@
     vite-node "^0.25.2"
     vite-plugin-checker "^0.5.1"
     vue-bundle-renderer "^1.0.0"
-
-"@nuxtjs-alt/auth@^2.0.3":
-  version "2.1.7"
-  resolved "https://registry.yarnpkg.com/@nuxtjs-alt/auth/-/auth-2.1.7.tgz#a9b391e436a5710668b234271074f51a5e321363"
-  integrity sha512-VBtFn133pbtYl8eDs18Dv8t27q1dFq9rZpBI9f8K6t1jvZ2EXrYJkBxmulUR5tAYAq+JNg9jJPcS7W5Oby3hig==
-  dependencies:
-    "@nuxt/kit" "^3.0.0"
-    "@nuxtjs-alt/http" latest
-    "@pinia/nuxt" latest
-    body-parser latest
-    cookie-es latest
-    defu latest
-    jwt-decode latest
-    ohash latest
-    pathe latest
-    requrl latest
-
-"@nuxtjs-alt/http@latest":
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/@nuxtjs-alt/http/-/http-1.5.4.tgz#da651bc2aece4b2ba3a87fd4232d1dff67904eec"
-  integrity sha512-Q//ZWYGQYix2RB/ADRGasCnDycoJ+0fxUXLc0iAQQNDRJnC08PQxCI4IFJIT1FKPkRFEdTgn1G+zrVIVv07tEw==
-  dependencies:
-    "@nuxt/kit" "^3.0.0"
-    "@refactorjs/ofetch" latest
-    defu latest
-    ufo latest
 
 "@nuxtjs/eslint-config-typescript@latest":
   version "12.0.0"

@@ -16,11 +16,11 @@ export default defineNuxtConfig({
         strategies: {
             drupal: {
                 scheme: 'oauth2',
-                clientId: 'default_consumer',
+                clientId: 'kDqVfLuR8uVkT-tj15fSKjqO7KxvdD3KDmuQmFk9Diw',
                 clientSecret: 'test',
                 endpoints: {
                     authorization: 'http://druxt-drupal.docksal/druxt-oauth/authorize',
-                    token: 'http://druxt-drupal.docksal/druxt-oauth/token'
+                    token: '/druxt-oauth/token'
                 },
                 scope: ['profile'],
                 responseType: 'code',
@@ -30,8 +30,8 @@ export default defineNuxtConfig({
         },
     },
     modules: [
-        '@nuxtjs-alt/auth',
-        "@nuxtjs-alt/http",
+        '@nuxt-alt/auth',
+        '@nuxt-alt/http',
         '@pinia/nuxt',
         '@druxt2/druxt',
         '@druxt2/router',

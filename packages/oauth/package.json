@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@druxt2/druxt": "^0.0.5-y.46",
-    "@nuxtjs-alt/auth": "^2.0.3",
+    "@nuxt-alt/auth": "^2.0.3",
     "deepmerge": "^4.2.2",
     "drupal-jsonapi-params": "^2.1.0"
   },
@@ -57,4 +57,5 @@
   },
   "repository": "https://github.com/christianwiedemann/druxt2.git",
   "gitHead": "cd562d0bc293f0f51095218aa0e9d1ccfa718a87"
+
 }
