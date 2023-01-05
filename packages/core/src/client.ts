@@ -486,15 +486,16 @@ class DruxtClient {
     if (!id || !type) {
       return false
     }
-
-
     let { href } = await this.getIndex(type, prefix)
     // @TODO - Add test coverage.
     if (!href) {
       href = this.getResourceBasePath(prefix) + '/' + type.replace('--', '/')
     }
     const url = this.buildQueryUrl([href, id].join('/'), query)
-    const { data } = await this.get(url)
+    const { data, included } = await this.get(url)
+    if (included) {
+      data.included = included;
+    }
     return data
   }
 
