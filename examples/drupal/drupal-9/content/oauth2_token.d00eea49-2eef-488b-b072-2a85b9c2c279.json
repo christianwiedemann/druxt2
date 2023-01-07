@@ -1,0 +1,50 @@
+{
+    "uuid": [
+        {
+            "value": "d00eea49-2eef-488b-b072-2a85b9c2c279"
+        }
+    ],
+    "bundle": [
+        {
+            "target_id": "refresh_token",
+            "target_type": "oauth2_token_type",
+            "target_uuid": "d75933f6-6ad7-4f64-94c5-088a786acbc1"
+        }
+    ],
+    "auth_user_id": [
+        {
+            "target_type": "user",
+            "target_uuid": "1bc973b1-4bee-403f-8f76-52387c936207"
+        }
+    ],
+    "client": [],
+    "scopes": [],
+    "value": [
+        {
+            "value": "fc5016aafc26ace5a8e54f274fd83dea71f5e8feee3e5e686c7bf4801e7002ba33d5de9d04c0baa4"
+        }
+    ],
+    "created": [
+        {
+            "value": "2023-01-04T22:39:17+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2023-01-04T22:39:17+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "expire": [
+        {
+            "value": "2023-02-04T22:39:18+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ]
+}

@@ -1,0 +1,59 @@
+{
+    "uuid": [
+        {
+            "value": "b0cd0af0-8a31-47f2-92e7-3b750e17bd97"
+        }
+    ],
+    "bundle": [
+        {
+            "target_id": "auth_code",
+            "target_type": "oauth2_token_type",
+            "target_uuid": "9127a3f7-c7ad-492e-bbe2-d8f72a4c466a"
+        }
+    ],
+    "auth_user_id": [
+        {
+            "target_type": "user",
+            "target_uuid": "1bc973b1-4bee-403f-8f76-52387c936207"
+        }
+    ],
+    "client": [
+        {
+            "target_type": "consumer",
+            "target_uuid": "eb9a638f-5a63-4184-b2e2-cb4e243b3d49"
+        }
+    ],
+    "scopes": [
+        {
+            "target_id": "profile"
+        }
+    ],
+    "value": [
+        {
+            "value": "ace758f1ff802ce7b7b1b054e85f4d35093b5e4e988c17be519dcd10b1c374b3f34fafd5e5509d9f"
+        }
+    ],
+    "created": [
+        {
+            "value": "2023-01-04T23:21:22+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2023-01-04T23:21:23+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "expire": [
+        {
+            "value": "2023-02-08T16:41:22+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "status": [
+        {
+            "value": false
+        }
+    ]
+}
