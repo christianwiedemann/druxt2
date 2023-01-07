@@ -204,8 +204,7 @@ export const useEntityLayoutBuilderRender = async (sections, entity, viewMode = 
         const blockRevisionId = drupalComponent.configuration?.block_revision_id;
         // @ts-ignore
         const childViewMode = drupalComponent.configuration?.view_mode;
-        const childEntity = {data: includedBlocksByRevisionId[blockRevisionId]};
-        const blockTheme = druxtEntityWrapperTheme({lang, viewMode: childViewMode, entity: childEntity});
+        const blockTheme = druxtEntityWrapperTheme({lang, viewMode: childViewMode, entity: includedBlocksByRevisionId[blockRevisionId]});
         slots[slotName].push(blockTheme);
       } else if (id.startsWith('field_block')) {
         const fieldConfig = id.split(':');
