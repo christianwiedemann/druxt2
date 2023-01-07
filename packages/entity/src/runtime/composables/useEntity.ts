@@ -77,8 +77,12 @@ export const useEntity = async (props: LoadEntityProps) => {
   }
   if (props.uuid && props.type) {
     const client = useDruxtClient();
-    const resource = await client.getResource(props.type, props.uuid, props.query ?? {}, props.lang);
-    return resource?.data;
+    const { data, included } = await client.getResource(props.type, props.uuid, props.query ?? {}, props.lang);
+    const result = data;
+    if (included) {
+      result.included = included;
+    }
+    return result;
   }
 }
 

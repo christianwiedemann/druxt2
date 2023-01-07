@@ -492,10 +492,7 @@ class DruxtClient {
       href = this.getResourceBasePath(prefix) + '/' + type.replace('--', '/')
     }
     const url = this.buildQueryUrl([href, id].join('/'), query)
-    const { data, included } = await this.get(url)
-    if (included) {
-      data.included = included;
-    }
+    const { data } = await this.get(url)
     return data
   }
 
