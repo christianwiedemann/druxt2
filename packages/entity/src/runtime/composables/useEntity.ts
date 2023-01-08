@@ -77,7 +77,7 @@ export const useEntity = async (props: LoadEntityProps) => {
   }
   if (props.uuid && props.type) {
     const client = useDruxtClient();
-    const { data, included } = await client.getResource(props.type, props.uuid, props.query ?? {}, props.lang);
+    const {data, included} = await client.getResource(props.type, props.uuid, props.query ?? {}, props.lang);
     const result = data;
     if (included) {
       result.included = included;
@@ -132,7 +132,7 @@ export const useEntityRender = async (entity, viewMode = 'full', lang = 'en') =>
   }
   return useEntityDefaultRender(entity, viewMode, lang)
 }
-export const useEntityLoadAndRender = async (props: LoadEntityProps & { viewMode:'' }) => {
+export const useEntityLoadAndRender = async (props: LoadEntityProps & { viewMode: '' }) => {
   const entity = await useEntity(props);
   if (!entity?.type) {
     return () => {
@@ -189,7 +189,6 @@ export const useEntityLayoutBuilderRender = async (sections, entity, viewMode = 
 
     const slots = {};
     const drupalComponents: any = section.components;
-    const fields = useEntityFields(schema, entity, lang, true)
     for (const drupalComponent of Object.values(drupalComponents)) {
       // @ts-ignore
       const id = drupalComponent.configuration.id;
@@ -204,36 +203,45 @@ export const useEntityLayoutBuilderRender = async (sections, entity, viewMode = 
         const blockRevisionId = drupalComponent.configuration?.block_revision_id;
         // @ts-ignore
         const childViewMode = drupalComponent.configuration?.view_mode;
-        const blockTheme = druxtEntityWrapperTheme({lang, viewMode: childViewMode, entity: includedBlocksByRevisionId[blockRevisionId]});
+        const blockTheme = druxtEntityWrapperTheme({
+          lang,
+          viewMode: childViewMode,
+          entity: includedBlocksByRevisionId[blockRevisionId]
+        });
         slots[slotName].push(blockTheme);
       } else if (id.startsWith('field_block')) {
         const fieldConfig = id.split(':');
         const fieldName = fieldConfig[fieldConfig.length - 1];
-        const field = fields[fieldName];
-        if (!field) {
-          console.error('Unable to find field with name', fieldName, schema.id)
-        } else {
-          // @ts-ignore
-          const schema = {...field.schema, type: drupalComponent.configuration.formatter.type}
-          // @ts-ignore
-          schema.label.position = drupalComponent.configuration.formatter.label;
-          // @ts-ignore
-          if (drupalComponent?.configuration?.formatter?.settings?.view_mode) {
-            // @ts-ignore
-            schema.settings.display.view_mode = drupalComponent.configuration.formatter.settings.view_mode;
-          }
-          const fieldTheme = druxtTheme('DruxtFieldWrapper', [[]], {
-            context: {entity},
-            entity,
-            lang,
-            key: id,
-            ref: id,
-            relationship: field.relationship,
-            schema: schema,
-            'value': field.value
-          }, {}, lang)
-          slots[slotName].push(fieldTheme);
+        const field = {
+          id: fieldName,
+          langcode: lang,
+          value: entity.relationships[fieldName] ?? entity.attributes[fieldName] ,
+          schema: {
+            type: drupalComponent.configuration.formatter.type,
+            config: {
+              schemaType: 'view'
+            },
+            settings: {
+              display: {
+                ... drupalComponent?.configuration?.formatter?.settings
+              }
+            },
+            label: {
+              text: '[Title]',
+              position: drupalComponent.configuration.formatter.label
+            }
+          },
         }
+        const fieldTheme = druxtTheme('DruxtFieldWrapper', [[]], {
+          context: {entity},
+          entity,
+          lang,
+          key: id,
+          ref: id,
+          schema: field.schema,
+          'value': field.value
+        }, {}, lang)
+        slots[slotName].push(fieldTheme);
       } else if (id.startsWith('views_block')) {
         const viewConfig = id.split(':')[1];
         const [viewId, displayId] = viewConfig.split('-');
@@ -241,7 +249,13 @@ export const useEntityLayoutBuilderRender = async (sections, entity, viewMode = 
         slots[slotName].push(viewTheme);
       } else {
         const blockConfigIds = id.split(':');
-        const blockTheme = druxtTheme('DruxtBlock', [blockConfigIds], {lang, id, configuration: drupalComponent['configuration'], blockId: blockConfigIds[1], context: {entity},});
+        const blockTheme = druxtTheme('DruxtBlock', [blockConfigIds], {
+          lang,
+          id,
+          configuration: drupalComponent['configuration'],
+          blockId: blockConfigIds[1],
+          context: {entity},
+        });
         slots[slotName].push(blockTheme);
       }
     }

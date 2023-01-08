@@ -295,7 +295,6 @@ export default {
   },
 
   async setup(props) {
-    defineEmits({'refresh': null });
     const viewsStore = DruxtViewsStore();
     const druxtStore = DruxtStore();
     const druxtClient = useDruxtClient();

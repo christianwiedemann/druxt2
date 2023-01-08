@@ -10,7 +10,7 @@ const isEmpty = (value) => {
   return false
 }
 
-export const useEntityFields = (schema, entity={}, lang, includeHiddenFields = false) => {
+export const useEntityFields = (schema, entity={}, lang) => {
   const fields = {};
   const model = entity;
   const errors = [];
@@ -20,8 +20,7 @@ export const useEntityFields = (schema, entity={}, lang, includeHiddenFields = f
 
     // Filter out empty fields if not using the Form schema type.
     // @todo - Make this configurable?
-    if (isEmpty(value) && includeHiddenFields === false) continue
-    if (!field.visibleField && includeHiddenFields === false) continue
+    if (isEmpty(value)) continue
 
     fields[field.id] = {
       id: field.id,
