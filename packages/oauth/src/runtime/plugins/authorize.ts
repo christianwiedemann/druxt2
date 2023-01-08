@@ -17,7 +17,7 @@ export default defineNuxtPlugin(() => {
                 app.$auth.$state.loggedIn = true;
             }
         }
-        if (app.$auth.$state.loggedIn)
+        if (app.$auth.$state.loggedIn) {
             console.info('Druxt: Logged in')
             const {tokenExpired, refreshTokenExpired, isRefreshable} = app.$auth.check(true);
             if (refreshTokenExpired) {
