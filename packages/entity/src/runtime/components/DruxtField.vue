@@ -1,7 +1,7 @@
 <template>
   <div>
     <slot name="label"/>
-    <div><slot name="items"/></div>
+    <slot name="items"/>
   </div>
 </template>
 

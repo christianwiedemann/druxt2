@@ -6,32 +6,31 @@ export default defineNuxtPlugin(() => {
         const router = useDruxtRouter()
         const app = useNuxtApp();
 
-        if (to.query.tokenOverride) {
-            console.log('Set user token.: ', to.query.tokenOverride)
-            app.$auth.setUserToken(to.query.tokenOverride);
+        if (to.query.tokenOverride !== undefined) {
+            if (to.query.tokenOverride === '') {
+                // Preview Logout
+                app.$auth.setUserToken('');
+                app.$auth.$state.loggedIn = false;
+            } else {
+                // Preview Login
+                app.$auth.setUserToken(to.query.tokenOverride);
+                app.$auth.$state.loggedIn = true;
+            }
         }
-
-        if (app.$auth.$state.loggedIn) {
-            console.log('Is logged in')
-            console.log('CHECK FOR EXPIRED TOKEN')
+        if (app.$auth.$state.loggedIn)
+            console.info('Druxt: Logged in')
             const {tokenExpired, refreshTokenExpired, isRefreshable} = app.$auth.check(true);
-            console.log(tokenExpired)
-            console.log(refreshTokenExpired)
-            console.log(isRefreshable)
             if (refreshTokenExpired) {
                 app.$auth.reset();
-                console.log('REFRESH TOKEN EXPIRED')
             } else if (tokenExpired) {
                 if (isRefreshable) {
                     try {
-                        console.log('REFRESH TOKEN')
                         await app.$auth.refreshTokens();
                     } catch (error) {
-                        console.log('ERROR ' + error)
+                        console.error(error)
                         app.$auth.reset();
                     }
                 } else {
-                    console.log('NOT REFRESHABLE')
                     app.$auth.reset();
                 }
             }
@@ -47,7 +46,7 @@ export default defineNuxtPlugin(() => {
                 });
             }
         } else {
-            console.log('NOT LOGGED IN')
+            console.info('Druxt: Not logged in')
         }
 
 

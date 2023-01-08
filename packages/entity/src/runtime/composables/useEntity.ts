@@ -189,7 +189,7 @@ export const useEntityLayoutBuilderRender = async (sections, entity, viewMode = 
 
     const slots = {};
     const drupalComponents: any = section.components;
-    const fields = useEntityFields(schema, entity, lang)
+    const fields = useEntityFields(schema, entity, lang, true)
     for (const drupalComponent of Object.values(drupalComponents)) {
       // @ts-ignore
       const id = drupalComponent.configuration.id;
@@ -211,8 +211,17 @@ export const useEntityLayoutBuilderRender = async (sections, entity, viewMode = 
         const fieldName = fieldConfig[fieldConfig.length - 1];
         const field = fields[fieldName];
         if (!field) {
-          console.error('Unable to find field with name ' + fieldName)
+          console.error('Unable to find field with name', fieldName, schema.id)
         } else {
+          // @ts-ignore
+          const schema = {...field.schema, type: drupalComponent.configuration.formatter.type}
+          // @ts-ignore
+          schema.label.position = drupalComponent.configuration.formatter.label;
+          // @ts-ignore
+          if (drupalComponent?.configuration?.formatter?.settings?.view_mode) {
+            // @ts-ignore
+            schema.settings.display.view_mode = drupalComponent.configuration.formatter.settings.view_mode;
+          }
           const fieldTheme = druxtTheme('DruxtFieldWrapper', [[]], {
             context: {entity},
             entity,
@@ -220,7 +229,7 @@ export const useEntityLayoutBuilderRender = async (sections, entity, viewMode = 
             key: id,
             ref: id,
             relationship: field.relationship,
-            schema: field.schema,
+            schema: schema,
             'value': field.value
           }, {}, lang)
           slots[slotName].push(fieldTheme);

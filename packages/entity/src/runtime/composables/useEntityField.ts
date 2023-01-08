@@ -1,5 +1,3 @@
-import {default as DruxtFieldWrapper} from "../components/DruxtFieldWrapper";
-
 const isEmpty = (value) => {
   if (typeof value === 'undefined') return true
 
@@ -12,7 +10,7 @@ const isEmpty = (value) => {
   return false
 }
 
-export const useEntityFields = (schema, entity={}, lang) => {
+export const useEntityFields = (schema, entity={}, lang, includeHiddenFields = false) => {
   const fields = {};
   const model = entity;
   const errors = [];
@@ -22,7 +20,8 @@ export const useEntityFields = (schema, entity={}, lang) => {
 
     // Filter out empty fields if not using the Form schema type.
     // @todo - Make this configurable?
-    if (isEmpty(value)) continue
+    if (isEmpty(value) && includeHiddenFields === false) continue
+    if (!field.visibleField && includeHiddenFields === false) continue
 
     fields[field.id] = {
       id: field.id,

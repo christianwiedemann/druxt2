@@ -151,8 +151,8 @@ class Schema {
 
     const fieldConfig = await this.getResources('field_config--field_config', { 'filter[entity_type]': this.config.entityType, 'filter[bundle]': this.config.bundle })
     if (!fieldConfig) return false
-
-    for (const field in entityViewDisplay.attributes.content) {
+    for (const fieldConfigItem in fieldConfig.data) {
+      const field = fieldConfig.data[fieldConfigItem].attributes.field_name;
       const display = {
         id: null,
         label: null,
@@ -160,11 +160,11 @@ class Schema {
         weight: null,
         settings: {},
         third_party_settings: {},
-
-        ...entityViewDisplay.attributes.content[field]
+        ...entityViewDisplay.attributes.content[field] ?? {}
       }
 
-      let config = { attributes: {}, ...fieldConfig.data.find(element => element.attributes.field_name === field) }
+      // @ts-ignore
+      let config = { attributes: {}, ...fieldConfigItem }
       config = {
         description: null,
         label: null,
@@ -182,6 +182,7 @@ class Schema {
 
       this.fields[fieldName] = {
         id: fieldName,
+        visibleField: !!entityViewDisplay.attributes.content[field],
         description: config.description,
         label: {
           text: config.label,
